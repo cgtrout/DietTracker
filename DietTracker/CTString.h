@@ -23,7 +23,7 @@ vector<string> split(string &instring, string delim = " ")
 		}
 		lastpos = pos;
 	} 
-
+	return split;
 }
 
 #endif //CTSTRING

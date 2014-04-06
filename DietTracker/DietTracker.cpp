@@ -2,10 +2,18 @@
 //
 #include <iostream>
 #include <string>
+#include "Test.h"
+#include "AllTests.h"
+
+extern Tester tester;
+
+void TestAll();
 
 using namespace std;
 int main(int argc, char* argv[])
 {
+	TestAll();
+
 	string templine;
 	cout << "DietTracker > ";
 	cin >> templine;
@@ -15,6 +23,11 @@ int main(int argc, char* argv[])
 	
 	cin >> templine;
 	return 0;
+}
+
+void TestAll() {
+	AllTests::addSuites();
+	tester.RunAllSuites();
 }
 
 
