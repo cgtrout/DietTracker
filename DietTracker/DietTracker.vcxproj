@@ -82,12 +82,14 @@
   <ItemGroup>
     <ClInclude Include="AllTests.h" />
     <ClInclude Include="CTString.h" />
+    <ClInclude Include="DietCommand.h" />
     <ClInclude Include="Test.h" />
     <ClInclude Include="Test_CTString.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AllTests.cpp" />
     <ClCompile Include="CTString.cpp" />
+    <ClCompile Include="DietCommand.cpp" />
     <ClCompile Include="DietTracker.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="Test_CTString.cpp" />
