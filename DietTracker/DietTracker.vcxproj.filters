@@ -43,5 +43,8 @@
     <ClCompile Include="AllTests.cpp">
       <Filter>Test Files</Filter>
     </ClCompile>
+    <ClCompile Include="CTString.cpp">
+      <Filter>Test Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

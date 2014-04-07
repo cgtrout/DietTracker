@@ -87,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AllTests.cpp" />
+    <ClCompile Include="CTString.cpp" />
     <ClCompile Include="DietTracker.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="Test_CTString.cpp" />

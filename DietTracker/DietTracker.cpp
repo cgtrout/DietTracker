@@ -5,6 +5,8 @@
 #include "Test.h"
 #include "AllTests.h"
 
+#include "CTString.h"
+
 extern Tester tester;
 
 void TestAll();
@@ -16,12 +18,14 @@ int main(int argc, char* argv[])
 
 	string templine;
 	cout << "DietTracker > ";
-	cin >> templine;
-	cout << "Executing: " << templine << endl;
-
-	cout << "Hit enter to close";
+	getline(cin, templine);
 	
-	cin >> templine;
+	vector<string> splitVector = split(templine);
+
+	for(string &s : splitVector) {
+		cout << s << "\n";
+	}
+
 	return 0;
 }
 
