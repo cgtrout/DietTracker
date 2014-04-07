@@ -25,3 +25,52 @@ vector<string> split(string &instring, string delim)
 	}
 	return vec;
 }
+
+
+vector<string> parseCommandLine(string &instring) {
+	size_t pos = 0;
+	size_t lastPos = 0;
+
+	vector<string> vec;
+
+	//iterate over string
+	for(; pos <= instring.length();) {
+		//if at end of string
+		if(pos == instring.length()) {
+			vec.push_back(instring.substr(lastPos, pos - lastPos));
+			break;
+		}
+		//if at a space
+		if(instring[pos] == ' ') {
+			//create substring
+			vec.push_back(instring.substr(lastPos, pos - lastPos));
+
+			//skip foward until not a space
+			for(; instring[pos] == ' ' && pos < instring.length();) {
+				pos++;
+			}
+			lastPos = pos;
+		}
+		//else if at a start bracket
+		else if(instring[pos] == '{') {
+			//skip until we find next bracket
+			for(; pos < instring.length(); ++pos) {
+				if(instring[pos] == '}') {
+					break;
+				}
+			}
+			if(instring[pos] == '}') {
+				//create substring
+				vec.push_back(instring.substr(lastPos, pos - lastPos));
+				
+				lastPos = pos;
+			} else {
+				//bracket not found - return error
+				throw exception("Bracket missing");
+			}
+		}
+		pos++;
+	}
+
+	return vec;
+}

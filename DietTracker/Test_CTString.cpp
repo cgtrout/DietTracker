@@ -24,6 +24,12 @@ void Test_CTString::addTests() {
 
 		return ( stringvector[0] == "Superlongword" );
 	});
+	suite.AddTest("parseCommandLine: Valid command", []()-> bool {
+		string test = "Command1  {param3} param4";
+		vector<string> stringvector = parseCommandLine(test);
+
+		return stringvector[1] == "{param3}";
+	});
 
 	tester.AddSuite(suite);
 }
