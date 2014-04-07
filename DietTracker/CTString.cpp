@@ -1,8 +1,7 @@
 #include "CTString.h"
 
 //split string using delimiter.  Split strings returned in vector
-vector<string> split(string &instring, string delim)
-{
+vector<string> split(string &instring, string delim) {
 	vector<string> vec;
 
 	size_t pos = 0;

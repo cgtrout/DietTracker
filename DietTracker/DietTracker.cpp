@@ -22,7 +22,6 @@ int main(int argc, char* argv[])
 	
 	vector<string> splitVector = split(templine);
 
-
 	return 0;
 }
 

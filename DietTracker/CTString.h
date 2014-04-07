@@ -12,4 +12,5 @@ vector<string> split(string &instring, string delim = " ");
 //Parse command line for recipe program
 //TODO this should be moved when it is apparent where it belongs
 vector<string> parseCommandLine(string &instring);
+
 #endif //CTSTRING
