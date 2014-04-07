@@ -33,7 +33,6 @@ vector<string> parseCommandLine(string &instring) {
 
 	vector<string> vec;
 
-	//iterate over string
 	for(; pos <= instring.length();) {
 		//if at end of string
 		if(pos == instring.length()) {
