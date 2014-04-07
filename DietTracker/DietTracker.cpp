@@ -22,9 +22,6 @@ int main(int argc, char* argv[])
 	
 	vector<string> splitVector = split(templine);
 
-	for(string &s : splitVector) {
-		cout << s << "\n";
-	}
 
 	return 0;
 }
