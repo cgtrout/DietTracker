@@ -1,5 +1,5 @@
 #ifndef DIETCOMMAND_H
-#define DIETCOMMAND_T
+#define DIETCOMMAND_H
 	
 #include <string>
 #include <functional>
