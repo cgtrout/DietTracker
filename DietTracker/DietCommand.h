@@ -32,7 +32,7 @@ private:
 class DietCommands {
 public:
 	void AddDietCommand(string name);
-private:
+
 	std::map<std::string, DietCommand> commands;
 }dietCommands;
 
