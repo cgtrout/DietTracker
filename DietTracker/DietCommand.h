@@ -31,13 +31,9 @@ private:
 //represents several DietComands
 class DietCommands {
 public:
-
+	void AddDietCommand(string name);
 private:
-	std::map<std::string, DietCommand> dietCommands;
-};
-
-
-
-void AddDietCommand(string name);
+	std::map<std::string, DietCommand> commands;
+}dietCommands;
 
 #endif
