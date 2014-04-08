@@ -6,6 +6,8 @@
 #include <vector>
 #include <map>
 
+using namespace std;
+
 //Specification of one command param
 class DietCommandParam {
 public:
@@ -18,7 +20,7 @@ public:
 //represents one DietTracker command
 class DietCommand {
 public:
-	
+	DietCommand(std::string name) : name(name){};
 //private:
 	std::string name;
 	std::function<void()> commandFunction;
@@ -27,10 +29,6 @@ public:
 
 std::map<std::string, DietCommand> dietCommands;
 
-std::map<std::string, std::string> testMap;
-void test() {
-	dietCommands["Test"] = { "Test", []() { }, { "test" } };
-}
-
+void AddDietCommand(string name);
 
 #endif
