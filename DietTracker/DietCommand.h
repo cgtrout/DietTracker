@@ -21,10 +21,11 @@ public:
 class DietCommand {
 public:
 	DietCommand(std::string name) : name(name){};
-//private:
-	std::string name;
+
 	std::function<void()> commandFunction;
 	std::vector<DietCommandParam> params;
+private:
+	std::string name;
 };
 
 std::map<std::string, DietCommand> dietCommands;
