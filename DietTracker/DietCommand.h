@@ -12,8 +12,9 @@ using namespace std;
 class DietCommandParam {
 public:
 	enum class param_type { string, quantity, dateTime, recipe }type;
-	//bool validate();
-//private:
+	void SetValue(std::string value);
+	std::string GetValue() const;
+private:
 	std::string value;
 };
 
@@ -31,7 +32,7 @@ private:
 //represents several DietComands
 class DietCommands {
 public:
-	void AddDietCommand(string name);
+	void AddDietCommand(string &name);
 
 	std::map<std::string, DietCommand> commands;
 }dietCommands;
