@@ -12,7 +12,7 @@ using namespace std;
 class DietCommandParam {
 public:
 	enum class param_type { string, quantity, dateTime, recipe }type;
-	void SetValue(std::string value);
+	void SetValue(const std::string &value);
 	std::string GetValue() const;
 private:
 	std::string value;
