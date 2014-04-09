@@ -5,17 +5,22 @@
 #include <functional>
 #include <vector>
 #include <map>
+#include <memory>
 
 using namespace std;
 
-//Specification of one command param
-class DietCommandParam {
+//
+class CommandParamBase {
 public:
-	enum class param_type { string, quantity, dateTime, recipe }type;
+	virtual void SetValue(const std::string &value)=0;
+	virtual std::string GetValue()=0;
+};
+
+class CommandParamQuantity : CommandParamBase {
 	void SetValue(const std::string &value);
-	std::string GetValue() const;
+	std::string GetValue();
 private:
-	std::string value;
+	float value;
 };
 
 //represents one DietTracker command
@@ -24,7 +29,7 @@ public:
 	DietCommand(std::string name) : name(name){};
 
 	std::function<void()> commandFunction;
-	std::vector<DietCommandParam> params;
+	std::vector<CommandParamBase> params;
 private:
 	std::string name;
 };

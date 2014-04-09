@@ -5,12 +5,13 @@
 *	DietCommandParam Implementation
 *
 */
-void DietCommandParam::SetValue(const std::string &value) {
-	throw NotYetImplementedException();
+//Quantity implementation
+void CommandParamQuantity::SetValue(const std::string &value) {
+	this->value = stof(value);
 }
 
-std::string DietCommandParam::GetValue() const {
-	throw NotYetImplementedException();
+std::string CommandParamQuantity::GetValue() {
+	return to_string(value);
 }
 
 /*
