@@ -11,7 +11,7 @@ using namespace std;
 //Specification of one command param
 class DietCommandParam {
 public:
-	//enum class type { string, quantity, dateTime, recipe };
+	enum class param_type { string, quantity, dateTime, recipe }type;
 	//bool validate();
 //private:
 	std::string value;
