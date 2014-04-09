@@ -32,6 +32,9 @@
     <ClInclude Include="DietCommand.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="CTException.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DietTracker.cpp">

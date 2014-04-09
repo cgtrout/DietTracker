@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AllTests.h" />
+    <ClInclude Include="CTException.h" />
     <ClInclude Include="CTString.h" />
     <ClInclude Include="DietCommand.h" />
     <ClInclude Include="Test.h" />
