@@ -14,6 +14,9 @@ class CommandParamBase {
 public:
 	virtual void SetValue(const std::string &value)=0;
 	virtual std::string GetValue()=0;
+
+	CommandParamBase() {}
+	virtual ~CommandParamBase(){}
 };
 
 class CommandParamQuantity : CommandParamBase {
@@ -26,10 +29,12 @@ private:
 //represents one DietTracker command
 class DietCommand {
 public:
-	DietCommand(std::string name) : name(name){};
+	DietCommand(std::string &name) : name(name){};
+	
+	~DietCommand() {}
 
 	std::function<void()> commandFunction;
-	std::vector<CommandParamBase> params;
+	std::vector<std::shared_ptr<CommandParamBase>> params;
 private:
 	std::string name;
 };
