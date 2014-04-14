@@ -12,14 +12,9 @@ using namespace std;
 //
 class CommandParamBase {
 public:
-	void SetValue(const std::string &value);
-	std::string GetValue();
+	virtual void SetValue(const std::string &value) = 0;
+	virtual std::string GetValue() = 0;
 
-	//CommandParamBase() = de;
-	//~CommandParamBase() = delete;
-
-	//CommandParamBase(const CommandParamBase& other) = delete;
-	//CommandParamBase& operator=( const CommandParamBase& other ) = delete;
 };
 
 class CommandParamQuantity : public CommandParamBase {
