@@ -27,8 +27,8 @@ private:
 //represents one DietTracker command
 class DietCommand {
 public:
-	DietCommand(std::string name) : name(name), params(){};
-	
+	DietCommand(std::string name) : name(name), params(){}
+	DietCommand() : name(), params() {}
 	~DietCommand() {}
 	DietCommand(const DietCommand &other) = delete;
 	DietCommand(DietCommand &&other);
@@ -46,6 +46,6 @@ public:
 
 	std::map<std::string, DietCommand> commands;
 
-}dietCommands;
+};
 
 #endif
