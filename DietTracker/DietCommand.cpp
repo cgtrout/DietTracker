@@ -5,18 +5,32 @@
 *	DietCommandParam Implementation
 *
 */
-void DietCommandParam::SetValue(const std::string &value) {
-	throw NotYetImplementedException();
+
+//Quantity implementation
+void CommandParamQuantity::SetValue(const std::string &value) {
+	this->value = stof(value);
 }
 
-std::string DietCommandParam::GetValue() const {
-	throw NotYetImplementedException();
+std::string CommandParamQuantity::GetValue() {
+	return to_string(value);
 }
 
 /*
  *	DietCommands Implementation
  *
  */
-void DietCommands::AddDietCommand(string &name) {
+
+//move constructor
+DietCommand::DietCommand(DietCommand &&other) 
+  :	params(std::move(other.params)), 
+	commandFunction(std::move(other.commandFunction)), 
+	name(std::move(other.name)) {
+}
+
+void DietCommand::AddParam(CommandParamBase *param) {
+	params.push_back(unique_ptr<CommandParamBase>(param));
+}
+
+void DietCommands::AddDietCommand(string name) {
 	commands.insert(make_pair(name, DietCommand(name)));
 }
