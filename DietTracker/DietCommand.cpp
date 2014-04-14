@@ -27,6 +27,10 @@ DietCommand::DietCommand(DietCommand &&other)
 	name(std::move(other.name)) {
 }
 
+void DietCommand::AddParam(CommandParamBase *param) {
+	params.push_back(unique_ptr<CommandParamBase>(param));
+}
+
 void DietCommands::AddDietCommand(string name) {
 	commands.insert(make_pair(name, DietCommand(name)));
 }

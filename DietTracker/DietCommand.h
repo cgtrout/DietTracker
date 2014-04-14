@@ -20,6 +20,8 @@ public:
 class CommandParamQuantity : public CommandParamBase {
 	void SetValue(const std::string &value);
 	std::string GetValue();
+
+	float GetFloatValue() { return value; }
 private:
 	float value;
 };
@@ -27,11 +29,13 @@ private:
 //represents one DietTracker command
 class DietCommand {
 public:
-	DietCommand(std::string name) : name(name), params(){}
+	DietCommand(const std::string &name) : name(name), params(){}
 	DietCommand() : name(), params() {}
 	~DietCommand() {}
 	DietCommand(const DietCommand &other) = delete;
 	DietCommand(DietCommand &&other);
+
+	void AddParam(CommandParamBase *param);
 	
 	std::function<void()> commandFunction;
 	std::vector<unique_ptr<CommandParamBase>> params;
