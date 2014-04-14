@@ -35,6 +35,9 @@
     <ClInclude Include="CTException.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Test_DietCommand.h">
+      <Filter>Test Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DietTracker.cpp">
@@ -54,6 +57,9 @@
     </ClCompile>
     <ClCompile Include="DietCommand.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Test_DietCommand.cpp">
+      <Filter>Test Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
