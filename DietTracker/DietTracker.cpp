@@ -12,22 +12,23 @@ extern Tester tester;
 void TestAll();
 
 using namespace std;
-int main(int argc, char* argv[])
+int main( int argc, char* argv[] )
 {
-	TestAll();
+    TestAll();
 
-	string templine;
-	cout << "DietTracker > ";
-	getline(cin, templine);
-	
-	vector<string> splitVector = split(templine);
+    string templine;
+    cout << "DietTracker > ";
+    getline( cin, templine );
 
-	return 0;
+    vector<string> splitVector = split( templine );
+
+    return 0;
 }
 
-void TestAll() {
-	AllTests::addSuites();
-	tester.RunAllSuites();
+void TestAll()
+{
+    AllTests::addSuites();
+    tester.RunAllSuites();
 }
 
 
