@@ -21,12 +21,14 @@ void Test_DietCommand::addTests() {
 		DietCommands dc;
 		dc.AddDietCommand("Test 2");
 
+        DietCommand &command = dc.commands[ "Test 2" ];
+
 		//dc.commands["Test 2"].params.push_back(unique_ptr<CommandParamBase>(new CommandParamQuantity()));
-		dc.commands["Test 2"].AddParam(new CommandParamQuantity());
+		command.AddParam(new CommandParamQuantity());
 
-		dc.commands["Test 2"].params[0]->SetValue("14.0");
+		command.params[0]->SetValue("14.0");
 
-		auto value = std::stof(dc.commands["Test 2"].params[0]->GetValue());
+		auto value = std::stof(command.params[0]->GetValue());
 
 		return value == 14.0;
 	});
