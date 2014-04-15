@@ -19,15 +19,12 @@ void Test_DietCommand::addTests() {
 	});
 	suiteDietCommand.AddTest("Test CommandParamQuantity set", []()->bool {
 		DietCommands dc;
-		dc.AddDietCommand("Test 2");
+
+        dc.AddDietCommand("Test 2");
 
         DietCommand &command = dc.commands[ "Test 2" ];
-
-		//dc.commands["Test 2"].params.push_back(unique_ptr<CommandParamBase>(new CommandParamQuantity()));
 		command.AddParam(new CommandParamQuantity());
-
 		command.params[0]->SetValue("14.0");
-
 		auto value = std::stof(command.params[0]->GetValue());
 
 		return value == 14.0;
