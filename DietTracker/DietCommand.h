@@ -17,6 +17,7 @@ public:
 
 };
 
+//quantity
 class CommandParamQuantity : public CommandParamBase {
 	void SetValue(const std::string &value);
 	std::string GetValue();
@@ -25,6 +26,7 @@ class CommandParamQuantity : public CommandParamBase {
 private:
 	float value;
 };
+
 
 //represents one DietTracker command
 class DietCommand {
