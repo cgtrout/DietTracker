@@ -27,6 +27,11 @@ private:
 	float value;
 };
 
+//TODO DateTime
+class CommandParamDateTime : public CommandParamBase {
+    void SetValue( const std::string &value );
+    std::string GetValue();
+};
 
 //represents one DietTracker command
 class DietCommand {
