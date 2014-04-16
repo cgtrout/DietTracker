@@ -36,5 +36,11 @@ void Test_DietCommand::addTests() {
         auto out = param.GetValue();
         return out == testInput;
     });
+    suiteDietCommand.AddTest( "Test CommandParamString", []()->bool {
+        auto testInput = "Test1";
+        CommandParamString test;
+        test.SetValue( testInput );
+        return testInput == test.GetValue();
+    });
 	tester.AddSuite(suiteDietCommand);
 }

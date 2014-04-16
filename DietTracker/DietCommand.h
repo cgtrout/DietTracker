@@ -37,9 +37,17 @@ class CommandParamDateTime : public CommandParamBase {
 public:
     void SetValue( const std::string &value );
     std::string GetValue();
-
 private:
     date value;
+};
+
+//string
+class CommandParamString : public CommandParamBase {
+public:
+    void SetValue( const std::string &value );
+    std::string GetValue();
+private:
+    std::string value;
 };
 
 //represents one DietTracker command
