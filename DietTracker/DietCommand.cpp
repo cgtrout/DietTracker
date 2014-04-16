@@ -15,6 +15,18 @@ std::string CommandParamQuantity::GetValue() {
 	return to_string(value);
 }
 
+//DateTime implementation
+void CommandParamDateTime::SetValue( const std::string &value )
+{
+    this->value = date( from_string(value) );
+}
+
+std::string CommandParamDateTime::GetValue()
+{
+    return to_iso_extended_string( value );
+}
+
+
 /*
  *	DietCommands Implementation
  *

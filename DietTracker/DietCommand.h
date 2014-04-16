@@ -7,7 +7,7 @@
 #include <map>
 #include <memory>
 
-#include <boost/date_time.hpp>
+#include "boost/date_time/gregorian/gregorian.hpp"
 
 using namespace std;
 
@@ -21,7 +21,8 @@ public:
 
 //quantity
 class CommandParamQuantity : public CommandParamBase {
-	void SetValue(const std::string &value);
+public:
+    void SetValue(const std::string &value);
 	std::string GetValue();
 
 	float GetFloatValue() { return value; }
@@ -29,10 +30,16 @@ private:
 	float value;
 };
 
-//TODO DateTime
+using namespace boost::gregorian;
+
+//DateTime
 class CommandParamDateTime : public CommandParamBase {
+public:
     void SetValue( const std::string &value );
     std::string GetValue();
+
+private:
+    date value;
 };
 
 //represents one DietTracker command
