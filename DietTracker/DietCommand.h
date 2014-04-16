@@ -22,12 +22,20 @@ public:
 //quantity
 class CommandParamQuantity : public CommandParamBase {
 public:
+    CommandParamQuantity() : unitTypes( { { 's', "Servings" }, { 'g', "Grams" } } ), type(0) {}
+
     void SetValue(const std::string &value);
 	std::string GetValue();
+
+    void SetType( char type );
+    char GetType();
+    const std::string& GetTypeName();
 
 	float GetFloatValue() { return value; }
 private:
 	float value;
+    std::map <char, std::string> unitTypes;
+    char type;
 };
 
 using namespace boost::gregorian;

@@ -15,6 +15,23 @@ std::string CommandParamQuantity::GetValue() {
 	return to_string(value);
 }
 
+void CommandParamQuantity::SetType( char type ) {
+    //ensure type given exists
+    if( unitTypes.count( type ) == 0 ) {
+        throw invalid_argument( "CommandParamQuantity: invalid type" );
+    }
+
+    this->type = type;
+}
+
+char CommandParamQuantity::GetType() {
+    return type;
+}
+
+const std::string& CommandParamQuantity::GetTypeName() {
+    return unitTypes[ type ];
+}
+
 //DateTime implementation
 void CommandParamDateTime::SetValue( const std::string &value )
 {
@@ -27,13 +44,11 @@ std::string CommandParamDateTime::GetValue()
 }
 
 //string implementation
-void CommandParamString::SetValue( const std::string &value )
-{
+void CommandParamString::SetValue( const std::string &value ) {
     this->value = value;
 }
 
-std::string CommandParamString::GetValue()
-{
+std::string CommandParamString::GetValue() {
     return value;
 }
 
