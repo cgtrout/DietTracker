@@ -3,16 +3,13 @@
 
 #include <string>
 #include <vector>
+#include <utility>
 
-//base class for recipes and foods
-class RecipeBase {
-
-};
-
-class RecipeItem;
-
-class Recipe : public RecipeBase {
-    std::vector<RecipeItem> items;
+class Recipe {
+    //pairs with recipe and serving size
+    //TODO this may not be the best way to do this
+    std::vector<std::pair<Recipe, float>> recipeList;
+    std::vector<std::pair<Food, float>> foodList;
 };
 
 class RecipeItem {
@@ -20,7 +17,7 @@ class RecipeItem {
     float servingSize;
 };
 
-class Food : public RecipeBase {
+class Food {
     std::string name;
     float servingSize;
     float caloriesPerServing;
