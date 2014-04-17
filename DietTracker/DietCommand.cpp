@@ -77,7 +77,7 @@ std::string CommandParamString::GetValue() {
 }
 
 /*
- *	DietCommands Implementation
+ *	DietCommand Implementation
  *
  */
 
@@ -92,6 +92,10 @@ void DietCommand::AddParam(CommandParamBase *param) {
 	params.push_back(unique_ptr<CommandParamBase>(param));
 }
 
+/*
+*	DietCommands Implementation
+*
+*/
 void DietCommands::AddDietCommand(string name) {
 	commands.insert(make_pair(name, DietCommand(name)));
 }
