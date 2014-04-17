@@ -1,0 +1,53 @@
+Diet Tracker
+
+Multiprompt mode - command to easily allow multiple entries
+
+Command Example
+============================
+
+Set Date
+======================
+setdate		March 4, 2014	//will need to parse entire rest of line for Dates
+
+Adding exisiting food
+======================
+
+Ate 		fruit.raspberries 	2g	(auto-time)	//g implies weight.  'fruit.' is not handled any differently
+Ate		fruit.raspberries	1s			//1 serving is assumed in this case
+
+COMMAND 	FOOD_NAME 		QUANTITY
+
+Sub		fruit.raspberries	1g		//allow subtracting if whole container wasn’t ate
+
+How to define food?
+========================
+Define		Chocolate	serving_size(g)	calories_per_serving	//define new food.  Maybe make this a multi prompt command
+
+How to define recipe?
+=========================
+Define		SandwichSoup	{ Beef_Sandwich=1s, campells_chicken=100g }	//brackets denote we want to create a 'recipe'
+
+									//a recipe make contain a ingrediant or a recipe
+DefineMulti	(goes in to multiline mode to allow easy entry)
+
+Then once recipe is defined
+=========================
+Ate		SandwichSoup		//serving size = 1 is assumed if we leave it out
+
+How to delete food
+=========================
+delete		SandwichSoup
+
+Commands
+============
+
+Eat		FOOD_NAME	QUANTITY	TIME			//Adds calories 
+Sub		FOOD_NAME 	QUANTITY				//Subtracts calories
+Define		FOOD_NAME	SERVING_SIZE	CALORIES_PER_SERVING	//Adds new food
+Define		RECIPE_NAME	{ ... }		SERVING_SIZE		//Adds new recipe
+
+
+Storage
+======================================
+
+simply generate the commands in same form as prompt mode.
