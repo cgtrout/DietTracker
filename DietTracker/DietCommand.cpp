@@ -12,7 +12,11 @@ void CommandParamQuantity::SetValue(const std::string &value) {
 }
 
 std::string CommandParamQuantity::GetValue() {
-	return to_string(value);
+    if( type > 0 ) {
+        return to_string( value );
+    } else {
+        return to_string( value ) + type;
+    }
 }
 
 void CommandParamQuantity::SetType( char type ) {
