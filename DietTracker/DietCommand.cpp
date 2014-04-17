@@ -48,7 +48,7 @@ const std::string& CommandParamQuantity::GetTypeName() {
     return unitTypes[ type ];
 }
 
-//DateTime implementation
+//Date implementation
 void CommandParamDate::SetValue( const std::string &value )
 {
     this->value = date( from_string(value) );
@@ -59,6 +59,14 @@ std::string CommandParamDate::GetValue()
     return to_iso_extended_string( value );
 }
 
+//Time implementation
+void CommandParamTime::SetValue( const std::string &value ) {
+    this->value = time_from_string( value );
+}
+
+std::string CommandParamTime::GetValue() {
+    return to_simple_string( value );
+}
 //string implementation
 void CommandParamString::SetValue( const std::string &value ) {
     this->value = value;

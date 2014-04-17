@@ -76,5 +76,12 @@ void Test_DietCommand::addTests() {
         test.SetValue( testInput );
         return testInput == test.GetValue();
     });
+    suiteDietCommand.AddTest( "Test CommandParamDate set/get", []()->bool {
+        auto testInput = "2002-Jan-20 23:59:59";
+        CommandParamTime test;
+        test.SetValue( testInput );
+        auto out = test.GetValue();
+        return testInput == out;
+    } );
 	tester.AddSuite(suiteDietCommand);
 }

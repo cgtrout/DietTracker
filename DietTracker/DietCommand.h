@@ -8,6 +8,7 @@
 #include <memory>
 
 #include "boost/date_time/gregorian/gregorian.hpp"
+#include "boost/date_time/posix_time/posix_time.hpp"
 
 using namespace std;
 
@@ -46,6 +47,16 @@ public:
     std::string GetValue();
 private:
     date value;
+};
+
+//Time
+using namespace boost::posix_time;
+class CommandParamTime : public CommandParamBase {
+public:
+    void SetValue( const std::string &value );
+    std::string GetValue();
+private:
+    ptime value;
 };
 
 //string
