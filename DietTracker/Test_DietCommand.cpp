@@ -29,6 +29,17 @@ void Test_DietCommand::addTests() {
 
 		return value == 14.0;
 	});
+    suiteDietCommand.AddTest( "Test Quantity: invalid type ", []()->bool {
+        bool inException = false;
+
+        CommandParamQuantity q;
+        try {
+            q.SetValue( "14.0a" );
+        } catch( invalid_argument ) {
+            inException = true;
+        }
+        return inException;
+    });
     suiteDietCommand.AddTest( "Test CommandParamQuantity Types", []()->bool {
         CommandParamQuantity q;
         q.SetValue( "12.0" );
