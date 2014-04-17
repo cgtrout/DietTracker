@@ -39,8 +39,8 @@ private:
 
 using namespace boost::gregorian;
 
-//DateTime
-class CommandParamDateTime : public CommandParamBase {
+//Date
+class CommandParamDate : public CommandParamBase {
 public:
     void SetValue( const std::string &value );
     std::string GetValue();

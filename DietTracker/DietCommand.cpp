@@ -49,12 +49,12 @@ const std::string& CommandParamQuantity::GetTypeName() {
 }
 
 //DateTime implementation
-void CommandParamDateTime::SetValue( const std::string &value )
+void CommandParamDate::SetValue( const std::string &value )
 {
     this->value = date( from_string(value) );
 }
 
-std::string CommandParamDateTime::GetValue()
+std::string CommandParamDate::GetValue()
 {
     return to_iso_extended_string( value );
 }
