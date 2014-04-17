@@ -24,7 +24,7 @@ void Test_DietCommand::addTests() {
 
         DietCommand &command = dc.commands[ "Test 2" ];
 		command.AddParam(new CommandParamQuantity());
-		command.params[0]->SetValue("14.0");
+		command.params[0]->SetValue("14.0s");
 		auto value = std::stof(command.params[0]->GetValue());
 
 		return value == 14.0;
