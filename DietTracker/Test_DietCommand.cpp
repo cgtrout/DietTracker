@@ -40,6 +40,17 @@ void Test_DietCommand::addTests() {
         }
         return inException;
     });
+    suiteDietCommand.AddTest( "Test Quantity: invalid float value ", []()->bool {
+        bool inException = false;
+
+        CommandParamQuantity q;
+        try {
+            q.SetValue( "a3434b" );
+        } catch( invalid_argument ) {
+            inException = true;
+        }
+        return inException;
+    } );
     suiteDietCommand.AddTest( "Test CommandParamQuantity Types", []()->bool {
         CommandParamQuantity q;
         q.SetValue( "12.0" );
