@@ -9,7 +9,7 @@
 //Quantity implementation
 void CommandParamQuantity::SetValue(const std::string &value) {
     char lastChar = value[ value.length() - 1 ];
-    bool lastIsChar = isalpha( lastChar );
+    int lastIsChar = isalpha( lastChar );
     if( lastIsChar ) {
         //is the last char a valid type?
         if( unitTypes.count( lastChar ) == 0 ) {
