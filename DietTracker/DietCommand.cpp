@@ -1,6 +1,6 @@
 #include "DietCommand.h"
 #include "CTException.h"
-
+#include <locale>
 /*
 *	DietCommandParam Implementation
 *
@@ -8,7 +8,19 @@
 
 //Quantity implementation
 void CommandParamQuantity::SetValue(const std::string &value) {
-	this->value = stof(value);
+    char lastChar = value[ value.length() - 1 ];
+    bool lastIsChar = isalpha( lastChar );
+    if( lastIsChar ) {
+        //is the last char a valid type?
+        if( unitTypes.count( lastChar ) == 0 ) {
+            throw invalid_argument( "Invalid quantity type" );
+        }
+        this->value = stof(value.substr( 0, value.length() - 1 ));
+    } else {
+        //default is s (serving) if not specified
+        type = 's';
+        this->value = stof( value );
+    }
 }
 
 std::string CommandParamQuantity::GetValue() {
