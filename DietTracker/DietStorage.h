@@ -5,6 +5,19 @@
 #include <vector>
 #include <utility>
 
+//represents one diet system entry
+class DietEntry {
+    //food
+    //Quantity quantity;
+    //date
+    //time
+};
+
+//holds all of the individual DietEntrys
+class DailyLogs {
+    //list of DietEntries
+};
+
 class Recipe {
     //pairs with recipe and serving size
     //TODO this may not be the best way to do this
