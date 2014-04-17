@@ -21,13 +21,8 @@ class DailyLogs {
 class Recipe {
     //pairs with recipe and serving size
     //TODO this may not be the best way to do this
-    std::vector<std::pair<Recipe, float>> recipeList;
-    std::vector<std::pair<Food, float>> foodList;
-};
-
-class RecipeItem {
-    RecipeBase recipe;
-    float servingSize;
+    //std::vector<std::pair<Recipe, float>> recipeList;
+    //std::vector<std::pair<Food, float>> foodList;
 };
 
 class Food {
