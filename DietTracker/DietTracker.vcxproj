@@ -86,6 +86,7 @@
     <ClInclude Include="CTException.h" />
     <ClInclude Include="CTString.h" />
     <ClInclude Include="DietCommand.h" />
+    <ClInclude Include="DietStorage.h" />
     <ClInclude Include="Test.h" />
     <ClInclude Include="Test_CTString.h" />
     <ClInclude Include="Test_DietCommand.h" />
@@ -94,6 +95,7 @@
     <ClCompile Include="AllTests.cpp" />
     <ClCompile Include="CTString.cpp" />
     <ClCompile Include="DietCommand.cpp" />
+    <ClCompile Include="DietStorage.cpp" />
     <ClCompile Include="DietTracker.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="Test_CTString.cpp" />
