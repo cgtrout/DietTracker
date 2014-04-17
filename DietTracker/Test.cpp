@@ -74,7 +74,7 @@ bool TestSuite::RunTests()
 	cout << "**************************************";
 	cout << endl << endl;
 
-	for ( auto test : tests ) {
+	for ( auto &test : tests ) {
 		cout << "Running test: " << test.GetName() << endl;
 		if(test.Run() == false) {
 			cout << "***** Test failed *****" << endl << endl;
@@ -121,7 +121,7 @@ bool Tester::RunAllSuites() {
 
 	cout << endl << endl;
 
-	for(auto suite : testSuites) {
+	for(auto &suite : testSuites) {
 		bool success = suite->RunTests();
 		if(!success) {
 			allPassed = false;
