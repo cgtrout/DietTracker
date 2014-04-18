@@ -11,24 +11,24 @@ extern Tester tester;
 
 using namespace std;
 void Test_DietCommand::addTests() {
-	suiteDietCommand.AddTest("Add Diet Command", []()-> bool {
-		DietCommands dc;
-		dc.AddDietCommand("Test 1");
-		
-		return dc.commands.size() == 1;
-	});
-	suiteDietCommand.AddTest("Test CommandParamQuantity set", []()->bool {
-		DietCommands dc;
+     suiteDietCommand.AddTest("Add Diet Command", []()-> bool {
+          DietCommands dc;
+          dc.AddDietCommand("Test 1");
+
+          return dc.commands.size() == 1;
+     });
+     suiteDietCommand.AddTest("Test CommandParamQuantity set", []()->bool {
+          DietCommands dc;
 
           dc.AddDietCommand("Test 2");
 
-          DietCommand &command = dc.commands[ "Test 2" ];
-		command.AddParam(new CommandParamQuantity());
-		command.params[0]->SetValue("14.0s");
-		auto value = std::stof(command.params[0]->GetValue());
+          DietCommand &command = dc.commands["Test 2"];
+          command.AddParam(new CommandParamQuantity());
+          command.params[0]->SetValue("14.0s");
+          auto value = std::stof(command.params[0]->GetValue());
 
-		return value == 14.0;
-	});
+          return value == 14.0;
+     });
      suiteDietCommand.AddTest("Test Quantity: invalid type ", []()->bool {
           bool inException = false;
 
