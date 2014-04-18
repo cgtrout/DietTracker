@@ -35,7 +35,7 @@ void Test_DietCommand::addTests() {
           CommandParamQuantity q;
           try {
                q.SetValue("14.0a");
-          } catch(invalid_argument) {
+          } catch(invalid_argument&) {
                inException = true;
           }
           return inException;
@@ -46,7 +46,7 @@ void Test_DietCommand::addTests() {
           CommandParamQuantity q;
           try {
                q.SetValue("a3434b");
-          } catch(invalid_argument) {
+          } catch(invalid_argument&) {
                inException = true;
           }
           return inException;
@@ -58,7 +58,7 @@ void Test_DietCommand::addTests() {
           bool exceptionCaught = false;
           try {
                q.SetType('d');
-          } catch(invalid_argument) {
+          } catch(invalid_argument&) {
                exceptionCaught = true;
           }
           return exceptionCaught;
