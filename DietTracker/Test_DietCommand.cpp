@@ -20,68 +20,68 @@ void Test_DietCommand::addTests() {
 	suiteDietCommand.AddTest("Test CommandParamQuantity set", []()->bool {
 		DietCommands dc;
 
-        dc.AddDietCommand("Test 2");
+          dc.AddDietCommand("Test 2");
 
-        DietCommand &command = dc.commands[ "Test 2" ];
+          DietCommand &command = dc.commands[ "Test 2" ];
 		command.AddParam(new CommandParamQuantity());
 		command.params[0]->SetValue("14.0s");
 		auto value = std::stof(command.params[0]->GetValue());
 
 		return value == 14.0;
 	});
-    suiteDietCommand.AddTest( "Test Quantity: invalid type ", []()->bool {
-        bool inException = false;
+     suiteDietCommand.AddTest("Test Quantity: invalid type ", []()->bool {
+          bool inException = false;
 
-        CommandParamQuantity q;
-        try {
-            q.SetValue( "14.0a" );
-        } catch( invalid_argument ) {
-            inException = true;
-        }
-        return inException;
-    });
-    suiteDietCommand.AddTest( "Test Quantity: invalid float value ", []()->bool {
-        bool inException = false;
+          CommandParamQuantity q;
+          try {
+               q.SetValue("14.0a");
+          } catch(invalid_argument) {
+               inException = true;
+          }
+          return inException;
+     });
+     suiteDietCommand.AddTest("Test Quantity: invalid float value ", []()->bool {
+          bool inException = false;
 
-        CommandParamQuantity q;
-        try {
-            q.SetValue( "a3434b" );
-        } catch( invalid_argument ) {
-            inException = true;
-        }
-        return inException;
-    } );
-    suiteDietCommand.AddTest( "Test CommandParamQuantity Types", []()->bool {
-        CommandParamQuantity q;
-        q.SetValue( "12.0" );
-        q.SetType( 'g' );
-        bool exceptionCaught = false;
-        try {
-            q.SetType( 'd' );
-        } catch( invalid_argument ) {
-            exceptionCaught = true;
-        }
-        return exceptionCaught;
-    });
-    suiteDietCommand.AddTest( "Test CommandParamDate", []()->bool {
-        CommandParamDate param;
-        auto testInput = "2002-01-25";
-        param.SetValue( testInput );
-        auto out = param.GetValue();
-        return out == testInput;
-    });
-    suiteDietCommand.AddTest( "Test CommandParamString", []()->bool {
-        auto testInput = "Test1";
-        CommandParamString test;
-        test.SetValue( testInput );
-        return testInput == test.GetValue();
-    });
-    suiteDietCommand.AddTest( "Test CommandParamDate set/get", []()->bool {
-        auto testInput = "2002-Jan-20 23:59:59";
-        CommandParamTime test;
-        test.SetValue( testInput );
-        auto out = test.GetValue();
-        return testInput == out;
-    } );
-	tester.AddSuite(suiteDietCommand);
+          CommandParamQuantity q;
+          try {
+               q.SetValue("a3434b");
+          } catch(invalid_argument) {
+               inException = true;
+          }
+          return inException;
+     });
+     suiteDietCommand.AddTest("Test CommandParamQuantity Types", []()->bool {
+          CommandParamQuantity q;
+          q.SetValue("12.0");
+          q.SetType('g');
+          bool exceptionCaught = false;
+          try {
+               q.SetType('d');
+          } catch(invalid_argument) {
+               exceptionCaught = true;
+          }
+          return exceptionCaught;
+     });
+     suiteDietCommand.AddTest("Test CommandParamDate", []()->bool {
+          CommandParamDate param;
+          auto testInput = "2002-01-25";
+          param.SetValue(testInput);
+          auto out = param.GetValue();
+          return out == testInput;
+     });
+     suiteDietCommand.AddTest("Test CommandParamString", []()->bool {
+          auto testInput = "Test1";
+          CommandParamString test;
+          test.SetValue(testInput);
+          return testInput == test.GetValue();
+     });
+     suiteDietCommand.AddTest("Test CommandParamDate set/get", []()->bool {
+          auto testInput = "2002-Jan-20 23:59:59";
+          CommandParamTime test;
+          test.SetValue(testInput);
+          auto out = test.GetValue();
+          return testInput == out;
+     });
+     tester.AddSuite(suiteDietCommand);
 }
