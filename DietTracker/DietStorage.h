@@ -18,21 +18,25 @@ using Quantity = CommandParamQuantity;
 
 //base class for Recipe/Food
 class RecipeItem {
+public:
     std::string name;
     Quantity quantity;
 };
 
 class Food : public RecipeItem {
+public:
     float servingSize;
     float caloriesPerServing;
 };
 
 class Recipe : public RecipeItem {
+public:
     std::vector<unique_ptr<RecipeItem>> components;
 };
 
 //represents one diet system entry
 class DietEntry {
+public:
     unique_ptr<RecipeItem> food;
     ptime time;
     date mdate;
