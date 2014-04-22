@@ -31,6 +31,8 @@ public:
 
 class Recipe : public RecipeItem {
 public:
+    void AddRecipeItem( RecipeItem item  );
+
     std::vector<unique_ptr<RecipeItem>> components;
 };
 
