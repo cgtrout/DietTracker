@@ -41,6 +41,9 @@
     <ClInclude Include="DietStorage.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Test_DietStorage.h">
+      <Filter>Test Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DietTracker.cpp">
@@ -55,6 +58,9 @@
     <ClCompile Include="AllTests.cpp">
       <Filter>Test Files</Filter>
     </ClCompile>
+    <ClCompile Include="CTString.cpp">
+      <Filter>Test Files</Filter>
+    </ClCompile>
     <ClCompile Include="DietCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -64,8 +70,8 @@
     <ClCompile Include="DietStorage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CTString.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Test_DietStorage.cpp">
+      <Filter>Test Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
