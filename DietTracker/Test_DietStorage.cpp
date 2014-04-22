@@ -30,7 +30,7 @@ void Test_DietStorage::addTests()
 
         recipe.AddRecipeItem( internal_recipe );     
 
-        return recipe.components[1]->name == "internal recipe"; //it compiles, were happy
+        return recipe.components[1]->name == "internal recipe"; 
     });
 
     tester.AddSuite( suiteDietStorage );
