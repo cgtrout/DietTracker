@@ -4,13 +4,38 @@
 #include <string>
 #include <vector>
 #include <utility>
+#include <memory>
+
+#include "boost/date_time/gregorian/gregorian.hpp"
+#include "boost/date_time/posix_time/posix_time.hpp"
+
+#include "DietCommand.h"
+
+using namespace boost::gregorian;
+using namespace boost::posix_time;
+
+//base class for Recipe/Food
+class RecipeItem {
+    std::string name;
+    Quantity quantity;
+};
+
+class Food : public RecipeItem {
+    float servingSize;
+    float caloriesPerServing;
+};
+
+class Recipe : public RecipeItem {
+    std::vector<unique_ptr<RecipeItem>> components;
+};
+
+using Quantity = CommandParamQuantity;
 
 //represents one diet system entry
 class DietEntry {
-    //food
-    //Quantity quantity;
-    //date
-    //time
+    unique_ptr<RecipeItem> food;
+    ptime time;
+    date mdate;
 };
 
 //holds all of the individual DietEntrys
@@ -18,17 +43,6 @@ class DailyLogs {
     //list of DietEntries
 };
 
-class Recipe {
-    //pairs with recipe and serving size
-    //TODO this may not be the best way to do this
-    //std::vector<std::pair<Recipe, float>> recipeList;
-    //std::vector<std::pair<Food, float>> foodList;
-};
 
-class Food {
-    std::string name;
-    float servingSize;
-    float caloriesPerServing;
-};
 
 #endif //DIETSTORAGE_H
