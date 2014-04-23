@@ -22,9 +22,7 @@ void Test_DietStorage::addTests()
 
         Recipe internal_recipe( "internal recipe" );
         Food food2( "FoodInternal" );
-
         internal_recipe.AddRecipeItem( food2 );
-
         recipe.AddRecipeItem( internal_recipe );     
 
         return recipe.components[1]->GetName() == "internal recipe"; 
