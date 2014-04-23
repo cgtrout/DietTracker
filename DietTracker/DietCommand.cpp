@@ -51,7 +51,7 @@ const std::string& CommandParamQuantity::GetTypeName() {
 //Date implementation
 void CommandParamDate::SetValue( const std::string &value )
 {
-    this->value = date( from_string(value) );
+    this->value = date( from_string(value) );   
 }
 
 std::string CommandParamDate::GetValue()
@@ -61,11 +61,15 @@ std::string CommandParamDate::GetValue()
 
 //Time implementation
 void CommandParamTime::SetValue( const std::string &value ) {
-    this->value = time_from_string( value );
+    //add dummy time
+    this->value = time_from_string( "2000-01-01 "+ value );
 }
 
 std::string CommandParamTime::GetValue() {
-    return to_simple_string( value );
+    string sval = to_simple_string( value );
+    auto pos = sval.find_first_of( " " );
+    pos++;
+    return sval.substr( pos );
 }
 //string implementation
 void CommandParamString::SetValue( const std::string &value ) {
@@ -88,8 +92,8 @@ DietCommand::DietCommand(DietCommand &&other)
 	name(std::move(other.name)) {
 }
 
-void DietCommand::AddParam(CommandParamBase *param) {
-	params.push_back(unique_ptr<CommandParamBase>(param));
+void DietCommand::AddParam( unique_ptr<CommandParamBase> param ) {
+    params.push_back( std::move( param ) );
 }
 
 /*

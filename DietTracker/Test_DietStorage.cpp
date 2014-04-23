@@ -34,7 +34,7 @@ void Test_DietStorage::addTests()
         DailyLogs logs;
         Food food( "food" );
         
-        logs.AddEntry( DietEntry( food, Time( "2014-apr-01 07:32" ), Date( "2014-Apr-01" ) ) );
+        logs.AddEntry( DietEntry( food, Time( "07:32" ), Date( "2014-Apr-01" ) ) );
         return logs.entries[0]->item->GetName() == "food";
     });
 

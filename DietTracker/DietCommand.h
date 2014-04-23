@@ -84,7 +84,7 @@ public:
     DietCommand( const DietCommand &other ) = delete;
     DietCommand( DietCommand &&other );
 
-    void AddParam( CommandParamBase *param );
+    void AddParam( unique_ptr<CommandParamBase> param );
 	
     std::function<void()> commandFunction;
     std::vector<unique_ptr<CommandParamBase>> params;

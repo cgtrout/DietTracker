@@ -23,7 +23,7 @@ void Test_DietCommand::addTests() {
           dc.AddDietCommand("Test 2");
 
           DietCommand &command = dc.commands["Test 2"];
-          command.AddParam(new CommandParamQuantity());
+          command.AddParam(make_unique<CommandParamQuantity>());
           command.params[0]->SetValue("14.0s");
           auto value = std::stof(command.params[0]->GetValue());
 
@@ -75,8 +75,8 @@ void Test_DietCommand::addTests() {
           
           return testInput == test.GetValue();
      });
-     suiteDietCommand.AddTest("Test CommandParamDate set/get", []()->bool {
-          auto testInput = "2002-Jan-20 23:59:59";
+     suiteDietCommand.AddTest("Test CommandParamTime set/get", []()->bool {
+          auto testInput = "23:59:59";
           CommandParamTime test(testInput);
           
           auto out = test.GetValue();
