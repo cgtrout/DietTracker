@@ -44,6 +44,9 @@
     <ClInclude Include="Test_DietStorage.h">
       <Filter>Test Files</Filter>
     </ClInclude>
+    <ClInclude Include="DietSystem.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DietTracker.cpp">
@@ -72,6 +75,9 @@
     </ClCompile>
     <ClCompile Include="Test_DietStorage.cpp">
       <Filter>Test Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DietSystem.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
