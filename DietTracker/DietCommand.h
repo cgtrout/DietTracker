@@ -17,7 +17,7 @@ class CommandParamBase {
 public:
     CommandParamBase() {}
     
-    virtual void SetValue(const std::string &value) = 0;
+    virtual void SetValue( const std::string &value ) = 0;
 	virtual std::string GetValue() = 0;
 
 };
@@ -29,7 +29,7 @@ class CommandParamQuantity : public CommandParamBase {
 public:
     CommandParamQuantity() : type( 0 ), value( 0.0f ) {}
     CommandParamQuantity( const string &value ): type( 0 ) { SetValue( value ); }
-    void SetValue(const std::string &value);
+    void SetValue( const std::string &value );
 	std::string GetValue();
     void SetType( char type );
     char GetType();
@@ -81,13 +81,13 @@ public:
 	DietCommand(const std::string &name) : name(name), params(){}
 	DietCommand() : name(), params() {}
 	~DietCommand() {}
-	DietCommand(const DietCommand &other) = delete;
-	DietCommand(DietCommand &&other);
+    DietCommand( const DietCommand &other ) = delete;
+    DietCommand( DietCommand &&other );
 
-	void AddParam(CommandParamBase *param);
+    void AddParam( CommandParamBase *param );
 	
-	std::function<void()> commandFunction;
-	std::vector<unique_ptr<CommandParamBase>> params;
+    std::function<void()> commandFunction;
+    std::vector<unique_ptr<CommandParamBase>> params;
 private:
 	std::string name;
 };
@@ -95,10 +95,9 @@ private:
 //represents several DietComands
 class DietCommands {
 public:
-	void AddDietCommand(string name);
+    void AddDietCommand( string name );
 
-	std::map<std::string, DietCommand> commands;
-
+    std::map<std::string, DietCommand> commands;
 };
 
 #endif
