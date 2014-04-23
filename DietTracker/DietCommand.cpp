@@ -87,9 +87,9 @@ std::string CommandParamString::GetValue() {
 
 //move constructor
 DietCommand::DietCommand(DietCommand &&other) 
-  :	params(std::move(other.params)), 
-	commandFunction(std::move(other.commandFunction)), 
-	name(std::move(other.name)) {
+  :	params(std::move(other.params))
+  ,	commandFunction(std::move(other.commandFunction))
+  ,	name(std::move(other.name)) {
 }
 
 void DietCommand::AddParam( unique_ptr<CommandParamBase> param ) {
