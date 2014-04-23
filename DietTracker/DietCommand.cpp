@@ -61,7 +61,7 @@ std::string CommandParamDate::GetValue()
 
 //Time implementation
 void CommandParamTime::SetValue( const std::string &value ) {
-    //add dummy time
+    //add dummy date (we want to just deal with the time)
     this->value = time_from_string( "2000-01-01 "+ value );
 }
 
