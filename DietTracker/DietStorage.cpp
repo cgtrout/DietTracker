@@ -4,6 +4,7 @@
  *  Food Class
  *   Implemenation
  */
+
 //constructor
 Food::Food( const std::string &iname, Quantity iquantity, float iservingSize, float icaloriesPerServing )
     : RecipeItem( iname, iquantity)
@@ -20,6 +21,7 @@ Food::Food( const string &name)
  *  Recipe Class
  *   Implemenation
  */
+
 //constructors
 Recipe::Recipe( const string &iname )
     : RecipeItem(iname, Quantity("1.0"))
@@ -29,6 +31,7 @@ Recipe::Recipe( const string &name, Quantity quantity )
     : RecipeItem( name, quantity )
 {}
 
+//AddRecipeItem
 void Recipe::AddRecipeItem( RecipeItem item )
 {
     components.push_back( make_unique<RecipeItem>(item) );
