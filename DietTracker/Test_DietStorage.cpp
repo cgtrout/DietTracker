@@ -13,24 +13,21 @@ using namespace std;
 void Test_DietStorage::addTests()
 {
     suiteDietStorage.AddTest( "Create a recipe", []()->bool {
-        Recipe recipe;
+        Recipe recipe( "main recipe" );
 
-        Food food;
-        food.name = "Food";
+        Food food( "Food" );
         food.quantity.SetValue( "5.0s" );
 
         recipe.AddRecipeItem( food );
 
-        Recipe internal_recipe;
-        Food food2;
-        food2.name = "FoodInternal";
-        
-        internal_recipe.name = "internal recipe";
+        Recipe internal_recipe( "internal recipe" );
+        Food food2( "FoodInternal" );
+
         internal_recipe.AddRecipeItem( food2 );
 
         recipe.AddRecipeItem( internal_recipe );     
 
-        return recipe.components[1]->name == "internal recipe"; 
+        return recipe.components[1]->GetName() == "internal recipe"; 
     });
 
     tester.AddSuite( suiteDietStorage );

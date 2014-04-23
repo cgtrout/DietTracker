@@ -1,9 +1,33 @@
 #include "DietStorage.h"
 
 /*
+ *  Food Class
+ *   Implemenation
+ */
+//constructor
+Food::Food( const std::string &iname, Quantity iquantity, float iservingSize, float icaloriesPerServing )
+    : RecipeItem( iname, iquantity)
+    , servingSize( iservingSize )
+    , caloriesPerServing( icaloriesPerServing )
+{}
+
+Food::Food( const string &name) 
+    : RecipeItem( name, Quantity("0.0s"))
+    , servingSize ( 0.0f )
+    , caloriesPerServing ( 0.0f )
+{}
+/*
  *  Recipe Class
  *   Implemenation
  */
+//constructors
+Recipe::Recipe( const string &iname )
+    : RecipeItem(iname, Quantity("1.0"))
+{}
+
+Recipe::Recipe( const string &name, Quantity quantity )
+    : RecipeItem( name, quantity )
+{}
 
 void Recipe::AddRecipeItem( RecipeItem item )
 {
