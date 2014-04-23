@@ -64,22 +64,21 @@ void Test_DietCommand::addTests() {
           return exceptionCaught;
      });
      suiteDietCommand.AddTest("Test CommandParamDate", []()->bool {
-          CommandParamDate param;
           auto testInput = "2002-01-25";
-          param.SetValue(testInput);
+          CommandParamDate param(testInput);
           auto out = param.GetValue();
           return out == testInput;
      });
      suiteDietCommand.AddTest("Test CommandParamString", []()->bool {
           auto testInput = "Test1";
-          CommandParamString test;
-          test.SetValue(testInput);
+          CommandParamString test(testInput);
+          
           return testInput == test.GetValue();
      });
      suiteDietCommand.AddTest("Test CommandParamDate set/get", []()->bool {
           auto testInput = "2002-Jan-20 23:59:59";
-          CommandParamTime test;
-          test.SetValue(testInput);
+          CommandParamTime test(testInput);
+          
           auto out = test.GetValue();
           return testInput == out;
      });

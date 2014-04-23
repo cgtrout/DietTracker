@@ -15,16 +15,20 @@ using namespace std;
 //
 class CommandParamBase {
 public:
-	virtual void SetValue(const std::string &value) = 0;
+    CommandParamBase() {}
+    
+    virtual void SetValue(const std::string &value) = 0;
 	virtual std::string GetValue() = 0;
 
 };
 
 //quantity
+static std::map <char, std::string> unitTypes{ { 's', "Servings" }, { 'g', "Grams" } };
+
 class CommandParamQuantity : public CommandParamBase {
 public:
-    CommandParamQuantity() : unitTypes( { { 's', "Servings" }, { 'g', "Grams" } } ), type(0), value(0.0f) {}
-
+    CommandParamQuantity() : type( 0 ), value( 0.0f ) {}
+    CommandParamQuantity( const string &value ): type( 0 ) { SetValue( value ); }
     void SetValue(const std::string &value);
 	std::string GetValue();
     void SetType( char type );
@@ -34,7 +38,7 @@ public:
 	float GetFloatValue() { return value; }
 private:
 	float value;
-    std::map <char, std::string> unitTypes;
+    
     char type;
 };
 
@@ -43,6 +47,7 @@ using namespace boost::gregorian;
 //Date
 class CommandParamDate : public CommandParamBase {
 public:
+    CommandParamDate( const string &value ) { SetValue( value ); }
     void SetValue( const std::string &value );
     std::string GetValue();
 private:
@@ -53,6 +58,7 @@ private:
 using namespace boost::posix_time;
 class CommandParamTime : public CommandParamBase {
 public:
+    CommandParamTime( const string &value ) { SetValue( value ); }
     void SetValue( const std::string &value );
     std::string GetValue();
 private:
@@ -62,6 +68,7 @@ private:
 //string
 class CommandParamString : public CommandParamBase {
 public:
+    CommandParamString( const string &value ) { SetValue( value ); }
     void SetValue( const std::string &value );
     std::string GetValue();
 private:
