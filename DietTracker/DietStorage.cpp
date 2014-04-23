@@ -17,6 +17,7 @@ Food::Food( const string &name)
     , servingSize ( 0.0f )
     , caloriesPerServing ( 0.0f )
 {}
+
 /*
  *  Recipe Class
  *   Implemenation
@@ -35,4 +36,28 @@ Recipe::Recipe( const string &name, Quantity quantity )
 void Recipe::AddRecipeItem( RecipeItem item )
 {
     components.push_back( make_unique<RecipeItem>(item) );
+}
+
+/*
+ *  DietEntry Class
+ *   Implemenation
+ */
+DietEntry::DietEntry( RecipeItem iitem, Time itime, Date idate )
+    : item( make_unique<RecipeItem>( iitem ) )
+    , mtime( itime.GetValue() )
+    , mdate( idate.GetValue() )
+{}
+
+DietEntry::DietEntry( DietEntry &&entry )
+    : item( std::move( entry.item ) )
+    , mtime( std::move(entry.mtime ) )
+    , mdate( std::move(entry.mdate ) )
+{}
+/*
+ *  DailyLogs Class
+ *   Implemenation
+ */
+void DailyLogs::AddEntry( DietEntry entry )
+{
+    entries.push_back( make_unique<DietEntry>( std::move( entry ) ) );
 }

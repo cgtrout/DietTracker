@@ -30,5 +30,13 @@ void Test_DietStorage::addTests()
         return recipe.components[1]->GetName() == "internal recipe"; 
     });
 
+    suiteDietStorage.AddTest( "DailyLogs test", []()->bool {
+        DailyLogs logs;
+        Food food( "food" );
+        
+        logs.AddEntry( DietEntry( food, Time( "2014-apr-01 07:32" ), Date( "2014-Apr-01" ) ) );
+        return logs.entries[0]->item->GetName() == "food";
+    });
+
     tester.AddSuite( suiteDietStorage );
 }

@@ -17,6 +17,8 @@ using namespace boost::gregorian;
 using namespace boost::posix_time;
 
 using Quantity = CommandParamQuantity;
+using Time = CommandParamTime;
+using Date = CommandParamDate;
 
 //base class for Recipe/Food
 class RecipeItem {
@@ -53,14 +55,23 @@ private:
 //represents one diet system entry
 class DietEntry {
 public:
-    unique_ptr<RecipeItem> food;
-    ptime time;
-    date mdate;
+    DietEntry( RecipeItem item, Time itime, Date idate );
+    
+    DietEntry( const DietEntry& ) = delete;
+    DietEntry( DietEntry&& );
+
+    unique_ptr<RecipeItem> item;
+    string mtime;
+    string mdate;
 };
 
 //holds all of the individual DietEntrys
 class DailyLogs {
+public:
+    void AddEntry( DietEntry entry );
+    
     //list of DietEntries
+    std::vector<unique_ptr<DietEntry>> entries;
 };
 
 #endif //DIETSTORAGE_H
