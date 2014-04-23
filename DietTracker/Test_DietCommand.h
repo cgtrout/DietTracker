@@ -4,6 +4,7 @@
 
 namespace Test_DietCommand
 {
+    
 	void addTests();
 }
 

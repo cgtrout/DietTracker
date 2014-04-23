@@ -18,7 +18,15 @@ void Test_DietCommand::addTests() {
          return dc.commands.size() == 1;
      });
      suiteDietCommand.AddTest("Test Diet Command Lambdas", []()-> bool {
-         return false;
+         struct CommandFrameWork {
+             DietCommands dc;
+             int x = 4;
+             void a() { x++; }
+         }test;
+         test.dc.AddDietCommand( "TestA" );
+         test.dc.commands[ "TestA" ].commandFunction = [&test]() { test.a(); };
+         test.dc.commands[ "TestA" ].commandFunction();
+         return test.x == 5;
      });
      suiteDietCommand.AddTest("Test CommandParamQuantity set", []()->bool {
          DietCommands dc;
