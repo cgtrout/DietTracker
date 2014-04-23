@@ -31,11 +31,11 @@ void Test_DietStorage::addTests()
     });
 
     suiteDietStorage.AddTest( "DailyLogs test", []()->bool {
-        DailyLogs logs;
+        DailyLog log;
         Food food( "food" );
         
-        logs.AddEntry( DietEntry( food, Time( "07:32" ), Date( "2014-Apr-01" ) ) );
-        return logs.entries[0]->item->GetName() == "food";
+        log.AddEntry( DietEntry( food, Time( "07:32" ), Date( "2014-Apr-01" ) ) );
+        return log.entries[0]->item->GetName() == "food";
     });
 
     tester.AddSuite( suiteDietStorage );

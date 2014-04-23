@@ -57,7 +57,7 @@ DietEntry::DietEntry( DietEntry &&entry )
  *  DailyLogs Class
  *   Implemenation
  */
-void DailyLogs::AddEntry( DietEntry entry )
+void DailyLog::AddEntry( DietEntry entry )
 {
     entries.push_back( make_unique<DietEntry>( std::move( entry ) ) );
 }

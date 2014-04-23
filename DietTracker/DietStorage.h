@@ -66,7 +66,7 @@ public:
 };
 
 //holds all of the individual DietEntrys
-class DailyLogs {
+class DailyLog {
 public:
     void AddEntry( DietEntry entry );
     
