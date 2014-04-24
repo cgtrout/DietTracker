@@ -32,6 +32,10 @@ class Food : public RecipeItem {
 public:
     Food( const string &name, Quantity quantity, float servingSize, float caloriesPerServing );
     Food( const string &name );
+
+    float GetServingSize() { return servingSize; }
+    float GetCaloriesPerServing() { return caloriesPerServing; }
+
 private:
     float servingSize;
     float caloriesPerServing;
