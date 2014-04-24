@@ -22,7 +22,7 @@ class RecipeItem {
 public:
     Quantity quantity;
 
-    const string& GetName() { return name; }
+    virtual const string& GetName() { return name; }
 protected:
     RecipeItem( const string &name, Quantity quantity ) : name( name ), quantity( quantity ) {}
     std::string name;
