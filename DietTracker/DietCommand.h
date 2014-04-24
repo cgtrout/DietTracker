@@ -75,6 +75,11 @@ private:
     std::string value;
 };
 
+//aliases
+using Quantity = CommandParamQuantity;
+using Time = CommandParamTime;
+using Date = CommandParamDate;
+
 //represents one DietTracker command
 class DietCommand {
 public:

@@ -16,9 +16,6 @@ using namespace std;
 using namespace boost::gregorian;
 using namespace boost::posix_time;
 
-using Quantity = CommandParamQuantity;
-using Time = CommandParamTime;
-using Date = CommandParamDate;
 
 //base class for Recipe/Food
 class RecipeItem {
