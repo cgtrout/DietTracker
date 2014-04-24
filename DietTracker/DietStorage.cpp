@@ -33,17 +33,17 @@ Recipe::Recipe( const string &name, Quantity quantity )
 {}
 
 //AddRecipeItem
-void Recipe::AddRecipeItem( RecipeItem item )
+void Recipe::AddRecipeItem( unique_ptr<RecipeItem> item )
 {
-    components.push_back( make_unique<RecipeItem>(item) );
+    components.push_back( std::move(item) );
 }
 
 /*
  *  DietEntry Class
  *   Implemenation
  */
-DietEntry::DietEntry( RecipeItem iitem, Time itime, Date idate )
-    : item( make_unique<RecipeItem>( iitem ) )
+DietEntry::DietEntry( unique_ptr<RecipeItem> iitem, Time itime, Date idate )
+    : item( std::move( iitem ) )
     , mtime( itime.GetValue() )
     , mdate( idate.GetValue() )
 {}

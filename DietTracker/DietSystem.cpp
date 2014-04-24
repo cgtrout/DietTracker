@@ -8,7 +8,7 @@
 void DietSystem::BindFunctions()
 {
     BindFunction( "Eat", std::bind( &DietSystem::Command_Eat, this ));
-    dietCommands.commands[ "Eat" ].AddParam( Quantity( "0" ) );
+    dietCommands.commands[ "Eat" ].AddParam( make_unique<Quantity>( Quantity( "0" ) ) );
 }
 
 

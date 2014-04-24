@@ -12,7 +12,8 @@ void Test_DietSystem::addTests()
         DietSystem d;
         d.BindFunctions();
 
-        return true;
+        auto v = stof(d.dietCommands.commands[ "Eat" ].params[ 0 ]->GetValue());
+        return v == 0.0f;
     });
     tester.AddSuite( suiteDietSystem );
 }

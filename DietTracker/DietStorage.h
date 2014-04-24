@@ -20,11 +20,13 @@ using namespace boost::posix_time;
 //base class for Recipe/Food
 class RecipeItem {
 public:
+    RecipeItem( const RecipeItem& ) = delete;
     Quantity quantity;
 
     virtual const string& GetName() { return name; }
 protected:
     RecipeItem( const string &name, Quantity quantity ) : name( name ), quantity( quantity ) {}
+    
     std::string name;
 };
 
@@ -32,6 +34,7 @@ class Food : public RecipeItem {
 public:
     Food( const string &name, Quantity quantity, float servingSize, float caloriesPerServing );
     Food( const string &name );
+    Food( const Food& ) = delete;
 
     float GetServingSize() { return servingSize; }
     float GetCaloriesPerServing() { return caloriesPerServing; }
@@ -45,8 +48,9 @@ class Recipe : public RecipeItem {
 public:
     Recipe( const string &name );
     Recipe( const string &name, Quantity quantity );
+    Recipe( const Recipe& ) = delete;
     
-    void AddRecipeItem( RecipeItem item  );
+    void AddRecipeItem( unique_ptr<RecipeItem> item  );
     
     std::vector<unique_ptr<RecipeItem>> components;
 private:
@@ -56,7 +60,7 @@ private:
 //represents one diet system entry
 class DietEntry {
 public:
-    DietEntry( RecipeItem item, Time itime, Date idate );
+    DietEntry( unique_ptr<RecipeItem> iitem, Time itime, Date idate );
     
     DietEntry( const DietEntry& ) = delete;
     DietEntry( DietEntry&& );
