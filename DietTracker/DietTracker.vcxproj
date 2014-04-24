@@ -92,6 +92,7 @@
     <ClInclude Include="Test_CTString.h" />
     <ClInclude Include="Test_DietCommand.h" />
     <ClInclude Include="Test_DietStorage.h" />
+    <ClInclude Include="Test_DietSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AllTests.cpp" />
@@ -104,6 +105,7 @@
     <ClCompile Include="Test_CTString.cpp" />
     <ClCompile Include="Test_DietCommand.cpp" />
     <ClCompile Include="Test_DietStorage.cpp" />
+    <ClCompile Include="Test_DietSystem.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
