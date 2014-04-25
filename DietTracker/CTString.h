@@ -7,10 +7,10 @@
 using namespace std;
 
 //split string using delimiter.  Split strings returned in vector
-vector<string> split(string &instring, string delim = " ");
+vector<string> split(const string &instring, string delim = " ");
 
 //Parse command line for recipe program
 //TODO this should be moved when it is apparent where it belongs
-vector<string> parseCommandLine(string &instring);
+vector<string> parseCommandLine(const string &instring);
 
 #endif //CTSTRING

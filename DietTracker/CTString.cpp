@@ -1,7 +1,7 @@
 #include "CTString.h"
 
 //split string using delimiter.  Split strings returned in vector
-vector<string> split(string &instring, string delim) {
+vector<string> split(const string &instring, string delim) {
 	vector<string> vec;
 
 	size_t pos = 0;
@@ -26,7 +26,7 @@ vector<string> split(string &instring, string delim) {
 }
 
 
-vector<string> parseCommandLine(string &instring) {
+vector<string> parseCommandLine(const string &instring) {
 	size_t pos = 0;
 	size_t lastPos = 0;
 
