@@ -103,6 +103,7 @@ private:
 class DietCommands {
 public:
     void AddDietCommand( string name );
+    bool DoesCommandExist( const string &name );
 
     std::map<std::string, DietCommand> commands;
 };

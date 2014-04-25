@@ -104,3 +104,8 @@ void DietCommand::AddParam( const string &name, unique_ptr<CommandParamBase> par
 void DietCommands::AddDietCommand(string name) {
 	commands.insert(make_pair(name, DietCommand(name)));
 }
+
+bool DietCommands::DoesCommandExist( const string &name )
+{
+    return commands.count( name ) > 0;
+}

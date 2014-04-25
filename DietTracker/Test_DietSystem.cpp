@@ -14,5 +14,16 @@ void Test_DietSystem::addTests()
         d.ExecuteLine( "Eat testfood 2g" );
         return d.dietCommands.commands["eat"].params[0]->GetValue() == "testfood";
     });
+    suiteDietSystem.AddTest( "Test invalid command", []()->bool {
+        DietSystem d;
+        d.BindFunctions();
+        bool inException = false;
+        try {
+            d.ExecuteLine( "invalid" );
+        } catch( invalid_argument ) {
+            inException = true;
+        }
+        return inException;
+    });
     tester.AddSuite( suiteDietSystem );
 }

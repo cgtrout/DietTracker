@@ -19,6 +19,11 @@ void DietSystem::ExecuteLine( const std::string &line )
     //convert commandName to lowercase
     std::transform( commandName.begin(), commandName.end(), commandName.begin(), ::tolower );
     
+    //TODO make sure command exists
+    if( !dietCommands.DoesCommandExist( commandName ) ) {
+        throw invalid_argument( "Command does not exist" );
+    }
+
     auto &thiscommand = dietCommands.commands[ commandName ];
     
     auto iter = lines.begin(); iter++;
