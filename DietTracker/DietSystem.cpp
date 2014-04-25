@@ -31,7 +31,12 @@ void DietSystem::ExecuteLine( const std::string &line )
 
     //set parameters
     for( ; iter != lines.end(); ++iter ) {
-        thiscommand.params[ i ]->SetValue(*iter);
+        try {
+            thiscommand.params[ i ]->SetValue( *iter );
+        } catch( invalid_argument &e ) {
+            cout << commandName << ": Invalid parameter ( " << thiscommand.params[ i ]->name << ")" << endl;
+            throw invalid_argument( "Invalid parameter" );
+        }
         i++;
     }
 

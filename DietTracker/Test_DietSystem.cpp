@@ -25,5 +25,17 @@ void Test_DietSystem::addTests()
         }
         return inException;
     });
+    suiteDietSystem.AddTest( "Test invalid argument", []()->bool {
+        DietSystem d;
+        d.BindFunctions();
+        bool inException = false;
+        try {
+            //third argument should be quantity
+            d.ExecuteLine( "Eat testfood string" );
+        } catch( invalid_argument ) {
+            inException = true;
+        }
+        return inException;
+    });
     tester.AddSuite( suiteDietSystem );
 }
