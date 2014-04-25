@@ -16,7 +16,6 @@ using namespace std;
 using namespace boost::gregorian;
 using namespace boost::posix_time;
 
-
 //base class for Recipe/Food
 class RecipeItem {
 public:
