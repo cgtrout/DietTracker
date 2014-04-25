@@ -53,6 +53,7 @@ DietEntry::DietEntry( DietEntry &&entry )
     , mtime( std::move(entry.mtime ) )
     , mdate( std::move(entry.mdate ) )
 {}
+
 /*
  *  DailyLogs Class
  *   Implemenation

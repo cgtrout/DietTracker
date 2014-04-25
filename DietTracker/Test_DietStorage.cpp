@@ -17,7 +17,7 @@ void Test_DietStorage::addTests()
 
         auto food = make_unique<Food>( "Food" );
         food->quantity.SetValue( "5.0s" );
-
+        
         recipe->AddRecipeItem( std::move( food ) );
 
         auto internal_recipe = make_unique<Recipe>( "internal recipe" );
