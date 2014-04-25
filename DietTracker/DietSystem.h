@@ -10,21 +10,20 @@
 
 class DietSystem {
 public:
+    void ExecuteLine( const std::string &line );
+    void BindFunctions();
+    
     //--COMMAND FUNCTIONS--
     void Command_Eat();
     //DEFINE
     //DELETE
     //etc...
 
-    //BindFunctions
-    // binds all functions to dietCommands
-    void BindFunctions();
-
-    //bind A function to dietCommands
-    void BindFunction( const std::string &s, std::function<void()> f );
-
     DietCommands dietCommands;
     DailyLog dailyLog;
+private:
+    //bind A function to dietCommands
+    void BindFunction( const std::string &s, std::function<void()> f );
 };
 
 #endif
