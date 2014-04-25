@@ -20,7 +20,7 @@ void Test_DietSystem::addTests()
         bool inException = false;
         try {
             d.ExecuteLine( "invalid" );
-        } catch( invalid_argument ) {
+        } catch( invalid_argument& ) {
             inException = true;
         }
         return inException;
@@ -32,7 +32,7 @@ void Test_DietSystem::addTests()
         try {
             //third argument should be quantity
             d.ExecuteLine( "Eat testfood string" );
-        } catch( invalid_argument ) {
+        } catch( invalid_argument& ) {
             inException = true;
         }
         return inException;
@@ -43,7 +43,7 @@ void Test_DietSystem::addTests()
         bool inException = false;
         try {
             d.ExecuteLine( "Eat testfood 1.0 another" );
-        } catch( invalid_argument ) {
+        } catch( invalid_argument& ) {
             inException = true;
         }
         return inException;
