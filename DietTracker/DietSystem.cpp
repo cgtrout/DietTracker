@@ -62,8 +62,6 @@ void DietSystem::BindFunctions()
     BindFunction( "eat", std::bind( &DietSystem::Command_Eat, this ));
     dietCommands.commands[ "eat" ].AddParam( "FoodName", make_unique<Name>( Name( "notset" ) ) );
     dietCommands.commands[ "eat" ].AddParam( "Quantity", make_unique<Quantity>( Quantity( "0" ) ) );
-    
-    //time is default param
     dietCommands.commands[ "eat" ].AddParam( "Time", make_unique<Time>( Time( "0:00" ) ) );
     dietCommands.commands[ "eat" ].hasDefaultParam = true;
     dietCommands.commands[ "eat" ].GetLastParam()->defaultFunction = []() { return GetCurrentTime(); };    
