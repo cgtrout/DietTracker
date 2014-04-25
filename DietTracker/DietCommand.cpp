@@ -1,6 +1,19 @@
 #include "DietCommand.h"
 #include "CTException.h"
 #include <locale>
+
+//GetCurrentTime implementation
+string GetCurrentTime()
+{
+    ptime t(second_clock::local_time());
+    auto timestring = to_simple_string( t );
+    auto spacepos = timestring.find_first_of( " " );
+    spacepos++;
+    auto out = timestring.substr( spacepos );
+    return out;
+
+}
+
 /*
 *	DietCommandParam Implementation
 *

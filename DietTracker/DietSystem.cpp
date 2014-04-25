@@ -26,23 +26,30 @@ void DietSystem::ExecuteLine( const std::string &line )
     
     auto &thiscommand = dietCommands.commands[ commandName ];
 
-    //ensure valid number of arguments
-    if( lines.size() - 1 != thiscommand.params.size() ) {
+    //ensure valid number of arguments 
+    int defaultParam = thiscommand.hasDefaultParam;
+    if( (lines.size() - 1) != (thiscommand.params.size() - defaultParam) ) {
         throw invalid_argument( "Incorrect number of params" );
     }
-    
+     
     auto lineIter = lines.begin();
     lineIter++;
     
     //set parameters
-    for( auto &p: thiscommand.params ) {
+    for( auto parami = 0u; parami < thiscommand.params.size() - defaultParam; ++parami ) {
+        auto &p = thiscommand.params[ parami ];
         try {
             p->SetValue( *lineIter );
-        } catch( invalid_argument &e ) {
+        } catch( invalid_argument & ) {
             cout << commandName << ": Invalid parameter ( " << p->name << ")" << endl;
             throw invalid_argument( "Invalid parameter" );
         }
         ++lineIter;
+    }
+
+    //if last parm is a default, set it
+    if( thiscommand.hasDefaultParam ) {
+        thiscommand.GetLastParam()->SetDefault();
     }
 
     //run function
@@ -51,9 +58,15 @@ void DietSystem::ExecuteLine( const std::string &line )
 
 void DietSystem::BindFunctions()
 {
+    //function eat
     BindFunction( "eat", std::bind( &DietSystem::Command_Eat, this ));
     dietCommands.commands[ "eat" ].AddParam( "FoodName", make_unique<Name>( Name( "notset" ) ) );
     dietCommands.commands[ "eat" ].AddParam( "Quantity", make_unique<Quantity>( Quantity( "0" ) ) );
+    
+    //time is default param
+    dietCommands.commands[ "eat" ].AddParam( "Time", make_unique<Time>( Time( "0:00" ) ) );
+    dietCommands.commands[ "eat" ].hasDefaultParam = true;
+    dietCommands.commands[ "eat" ].GetLastParam()->defaultFunction = []() { return GetCurrentTime(); };    
 }
 
 void DietSystem::BindFunction( const std::string &s, std::function<void()> f )
@@ -66,5 +79,10 @@ void DietSystem::BindFunction( const std::string &s, std::function<void()> f )
 void DietSystem::Command_Eat()
 {
     auto &thiscommand = dietCommands.commands[ "eat" ];
-    
+    cout << "Executing eat command:" << "\n\n";
+
+    //just print params for now
+    for( auto &p : thiscommand.params ) {
+        cout << p->name << " " << p->GetValue() << "\n";
+    }
 }
