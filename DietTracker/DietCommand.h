@@ -38,8 +38,7 @@ public:
 
 	float GetFloatValue() { return value; }
 private:
-	float value;
-    
+	float value; 
     char type;
 };
 
@@ -95,6 +94,7 @@ public:
 	
     std::function<void()> commandFunction;
     std::vector<unique_ptr<CommandParamBase>> params;
+    bool hasDefaultParam = false;
 private:
 	std::string name;
 };
