@@ -83,4 +83,14 @@ void DietSystem::Command_Eat()
     for( auto &p : thiscommand.params ) {
         cout << p->name << " " << p->GetValue() << "\n";
     }
+
+    Name *foodName = dynamic_cast<Name*>(thiscommand.params[ 0 ].get());
+    Quantity *quantity = dynamic_cast<Quantity*>( thiscommand.params[ 1 ].get() );
+    Time *time = dynamic_cast< Time* >( thiscommand.params[ 2 ].get() );
+
+    //find out if given food / recipe exists
+
+    //if it does not, add it
+
+    //create entry and add it to dailyLog
 }
