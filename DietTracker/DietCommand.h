@@ -20,6 +20,7 @@ public:
     virtual void SetValue( const std::string &value ) = 0;
 	virtual std::string GetValue() = 0;
 
+    std::string name;
 };
 
 //quantity
@@ -79,6 +80,7 @@ private:
 using Quantity = CommandParamQuantity;
 using Time = CommandParamTime;
 using Date = CommandParamDate;
+using Name = CommandParamString;
 
 //represents one DietTracker command
 class DietCommand {
@@ -89,7 +91,7 @@ public:
     DietCommand( const DietCommand &other ) = delete;
     DietCommand( DietCommand &&other );
 
-    void AddParam( unique_ptr<CommandParamBase> param );
+    void AddParam( const string &name, unique_ptr<CommandParamBase> param );
 	
     std::function<void()> commandFunction;
     std::vector<unique_ptr<CommandParamBase>> params;
