@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include "DietSystem.h"
 #include "CTString.h"
 /* 
@@ -12,7 +14,12 @@ void DietSystem::ExecuteLine( const std::string &line )
         throw invalid_argument( "Invalid command." );
     }
     vector<string> lines = parseCommandLine( line );
-    auto &thiscommand = dietCommands.commands[ lines[ 0 ] ];
+    string commandName = lines[0];
+    
+    //convert commandName to lowercase
+    std::transform( commandName.begin(), commandName.end(), commandName.begin(), ::tolower );
+    
+    auto &thiscommand = dietCommands.commands[ commandName ];
     
     auto iter = lines.begin(); iter++;
     auto i = 0;
@@ -29,9 +36,9 @@ void DietSystem::ExecuteLine( const std::string &line )
 
 void DietSystem::BindFunctions()
 {
-    BindFunction( "Eat", std::bind( &DietSystem::Command_Eat, this ));
-    dietCommands.commands[ "Eat" ].AddParam( "FoodName", make_unique<Name>( Name( "notset" ) ) );
-    dietCommands.commands[ "Eat" ].AddParam( "Quantity", make_unique<Quantity>( Quantity( "0" ) ) );
+    BindFunction( "eat", std::bind( &DietSystem::Command_Eat, this ));
+    dietCommands.commands[ "eat" ].AddParam( "FoodName", make_unique<Name>( Name( "notset" ) ) );
+    dietCommands.commands[ "eat" ].AddParam( "Quantity", make_unique<Quantity>( Quantity( "0" ) ) );
 }
 
 void DietSystem::BindFunction( const std::string &s, std::function<void()> f )
@@ -43,6 +50,6 @@ void DietSystem::BindFunction( const std::string &s, std::function<void()> f )
 //command functions
 void DietSystem::Command_Eat()
 {
-    auto &thiscommand = dietCommands.commands[ "Eat" ];
+    auto &thiscommand = dietCommands.commands[ "eat" ];
     
 }
