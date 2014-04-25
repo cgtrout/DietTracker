@@ -17,10 +17,14 @@ int main( int argc, char* argv[] )
     TestAll();
 
     string templine;
-    cout << "DietTracker > ";
-    getline( cin, templine );
-
-    vector<string> splitVector = split( templine );
+    
+    while( true ) {
+        cout << "DietTracker > ";
+        getline( cin, templine );
+        if( templine == "quit" ) {
+            return 0;
+        }
+    }
 
     return 0;
 }
