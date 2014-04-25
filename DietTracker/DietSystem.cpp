@@ -19,25 +19,24 @@ void DietSystem::ExecuteLine( const std::string &line )
     //convert commandName to lowercase
     std::transform( commandName.begin(), commandName.end(), commandName.begin(), ::tolower );
     
-    //TODO make sure command exists
+    //make sure command exists
     if( !dietCommands.DoesCommandExist( commandName ) ) {
         throw invalid_argument( "Command does not exist" );
     }
 
     auto &thiscommand = dietCommands.commands[ commandName ];
+    auto lineIter = lines.begin();
+    lineIter++;
     
-    auto iter = lines.begin(); iter++;
-    auto i = 0;
-
     //set parameters
-    for( ; iter != lines.end(); ++iter ) {
+    for( auto &p: thiscommand.params ) {
         try {
-            thiscommand.params[ i ]->SetValue( *iter );
+            p->SetValue( *lineIter );
         } catch( invalid_argument &e ) {
-            cout << commandName << ": Invalid parameter ( " << thiscommand.params[ i ]->name << ")" << endl;
+            cout << commandName << ": Invalid parameter ( " << p->name << ")" << endl;
             throw invalid_argument( "Invalid parameter" );
         }
-        i++;
+        ++lineIter;
     }
 
     //run function
