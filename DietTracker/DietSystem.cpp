@@ -91,7 +91,5 @@ void DietSystem::Command_Eat()
     //TODO
     //find out if given food / recipe exists
 
-    //if it does not, add it
-
     //create entry and add it to dailyLog
 }
