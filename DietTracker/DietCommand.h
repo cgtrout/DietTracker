@@ -104,6 +104,7 @@ class DietCommands {
 public:
     void AddDietCommand( string name );
     bool DoesCommandExist( const string &name );
+    size_t GetCommandsCount() { return commands.size(); }
 
     std::map<std::string, DietCommand> commands;
 };

@@ -23,8 +23,14 @@ void DietSystem::ExecuteLine( const std::string &line )
     if( !dietCommands.DoesCommandExist( commandName ) ) {
         throw invalid_argument( "Command does not exist" );
     }
-
+    
     auto &thiscommand = dietCommands.commands[ commandName ];
+
+    //ensure valid number of arguments
+    if( lines.size() - 1 != thiscommand.params.size() ) {
+        throw invalid_argument( "Incorrect number of params" );
+    }
+    
     auto lineIter = lines.begin();
     lineIter++;
     
