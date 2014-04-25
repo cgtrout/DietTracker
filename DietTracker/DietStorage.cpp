@@ -62,3 +62,12 @@ void DailyLog::AddEntry( DietEntry entry )
 {
     entries.push_back( make_unique<DietEntry>( std::move( entry ) ) );
 }
+
+/*
+ *  DailyLogs Class
+ *   Implemenation
+ */
+void FoodDatabase::AddFood( unique_ptr<RecipeItem> item )
+{
+    database.push_back( std::move( item ) );
+}

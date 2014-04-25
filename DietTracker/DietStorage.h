@@ -78,4 +78,11 @@ public:
     std::vector<unique_ptr<DietEntry>> entries;
 };
 
+class FoodDatabase {
+public:
+    void AddFood( unique_ptr<RecipeItem> item );
+    
+    std::vector<unique_ptr<RecipeItem>> database;
+};
+
 #endif //DIETSTORAGE_H
