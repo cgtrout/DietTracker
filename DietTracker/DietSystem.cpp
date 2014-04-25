@@ -17,6 +17,7 @@ void DietSystem::ExecuteLine( const std::string &line )
     string commandName = lines[0];
     
     //convert commandName to lowercase
+    //TODO pull this to seperate function?
     std::transform( commandName.begin(), commandName.end(), commandName.begin(), ::tolower );
     
     //make sure command exists
