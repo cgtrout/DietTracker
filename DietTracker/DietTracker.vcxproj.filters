@@ -64,9 +64,6 @@
     <ClCompile Include="AllTests.cpp">
       <Filter>Test Files</Filter>
     </ClCompile>
-    <ClCompile Include="CTString.cpp">
-      <Filter>Test Files</Filter>
-    </ClCompile>
     <ClCompile Include="DietCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -84,6 +81,9 @@
     </ClCompile>
     <ClCompile Include="Test_DietSystem.cpp">
       <Filter>Test Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CTString.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
