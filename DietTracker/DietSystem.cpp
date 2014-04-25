@@ -88,6 +88,7 @@ void DietSystem::Command_Eat()
     Quantity *quantity = dynamic_cast<Quantity*>( thiscommand.params[ 1 ].get() );
     Time *time = dynamic_cast< Time* >( thiscommand.params[ 2 ].get() );
 
+    //TODO
     //find out if given food / recipe exists
 
     //if it does not, add it
