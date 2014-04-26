@@ -26,9 +26,10 @@ void DietSystem::ExecuteLine( const std::string &line )
     }
 
     InitializeCommand( commandName );
-    CheckParamCount( );
+    //CheckParamCount( );
 
     //run function
+    cout << "Executing function: " << commandName << endl;
     thiscommand->commandFunction();
 }
 
@@ -93,11 +94,12 @@ void DietSystem::PrintParams()
 //command functions
 void DietSystem::Command_Eat()
 {
-    cout << "Executing eat command:" << "\n\n";
+    CheckParamCount();
 
     SetParam();
     SetParam();
     SetDefaultParam();
+    
     PrintParams();
 
     Name *foodName = dynamic_cast<Name*>( thiscommand->params[ 0 ].get( ) );
