@@ -47,6 +47,8 @@ void DietSystem::BindFunctions()
     //function define
     BindFunction( "define", std::bind( &DietSystem::Command_Define, this ) );
     auto &defineCommand = dietCommands.commands[ "define" ];
+    defineCommand.AddParam( "FoodName", make_unique<Name>( Name( "notset" ) ) );
+    //TODO next can either be recipe string or serving size
 }
 
 void DietSystem::BindFunction( const std::string &s, std::function<void()> f )
@@ -96,9 +98,9 @@ void DietSystem::Command_Eat()
 {
     CheckParamCount();
 
-    SetParam();
-    SetParam();
-    SetDefaultParam();
+    SetParam();         //foodName
+    SetParam();         //quantity
+    SetDefaultParam();  //time
     
     PrintParams();
 
@@ -114,5 +116,5 @@ void DietSystem::Command_Eat()
 
 void DietSystem::Command_Define()
 {
-
+    SetParam(); 
 }

@@ -87,6 +87,7 @@ using Quantity = CommandParamQuantity;
 using Time = CommandParamTime;
 using Date = CommandParamDate;
 using Name = CommandParamString;
+using String = CommandParamString;
 
 //represents one DietTracker command
 class DietCommand {
