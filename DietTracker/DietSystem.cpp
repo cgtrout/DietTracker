@@ -36,11 +36,16 @@ void DietSystem::BindFunctions()
 {
     //function eat
     BindFunction( "eat", std::bind( &DietSystem::Command_Eat, this ));
-    dietCommands.commands[ "eat" ].AddParam( "FoodName", make_unique<Name>( Name( "notset" ) ) );
-    dietCommands.commands[ "eat" ].AddParam( "Quantity", make_unique<Quantity>( Quantity( "0" ) ) );
-    dietCommands.commands[ "eat" ].AddParam( "Time", make_unique<Time>( Time( "0:00" ) ) );
-    dietCommands.commands[ "eat" ].hasDefaultParam = true;
-    dietCommands.commands[ "eat" ].GetLastParam()->defaultFunction = []() { return GetCurrentTime(); };    
+    auto &eatCommand = dietCommands.commands[ "eat" ];
+    eatCommand.AddParam( "FoodName", make_unique<Name>( Name( "notset" ) ) );
+    eatCommand.AddParam( "Quantity", make_unique<Quantity>( Quantity( "0" ) ) );
+    eatCommand.AddParam( "Time", make_unique<Time>( Time( "0:00" ) ) );
+    eatCommand.hasDefaultParam = true;
+    eatCommand.GetLastParam()->defaultFunction = []() { return GetCurrentTime(); };    
+
+    //function define
+    BindFunction( "define", std::bind( &DietSystem::Command_Define, this ) );
+    auto &defineCommand = dietCommands.commands[ "define" ];
 }
 
 void DietSystem::BindFunction( const std::string &s, std::function<void()> f )
@@ -103,4 +108,9 @@ void DietSystem::Command_Eat()
     //find out if given food / recipe exists
 
     //create entry and add it to dailyLog
+}
+
+void DietSystem::Command_Define()
+{
+
 }

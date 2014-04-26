@@ -15,6 +15,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
+    <Text Include="Diet Tracker Command Specification.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CTString.h">

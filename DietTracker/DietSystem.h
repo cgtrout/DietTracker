@@ -15,6 +15,7 @@ public:
     
     //--COMMAND FUNCTIONS--
     void Command_Eat();
+    void Command_Define();
     //DEFINE
     //DELETE
     //etc...

@@ -21,11 +21,11 @@ Sub		fruit.raspberries	1g		//allow subtracting if whole container wasn’t ate
 
 How to define food?
 ========================
-Define		Chocolate	serving_size(g)	calories_per_serving	//define new food.  Maybe make this a multi prompt command
+Definefood		Chocolate	serving_size(g)	calories_per_serving	//define new food.  Maybe make this a multi prompt command
 
 How to define recipe?
 =========================
-Define		SandwichSoup	{ Beef_Sandwich=1s, campells_chicken=100g }	//brackets denote we want to create a 'recipe'
+Definerecipe		SandwichSoup	{ Beef_Sandwich=1s, campells_chicken=100g }	//brackets denote we want to create a 'recipe'
 
 									//a recipe make contain a ingrediant or a recipe
 DefineMulti	(goes in to multiline mode to allow easy entry)
