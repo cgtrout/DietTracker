@@ -81,7 +81,24 @@ void DietSystem::Command_Eat()
     //create entry and add it to dailyLog
 }
 
+//Define Chocolate	  serving_size(g)	calories_per_serving	//define new food.  Maybe make this a multi prompt command
+//Define SandwichSoup { Beef_Sandwich=1s, campells_chicken=100g }	//brackets denote we want to create a 'recipe'
+//
+//Define food servingSize caloriesPerServing
+//define Recipe { recipe spec }
 void DietSystem::Command_Define()
 {
-    
+    if( param_count != 2 && param_count != 3 ) {
+        throw invalid_argument( "Wrong number of params" );
+    }
+
+    bool isRecipe = param_tokens[ 2 ].at( 0 ) == '{';
+
+    if( isRecipe ) {
+        //parse recipe string
+        auto recipe = make_unique<Recipe>();
+        
+    } else {
+        //handle as food
+    }
 }
