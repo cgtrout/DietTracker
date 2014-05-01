@@ -30,22 +30,9 @@ private:
 
     void InitializeCommand( const string &name );
 
-    //these set params from tokens_iter (and increment iter)
-    
-    //Sets param from tokens and moves iter
-    void SetParam( );
-
-    //Sets default param from tokens and moves iter
-    void SetDefaultParam( );
-
-    void CheckParamCount( );
-
-    void PrintParams();
-    
-    //param variables
-    std::vector<unique_ptr<CommandParamBase>>::iterator param_iter;
     std::vector<string>::iterator tokens_iter;
     vector<string> param_tokens;
+    size_t param_count;
 
     DietCommand *thiscommand;
 };

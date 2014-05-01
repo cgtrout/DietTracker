@@ -15,6 +15,7 @@ void DietSystem::ExecuteLine( const std::string &line )
     }
     param_tokens = parseCommandLine( line );
     string commandName = param_tokens[0];
+    param_count = param_tokens.size()-1;
     
     //convert commandName to lowercase
     //TODO pull this to seperate function?
@@ -26,7 +27,6 @@ void DietSystem::ExecuteLine( const std::string &line )
     }
 
     InitializeCommand( commandName );
-    //CheckParamCount( );
 
     //run function
     cout << "Executing function: " << commandName << endl;
@@ -37,18 +37,9 @@ void DietSystem::BindFunctions()
 {
     //function eat
     BindFunction( "eat", std::bind( &DietSystem::Command_Eat, this ));
-    auto &eatCommand = dietCommands.commands[ "eat" ];
-    eatCommand.AddParam( "FoodName", make_unique<Name>( Name( "notset" ) ) );
-    eatCommand.AddParam( "Quantity", make_unique<Quantity>( Quantity( "0" ) ) );
-    eatCommand.AddParam( "Time", make_unique<Time>( Time( "0:00" ) ) );
-    eatCommand.hasDefaultParam = true;
-    eatCommand.GetLastParam()->defaultFunction = []() { return GetCurrentTime(); };    
 
     //function define
     BindFunction( "define", std::bind( &DietSystem::Command_Define, this ) );
-    auto &defineCommand = dietCommands.commands[ "define" ];
-    defineCommand.AddParam( "FoodName", make_unique<Name>( Name( "notset" ) ) );
-    //TODO next can either be recipe string or serving size
 }
 
 void DietSystem::BindFunction( const std::string &s, std::function<void()> f )
@@ -57,56 +48,32 @@ void DietSystem::BindFunction( const std::string &s, std::function<void()> f )
     dietCommands.commands[ s ].commandFunction = f;
 }
 
-void DietSystem::CheckParamCount()
-{
-    int defaultParam = thiscommand->hasDefaultParam;
-    if( ( param_tokens.size( ) - 1 ) != ( thiscommand->params.size( ) - defaultParam ) ) {
-        throw invalid_argument( "Incorrect number of params" );
-    }
-}
 
 void DietSystem::InitializeCommand( const string &name ) 
 {
     thiscommand = &dietCommands.commands[ name ];
-    param_iter = thiscommand->params.begin();
     tokens_iter = param_tokens.begin();
     tokens_iter++;
 }
 
-void DietSystem::SetParam()
-{
-    ( *param_iter )->SetValue( *tokens_iter );
-    param_iter++;
-    tokens_iter++;
-}
-
-void DietSystem::SetDefaultParam()
-{
-    //run binded default function
-    thiscommand->GetLastParam()->SetDefault();
-}
-
-void DietSystem::PrintParams()
-{
-    for( auto &p : thiscommand->params ) {
-        cout << p->name << " " << p->GetValue( ) << "\n";
-    }
-}
-
 //command functions
+
+//Eat name quantity (auto-time)
 void DietSystem::Command_Eat()
 {
-    CheckParamCount();
-
-    SetParam();         //foodName
-    SetParam();         //quantity
-    SetDefaultParam();  //time
+    if( param_count != 2 && param_count != 3 ) {
+        throw invalid_argument( "Wrong number of params" );
+    }
     
-    PrintParams();
-
-    Name *foodName = dynamic_cast<Name*>( thiscommand->params[ 0 ].get( ) );
-    Quantity *quantity = dynamic_cast<Quantity*>( thiscommand->params[ 1 ].get( ) );
-    Time *time = dynamic_cast< Time* >( thiscommand->params[ 2 ].get( ) );
+    auto foodName = make_unique<Name>( *tokens_iter++ );
+    auto quantity = make_unique<Quantity>( *tokens_iter++ );
+    unique_ptr<Time> time;
+    
+    if( param_count == 3 ) {
+        time = make_unique<Time>( *tokens_iter );
+    } else { //auto-time
+        time = make_unique<Time>( GetCurrentTime() );
+    }
 
     //TODO
     //find out if given food / recipe exists
@@ -116,5 +83,5 @@ void DietSystem::Command_Eat()
 
 void DietSystem::Command_Define()
 {
-    SetParam(); 
+    
 }

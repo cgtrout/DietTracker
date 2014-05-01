@@ -22,11 +22,6 @@ public:
     virtual void SetValue( const std::string &value ) = 0;
 	virtual std::string GetValue() = 0;
 
-    void SetDefault() { SetValue( defaultFunction() ); }
-
-    //DefaultFunction - allow runtime binding of function to set this params
-    //default value
-    std::function<string()> defaultFunction;
     std::string name;
 };
 
@@ -75,7 +70,9 @@ private:
 //string
 class CommandParamString : public CommandParamBase {
 public:
-    CommandParamString( const string &value ) { SetValue( value ); }
+    CommandParamString( const string &value ) { 
+        SetValue( value ); 
+    }
     void SetValue( const std::string &value );
     std::string GetValue();
 private:
@@ -92,19 +89,14 @@ using String = CommandParamString;
 //represents one DietTracker command
 class DietCommand {
 public:
-	DietCommand(const std::string &name) : name(name), params(){}
-	DietCommand() : name(), params() {}
-	~DietCommand() {}
+	DietCommand(const std::string &name) : name(name){}
+	DietCommand() : name() {}
+	
     DietCommand( const DietCommand &other ) = delete;
     DietCommand( DietCommand &&other );
-
-    void AddParam( const string &name, unique_ptr<CommandParamBase> param );
 	
     std::function<void()> commandFunction;
     
-    std::vector<unique_ptr<CommandParamBase>> params;
-    bool hasDefaultParam = false;
-    CommandParamBase* GetLastParam() { return params[ params.size() - 1 ].get(); }
 private:
 	std::string name;
 };
