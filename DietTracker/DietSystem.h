@@ -22,6 +22,7 @@ public:
 
     DietCommands dietCommands;
     DailyLog dailyLog;
+    FoodDatabase foodDatabase;
 
 private:
 

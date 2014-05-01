@@ -15,7 +15,7 @@ void DietSystem::ExecuteLine( const std::string &line )
     }
     param_tokens = parseCommandLine( line );
     string commandName = param_tokens[0];
-    param_count = param_tokens.size()-1;
+    param_count = param_tokens.size() - 1;
     
     //convert commandName to lowercase
     //TODO pull this to seperate function?
@@ -56,7 +56,10 @@ void DietSystem::InitializeCommand( const string &name )
     tokens_iter++;
 }
 
-//command functions
+/* 
+ *   command functions
+ *
+ */
 
 //Eat name quantity (auto-time)
 void DietSystem::Command_Eat()
@@ -96,7 +99,7 @@ void DietSystem::Command_Define()
 
     if( isRecipe ) {
         //parse recipe string
-        auto recipe = make_unique<Recipe>();
+        //auto recipe = make_unique<Recipe>();
         
     } else {
         //handle as food

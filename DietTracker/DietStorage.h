@@ -43,15 +43,25 @@ private:
     float caloriesPerServing;
 };
 
+class RecipeComponent {
+public:
+    RecipeComponent( RecipeItem *i, Quantity q ) : item( i ), quantity( q ) {}
+    RecipeComponent() = delete;
+
+    //TODO should this be using a weak_ptr
+    RecipeItem *item;
+    Quantity quantity;
+};
+
 class Recipe : public RecipeItem {
 public:
     Recipe( const string &name );
     Recipe( const string &name, Quantity quantity );
     Recipe( const Recipe& ) = delete;
     
-    void AddRecipeItem( unique_ptr<RecipeItem> item  );
+    void AddRecipeComponent( RecipeItem *item, Quantity quant );
     
-    std::vector<unique_ptr<RecipeItem>> components;
+    std::vector<unique_ptr<RecipeComponent>> components;
 private:
 
 };
@@ -59,12 +69,14 @@ private:
 //represents one diet system entry
 class DietEntry {
 public:
-    DietEntry( unique_ptr<RecipeItem> iitem, Time itime, Date idate );
+    DietEntry( RecipeItem *iitem, Quantity quantity, Time itime, Date idate );
     
     DietEntry( const DietEntry& ) = delete;
     DietEntry( DietEntry&& );
 
-    unique_ptr<RecipeItem> item;
+    RecipeItem *item;
+    Quantity quantity;
+    
     string mtime;
     string mdate;
 };

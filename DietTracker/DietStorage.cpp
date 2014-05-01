@@ -32,18 +32,19 @@ Recipe::Recipe( const string &name, Quantity quantity )
     : RecipeItem( name, quantity )
 {}
 
-//AddRecipeItem
-void Recipe::AddRecipeItem( unique_ptr<RecipeItem> item )
+//AddRecipeComponent
+void Recipe::AddRecipeComponent( RecipeItem *item, Quantity quant )
 {
-    components.push_back( std::move(item) );
+    components.push_back( make_unique<RecipeComponent>( item, quant ) );
 }
 
 /*
  *  DietEntry Class
  *   Implemenation
  */
-DietEntry::DietEntry( unique_ptr<RecipeItem> iitem, Time itime, Date idate )
-    : item( std::move( iitem ) )
+DietEntry::DietEntry( RecipeItem *iitem, Quantity quant, Time itime, Date idate )
+    : quantity( quant )
+    , item( iitem )
     , mtime( itime.GetValue() )
     , mdate( idate.GetValue() )
 {}
