@@ -6,14 +6,14 @@
  */
 
 //constructor
-Food::Food( const std::string &iname, Quantity iquantity, float iservingSize, float icaloriesPerServing )
-    : RecipeItem( iname, iquantity)
+Food::Food( const std::string &iname, float iservingSize, float icaloriesPerServing )
+    : RecipeItem( iname )
     , servingSize( iservingSize )
     , caloriesPerServing( icaloriesPerServing )
 {}
 
 Food::Food( const string &name) 
-    : RecipeItem( name, Quantity("0.0s"))
+    : RecipeItem( name )
     , servingSize ( 0.0f )
     , caloriesPerServing ( 0.0f )
 {}
@@ -25,11 +25,11 @@ Food::Food( const string &name)
 
 //constructors
 Recipe::Recipe( const string &iname )
-    : RecipeItem(iname, Quantity("1.0"))
+    : RecipeItem( iname )
 {}
 
 Recipe::Recipe( const string &name, Quantity quantity )
-    : RecipeItem( name, quantity )
+    : RecipeItem( name )
 {}
 
 //AddRecipeComponent

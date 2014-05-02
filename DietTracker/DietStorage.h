@@ -20,18 +20,17 @@ using namespace boost::posix_time;
 class RecipeItem {
 public:
     RecipeItem( const RecipeItem& ) = delete;
-    Quantity quantity;
 
     virtual const string& GetName() { return name; }
 protected:
-    RecipeItem( const string &name, Quantity quantity ) : name( name ), quantity( quantity ) {}
+    RecipeItem( const string &name ) : name( name ) {}
     
     std::string name;
 };
 
 class Food : public RecipeItem {
 public:
-    Food( const string &name, Quantity quantity, float servingSize, float caloriesPerServing );
+    Food( const string &name, float servingSize, float caloriesPerServing );
     Food( const string &name );
     Food( const Food& ) = delete;
 
