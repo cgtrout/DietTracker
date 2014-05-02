@@ -72,3 +72,10 @@ void FoodDatabase::AddFood( unique_ptr<RecipeItem> item )
 {
     database.push_back( std::move( item ) );
 }
+
+void FoodDatabase::PrintAll()
+{
+    for( auto &i : database ) {
+        cout << i->ToString() << "\n";
+    }
+}

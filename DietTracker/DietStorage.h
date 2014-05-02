@@ -22,6 +22,7 @@ public:
     RecipeItem( const RecipeItem& ) = delete;
 
     virtual const string& GetName() { return name; }
+    virtual string ToString() { return name; }
 protected:
     RecipeItem( const string &name ) : name( name ) {}
     
@@ -36,7 +37,7 @@ public:
 
     float GetServingSize() { return servingSize; }
     float GetCaloriesPerServing() { return caloriesPerServing; }
-
+    virtual string ToString() { return "Food: " + name; }
 private:
     float servingSize;
     float caloriesPerServing;
@@ -57,6 +58,7 @@ public:
     Recipe( const string &name );
     Recipe( const string &name, Quantity quantity );
     Recipe( const Recipe& ) = delete;
+    virtual string ToString() { return "Recipe: " + name; }
     
     void AddRecipeComponent( RecipeItem *item, Quantity quant );
     
@@ -92,6 +94,7 @@ public:
 class FoodDatabase {
 public:
     void AddFood( unique_ptr<RecipeItem> item );
+    void PrintAll();
     
     std::vector<unique_ptr<RecipeItem>> database;
 };

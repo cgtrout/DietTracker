@@ -40,6 +40,9 @@ void DietSystem::BindFunctions()
 
     //function define
     BindFunction( "define", std::bind( &DietSystem::Command_Define, this ) );
+
+    //function printall
+    BindFunction( "printall", std::bind( &DietSystem::Command_PrintAll, this ) );
 }
 
 void DietSystem::BindFunction( const std::string &s, std::function<void()> f )
@@ -47,7 +50,6 @@ void DietSystem::BindFunction( const std::string &s, std::function<void()> f )
     dietCommands.AddDietCommand( s );
     dietCommands.commands[ s ].commandFunction = f;
 }
-
 
 void DietSystem::InitializeCommand( const string &name ) 
 {
@@ -111,4 +113,9 @@ void DietSystem::Command_Define()
 
         foodDatabase.AddFood( std::move( food ) );
     }
+}
+
+void DietSystem::Command_PrintAll()
+{
+    foodDatabase.PrintAll();
 }
