@@ -49,5 +49,17 @@ void Test_DietSystem::addTests()
         }
         return inException;
     });
+    suiteDietSystem.AddTest( "Define - test invalid param ", []()->bool {
+        DietSystem d;
+        d.BindFunctions();
+
+        bool inException = false;
+        try {
+            d.ExecuteLine( "define food wrong 1.0f" );
+        } catch( invalid_argument& ) {
+            inException = true;
+        }
+        return inException;
+    });
     tester.AddSuite( suiteDietSystem );
 }
