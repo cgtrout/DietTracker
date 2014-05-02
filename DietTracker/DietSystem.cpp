@@ -100,9 +100,7 @@ void DietSystem::Command_Define()
     bool isRecipe = param_tokens[ 2 ].at( 0 ) == '{';
 
     if( isRecipe ) {
-        //parse recipe string
-        //auto recipe = make_unique<Recipe>();
-        
+        foodDatabase.AddRecipe( param_tokens[ 2 ] );
     } else {
         //handle as food
         auto &name = param_tokens[ 1 ];
@@ -110,7 +108,6 @@ void DietSystem::Command_Define()
         auto caloriesPerServing = stof( param_tokens[ 3 ] );
 
         auto food = make_unique<Food>( name, servingSize, caloriesPerServing );
-
         foodDatabase.AddFood( std::move( food ) );
     }
 }

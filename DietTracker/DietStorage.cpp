@@ -73,6 +73,13 @@ void FoodDatabase::AddFood( unique_ptr<RecipeItem> item )
     database.push_back( std::move( item ) );
 }
 
+void FoodDatabase::AddRecipe( const string &recipe )
+{
+    if( recipe[ 0 ] != '{' || recipe[ recipe.size()-1 ] != '}' ) {
+        throw invalid_argument( "Invalid recipe: must start and end with brackets { }" );
+    }
+}
+
 void FoodDatabase::PrintAll()
 {
     for( auto &i : database ) {

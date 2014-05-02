@@ -94,6 +94,10 @@ public:
 class FoodDatabase {
 public:
     void AddFood( unique_ptr<RecipeItem> item );
+    
+    //parse recipe from string
+    void AddRecipe( const string &recipe );
+
     void PrintAll();
     
     std::vector<unique_ptr<RecipeItem>> database;
