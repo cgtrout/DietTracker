@@ -48,6 +48,7 @@ vector<string> parseCommandLine(const string &instring) {
 				pos++;
 			}
 			lastPos = pos;
+            continue;
 		}
 		//else if at a start bracket
 		else if(instring[pos] == '{') {
@@ -59,7 +60,7 @@ vector<string> parseCommandLine(const string &instring) {
 			}
 			if(instring[pos] == '}') {
 				//create substring
-				vec.push_back(instring.substr(lastPos, pos - lastPos));
+				vec.push_back(instring.substr(lastPos, pos + 1 - lastPos));
 				
 				lastPos = pos;
 			} else {
