@@ -100,7 +100,7 @@ void DietSystem::Command_Define()
     bool isRecipe = param_tokens[ 2 ].at( 0 ) == '{';
 
     if( isRecipe ) {
-        foodDatabase.AddRecipe( param_tokens[ 2 ] );
+        foodDatabase.AddRecipe( param_tokens[1], param_tokens[ 2 ] );
     } else {
         //handle as food
         auto &name = param_tokens[ 1 ];

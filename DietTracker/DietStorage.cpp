@@ -28,10 +28,6 @@ Recipe::Recipe( const string &iname )
     : RecipeItem( iname )
 {}
 
-Recipe::Recipe( const string &name, Quantity quantity )
-    : RecipeItem( name )
-{}
-
 //AddRecipeComponent
 void Recipe::AddRecipeComponent( RecipeItem *item, Quantity quant )
 {
@@ -73,11 +69,14 @@ void FoodDatabase::AddFood( unique_ptr<RecipeItem> item )
     database.push_back( std::move( item ) );
 }
 
-void FoodDatabase::AddRecipe( const string &recipe )
+void FoodDatabase::AddRecipe( const string &name, const string &recipe )
 {
     if( recipe[ 0 ] != '{' || recipe[ recipe.size()-1 ] != '}' ) {
         throw invalid_argument( "Invalid recipe: must start and end with brackets { }" );
     }
+
+    auto recipe_item = make_unique<Recipe>( name );
+    //TODO parse string
 }
 
 void FoodDatabase::PrintAll()

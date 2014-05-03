@@ -56,7 +56,7 @@ public:
 class Recipe : public RecipeItem {
 public:
     Recipe( const string &name );
-    Recipe( const string &name, Quantity quantity );
+    //Recipe( const string &name, Quantity quantity );
     Recipe( const Recipe& ) = delete;
     virtual string ToString() { return "Recipe: " + name; }
     
@@ -96,7 +96,7 @@ public:
     void AddFood( unique_ptr<RecipeItem> item );
     
     //parse recipe from string
-    void AddRecipe( const string &recipe );
+    void AddRecipe( const string &name, const string &recipe );
 
     void PrintAll();
     
