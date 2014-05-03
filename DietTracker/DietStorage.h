@@ -101,6 +101,21 @@ public:
     void PrintAll();
     
     std::vector<unique_ptr<RecipeItem>> database;
+
+private:
+    //this class handles parsing of recipe strings
+    class RecipeParser {
+     public:
+        RecipeParser( const string &s ) : workString( s ) {}
+        void SkipWhiteSpace();
+        string ReadToken( const string &delim );
+        bool ExpectSymbol( char s );
+        char Peek();
+        bool End() { return pos == workString.length(); }
+     private:
+        size_t pos = 0;
+        string workString;
+    };
 };
 
 #endif //DIETSTORAGE_H

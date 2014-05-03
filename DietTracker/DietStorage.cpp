@@ -71,12 +71,39 @@ void FoodDatabase::AddFood( unique_ptr<RecipeItem> item )
 
 void FoodDatabase::AddRecipe( const string &name, const string &recipe )
 {
-    if( recipe[ 0 ] != '{' || recipe[ recipe.size()-1 ] != '}' ) {
+    if( recipe[ 0 ] != '{' || recipe[ recipe.size() - 1 ] != '}' ) {
         throw invalid_argument( "Invalid recipe: must start and end with brackets { }" );
     }
 
     auto recipe_item = make_unique<Recipe>( name );
-    //TODO parse string
+
+    //parse string
+    RecipeParser parser{ recipe };
+
+    while( true ) {
+        //recipe must start with '{'
+        if( parser.ExpectSymbol( '{' ) == false ) {
+            throw invalid_argument( "Expected '{'" );
+        }
+        parser.SkipWhiteSpace();
+        
+        //read name token
+        auto token_name = parser.ReadToken( "= " );
+        
+        //TODO validate that food item exists in database
+
+        parser.SkipWhiteSpace();
+        
+        //if a ',' expect more food items, else if a '}' we are done
+        auto c = parser.Peek();
+        if( c == ',' ) {
+            parser.ExpectSymbol( ',' ); //this skips comma
+        } else if( c == '}' ) {
+            break;
+        } else {
+            throw invalid_argument( "Expected ',' or '}'" );
+        }
+    }
 }
 
 void FoodDatabase::PrintAll()
@@ -84,4 +111,49 @@ void FoodDatabase::PrintAll()
     for( auto &i : database ) {
         cout << i->ToString() << "\n";
     }
+}
+
+/* 
+ *  Class RecipeParser
+ *
+ */
+
+void FoodDatabase::RecipeParser::SkipWhiteSpace()
+{
+    if( End() ) {
+        throw out_of_range( "Parser at end");
+    }
+    while( workString.at( pos ) == ' ' ) {
+        pos++;
+    }
+}
+
+std::string FoodDatabase::RecipeParser::ReadToken( const string &delim )
+{
+    if( End() ) {
+        throw out_of_range( "Parser at end");
+    }
+    //find next delim
+    auto p = workString.find_first_of( delim, pos );
+    string out = workString.substr( pos, p - pos );
+    p++;
+    pos = p;
+
+    return out;
+}
+
+bool FoodDatabase::RecipeParser::ExpectSymbol( char s )
+{
+    if( End() ) {
+        throw out_of_range( "Parser at end");
+    }
+    return workString.at( pos++ ) == s;
+}
+
+char FoodDatabase::RecipeParser::Peek()
+{
+    if( End() ) {
+        throw out_of_range( "Parser at end");
+    }
+    return workString.at( pos );
 }

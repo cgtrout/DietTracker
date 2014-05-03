@@ -61,5 +61,15 @@ void Test_DietSystem::addTests()
         }
         return inException;
     });
+    suiteDietSystem.AddTest( "Parse recipe string ", []()->bool {
+        DietSystem d;
+        d.BindFunctions();
+
+        d.ExecuteLine( "define food1 1 1" );
+        d.ExecuteLine( "define food2 2 2" );
+        d.ExecuteLine( "define recipe { food1=1s, food2=1s }" );
+
+        return d.foodDatabase.database[ 2 ]->GetName() == "recipe";
+    });
     tester.AddSuite( suiteDietSystem );
 }
