@@ -92,14 +92,14 @@ void FoodDatabase::AddRecipe( const string &name, const string &recipe )
         parser.ExpectSymbol( '=' );
         parser.SkipWhiteSpace();
 
-        auto token_quant = parser.ReadToken( ", }" );
+        string token_quant = parser.ReadToken( ", }" );
         parser.SkipWhiteSpace();
 
         //TODO validate quantity - set recipe component
         //TODO add to recipe
 
         //if a ',' expect more food items, else if a '}' we are done
-        auto c = parser.Peek();
+        char c = parser.Peek();
         if( c == ',' ) {
             parser.ExpectSymbol( ',' ); //this skips comma
         } else if( c == '}' ) {

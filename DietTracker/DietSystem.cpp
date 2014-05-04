@@ -103,9 +103,9 @@ void DietSystem::Command_Define()
         foodDatabase.AddRecipe( param_tokens[1], param_tokens[ 2 ] );
     } else {
         //handle as food
-        auto &name = param_tokens[ 1 ];
-        auto servingSize = stof( param_tokens[ 2 ] );
-        auto caloriesPerServing = stof( param_tokens[ 3 ] );
+        string &name = param_tokens[ 1 ];
+        float servingSize = stof( param_tokens[ 2 ] );
+        float caloriesPerServing = stof( param_tokens[ 3 ] );
 
         auto food = make_unique<Food>( name, servingSize, caloriesPerServing );
         foodDatabase.AddFood( std::move( food ) );
