@@ -22,8 +22,8 @@ string GetCurrentTime()
 //Quantity implementation
 void CommandParamQuantity::SetValue(const std::string &value) {
     char lastChar = value[ value.length() - 1 ];
-    int lastIsChar = isalpha( lastChar );
-    if( lastIsChar ) {
+    int lastIsChar_bool = isalpha( lastChar );
+    if( lastIsChar_bool ) {
         //is the last char a valid type?
         if( unitTypes.count( lastChar ) == 0 ) {
             throw invalid_argument( "Invalid quantity type" );
