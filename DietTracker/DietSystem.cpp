@@ -35,13 +35,8 @@ void DietSystem::ExecuteLine( const std::string &line )
 
 void DietSystem::BindFunctions()
 {
-    //function eat
-    BindFunction( "eat", std::bind( &DietSystem::Command_Eat, this ));
-
-    //function define
+    BindFunction( "eat", std::bind( &DietSystem::Command_Eat, this ) );
     BindFunction( "define", std::bind( &DietSystem::Command_Define, this ) );
-
-    //function printall
     BindFunction( "printall", std::bind( &DietSystem::Command_PrintAll, this ) );
 }
 

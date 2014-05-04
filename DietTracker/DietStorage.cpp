@@ -138,10 +138,9 @@ std::string FoodDatabase::RecipeParser::ReadToken( const string &delim )
     if( End() ) {
         throw out_of_range( "Parser at end");
     }
-    //find next delim
-    auto p = workString.find_first_of( delim, pos );
-    string out = workString.substr( pos, p - pos );
     
+    auto p = workString.find_first_of( delim, pos );
+    string out = workString.substr( pos, p - pos );  
     pos = p;
 
     return out;

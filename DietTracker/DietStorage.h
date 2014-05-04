@@ -48,7 +48,6 @@ public:
     RecipeComponent( RecipeItem *i, Quantity q ) : item( i ), quantity( q ) {}
     RecipeComponent() = delete;
 
-    //TODO should this be using a weak_ptr
     RecipeItem *item;
     Quantity quantity;
 };
