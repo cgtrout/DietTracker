@@ -106,10 +106,20 @@ private:
     class RecipeParser {
      public:
         RecipeParser( const string &s ) : workString( s ) {}
+        
+        //skip foward through whitespace
         void SkipWhiteSpace();
+
+        //returns token once any char in delim is found
         string ReadToken( const string &delim );
+        
+        //throws exception if 's' is not found
         void ExpectSymbol( char s );
+        
+        //look at current char but do not move position
         char Peek();
+
+        //are we at end of string?
         bool End() { return pos == workString.length(); }
      private:
         size_t pos = 0;
