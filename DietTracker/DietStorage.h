@@ -109,7 +109,7 @@ private:
         RecipeParser( const string &s ) : workString( s ) {}
         void SkipWhiteSpace();
         string ReadToken( const string &delim );
-        bool ExpectSymbol( char s );
+        void ExpectSymbol( char s );
         char Peek();
         bool End() { return pos == workString.length(); }
      private:

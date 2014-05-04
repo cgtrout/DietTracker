@@ -69,6 +69,7 @@ void FoodDatabase::AddFood( unique_ptr<RecipeItem> item )
     database.push_back( std::move( item ) );
 }
 
+//"define recipe { food1=1s, food2=1s }"
 void FoodDatabase::AddRecipe( const string &name, const string &recipe )
 {
     if( recipe[ 0 ] != '{' || recipe[ recipe.size() - 1 ] != '}' ) {
@@ -80,20 +81,27 @@ void FoodDatabase::AddRecipe( const string &name, const string &recipe )
     //parse string
     RecipeParser parser{ recipe };
 
+    //recipe must start with '{'
+    parser.ExpectSymbol( '{' );
+
     while( true ) {
-        //recipe must start with '{'
-        if( parser.ExpectSymbol( '{' ) == false ) {
-            throw invalid_argument( "Expected '{'" );
-        }
         parser.SkipWhiteSpace();
         
         //read name token
         auto token_name = parser.ReadToken( "= " );
         
         //TODO validate that food item exists in database
-
-        parser.SkipWhiteSpace();
         
+
+        parser.ExpectSymbol( '=' );
+        parser.SkipWhiteSpace();
+
+        auto token_quant = parser.ReadToken( ", }" );
+        parser.SkipWhiteSpace();
+
+        //TODO validate quantity - set recipe component
+        //TODO add to recipe
+
         //if a ',' expect more food items, else if a '}' we are done
         auto c = parser.Peek();
         if( c == ',' ) {
@@ -104,6 +112,7 @@ void FoodDatabase::AddRecipe( const string &name, const string &recipe )
             throw invalid_argument( "Expected ',' or '}'" );
         }
     }
+    //todo add recipe
 }
 
 void FoodDatabase::PrintAll()
@@ -136,18 +145,21 @@ std::string FoodDatabase::RecipeParser::ReadToken( const string &delim )
     //find next delim
     auto p = workString.find_first_of( delim, pos );
     string out = workString.substr( pos, p - pos );
-    p++;
+    
     pos = p;
 
     return out;
 }
 
-bool FoodDatabase::RecipeParser::ExpectSymbol( char s )
+void FoodDatabase::RecipeParser::ExpectSymbol( char s )
 {
     if( End() ) {
         throw out_of_range( "Parser at end");
     }
-    return workString.at( pos++ ) == s;
+    bool isSymbol = workString.at( pos++ ) == s;
+    if( !isSymbol ) {
+        throw invalid_argument( "Expected " + s );
+    }
 }
 
 char FoodDatabase::RecipeParser::Peek()
