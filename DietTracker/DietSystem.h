@@ -7,7 +7,6 @@
 #include "DietCommand.h"
 #include "DietStorage.h"
 
-
 class DietSystem {
 public:
     void ExecuteLine( const std::string &line );

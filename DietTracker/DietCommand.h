@@ -70,9 +70,7 @@ private:
 //string
 class CommandParamString : public CommandParamBase {
 public:
-    CommandParamString( const string &value ) { 
-        SetValue( value ); 
-    }
+    CommandParamString( const string &value ) { SetValue( value ); }
     void SetValue( const std::string &value );
     std::string GetValue();
 private:

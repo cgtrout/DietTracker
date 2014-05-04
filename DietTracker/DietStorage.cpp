@@ -87,8 +87,7 @@ void FoodDatabase::AddRecipe( const string &name, const string &recipe )
         auto token_name = parser.ReadToken( "= " );
         
         //TODO validate that food item exists in database
-        
-
+       
         parser.ExpectSymbol( '=' );
         parser.SkipWhiteSpace();
 
@@ -137,12 +136,10 @@ std::string FoodDatabase::RecipeParser::ReadToken( const string &delim )
 {
     if( End() ) {
         throw out_of_range( "Parser at end");
-    }
-    
+    }   
     auto p = workString.find_first_of( delim, pos );
     string out = workString.substr( pos, p - pos );  
     pos = p;
-
     return out;
 }
 

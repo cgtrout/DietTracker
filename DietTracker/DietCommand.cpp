@@ -11,7 +11,6 @@ string GetCurrentTime()
     spacepos++;
     auto out = timestring.substr( spacepos );
     return out;
-
 }
 
 /*
