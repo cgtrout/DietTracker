@@ -72,10 +72,6 @@ void FoodDatabase::AddFood( unique_ptr<RecipeItem> item )
 //"define recipe { food1=1s, food2=1s }"
 void FoodDatabase::AddRecipe( const string &name, const string &recipe )
 {
-    if( recipe[ 0 ] != '{' || recipe[ recipe.size() - 1 ] != '}' ) {
-        throw invalid_argument( "Invalid recipe: must start and end with brackets { }" );
-    }
-
     auto recipe_item = make_unique<Recipe>( name );
 
     //parse string
