@@ -65,8 +65,8 @@ void DietSystem::Command_Eat()
         throw invalid_argument( "Wrong number of params" );
     }
     
-    auto foodName = make_unique<Name>( *tokens_iter++ );
-    auto quantity = make_unique<Quantity>( *tokens_iter++ );
+    Name foodName{ *tokens_iter++ };
+    Quantity quantity{ *tokens_iter++ };
     unique_ptr<Time> time;
     
     if( param_count == 3 ) {
