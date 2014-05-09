@@ -80,6 +80,8 @@ void FoodDatabase::AddRecipe( const string &name, const string &recipe_str )
     //recipe must start with '{'
     parser.ExpectSymbol( '{' );
 
+    int param_num = 1;
+
     while( true ) {
         parser.SkipWhiteSpace();
         
@@ -89,7 +91,9 @@ void FoodDatabase::AddRecipe( const string &name, const string &recipe_str )
         //validate that food item exists in database
         RecipeItem *item = FindRecipeItem( token_name );
         if( item == nullptr ) {
-            throw invalid_argument( "Food item does not exist" );
+            string errormsg{ "Food item does not exist: Param " };
+            errormsg += to_string( param_num );
+            throw invalid_argument( errormsg );
         }
 
         parser.ExpectSymbol( '=' );
@@ -113,8 +117,11 @@ void FoodDatabase::AddRecipe( const string &name, const string &recipe_str )
         } else if( c == '}' ) {
             break;
         } else {
-            throw invalid_argument( "Expected ',' or '}'" );
+            string errormsg{ "Expected ',' or '}' after param " };
+            errormsg += to_string( param_num );
+            throw invalid_argument( errormsg );
         }
+        param_num++;
     }
     //add recipe to database
     database.push_back( std::move( new_recipe ) );
