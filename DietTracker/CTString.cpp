@@ -62,7 +62,7 @@ vector<string> parseCommandLine(const string &instring) {
 				//create substring
 				vec.push_back(instring.substr(lastPos, pos + 1 - lastPos));
 				
-				lastPos = pos;
+				lastPos = pos++;
 			} else {
 				//bracket not found - return error
 				throw exception("Bracket missing");
