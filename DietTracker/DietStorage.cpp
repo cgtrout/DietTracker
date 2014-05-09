@@ -70,12 +70,12 @@ void FoodDatabase::AddFood( unique_ptr<RecipeItem> item )
 }
 
 //"define recipe { food1=1s, food2=1s }"
-void FoodDatabase::AddRecipe( const string &name, const string &recipe )
+void FoodDatabase::AddRecipe( const string &name, const string &recipe_str )
 {
-    auto recipe_item = make_unique<Recipe>( name );
+    auto new_recipe = make_unique<Recipe>( name );
 
     //parse string
-    RecipeParser parser{ recipe };
+    RecipeParser parser{ recipe_str };
 
     //recipe must start with '{'
     parser.ExpectSymbol( '{' );
@@ -86,17 +86,26 @@ void FoodDatabase::AddRecipe( const string &name, const string &recipe )
         //read name token
         auto token_name = parser.ReadToken( "= " );
         
-        //TODO validate that food item exists in database
-       
+        //validate that food item exists in database
+        RecipeItem *item = FindRecipeItem( token_name );
+        if( item == nullptr ) {
+            throw invalid_argument( "Food item does not exist" );
+        }
+
         parser.ExpectSymbol( '=' );
         parser.SkipWhiteSpace();
 
+        //read quantity
         string token_quant = parser.ReadToken( ", }" );
+        
+        //validate quantity
+        Quantity quantity{ token_quant };
+        
+        //add to recipe
+        new_recipe->AddRecipeComponent( item, quantity );
+
         parser.SkipWhiteSpace();
-
-        //TODO validate quantity - set recipe component
-        //TODO add to recipe
-
+        
         //if a ',' expect more food items, else if a '}' we are done
         char c = parser.Peek();
         if( c == ',' ) {
@@ -107,7 +116,21 @@ void FoodDatabase::AddRecipe( const string &name, const string &recipe )
             throw invalid_argument( "Expected ',' or '}'" );
         }
     }
-    //todo add recipe
+    //add recipe to database
+    database.push_back( std::move( new_recipe ) );
+}
+
+RecipeItem* FoodDatabase::FindRecipeItem( const string& name )
+{
+    auto& db = database;
+    auto iter = find_if( db.begin(), db.end(), [&name]( unique_ptr<RecipeItem>& i ) {
+        return i->GetName() == name;
+    });
+    if( iter == db.end() ) {
+        return nullptr;
+    } else {
+        return ( *iter ).get();
+    }
 }
 
 void FoodDatabase::PrintAll()

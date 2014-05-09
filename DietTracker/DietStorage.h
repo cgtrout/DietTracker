@@ -96,6 +96,10 @@ public:
     
     //parse recipe from string
     void AddRecipe( const string &name, const string &recipe );
+    
+    //look for recipe item with string = name
+    //returns raw RecipeItem pointer (from unique_ptr instance)
+    RecipeItem* FindRecipeItem( const string& name );
 
     void PrintAll();
     
