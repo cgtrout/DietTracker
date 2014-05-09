@@ -69,7 +69,7 @@ private:
 //represents one diet system entry
 class DietEntry {
 public:
-    DietEntry( RecipeItem *iitem, Quantity quantity, Time itime, Date idate );
+    DietEntry( RecipeItem *iitem, Quantity quantity, Time itime );
     
     DietEntry( const DietEntry& ) = delete;
     DietEntry( DietEntry&& );
@@ -78,13 +78,13 @@ public:
     Quantity quantity;
     
     string mtime;
-    string mdate;
+    //string mdate;
 };
 
 //holds all of the individual DietEntrys
 class DailyLog {
 public:
-    void AddEntry( DietEntry entry );
+    void AddEntry( unique_ptr<DietEntry> entry );
     
     //list of DietEntries
     std::vector<unique_ptr<DietEntry>> entries;

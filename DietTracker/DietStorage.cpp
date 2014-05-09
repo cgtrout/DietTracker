@@ -38,26 +38,24 @@ void Recipe::AddRecipeComponent( RecipeItem *item, Quantity quant )
  *  DietEntry Class
  *   Implemenation
  */
-DietEntry::DietEntry( RecipeItem *iitem, Quantity quant, Time itime, Date idate )
+DietEntry::DietEntry( RecipeItem *iitem, Quantity quant, Time itime )
     : quantity( quant )
     , item( iitem )
     , mtime( itime.GetValue() )
-    , mdate( idate.GetValue() )
 {}
 
 DietEntry::DietEntry( DietEntry &&entry )
     : item( std::move( entry.item ) )
     , mtime( std::move(entry.mtime ) )
-    , mdate( std::move(entry.mdate ) )
 {}
 
 /*
  *  DailyLogs Class
  *   Implemenation
  */
-void DailyLog::AddEntry( DietEntry entry )
+void DailyLog::AddEntry( unique_ptr<DietEntry> entry )
 {
-    entries.push_back( make_unique<DietEntry>( std::move( entry ) ) );
+    entries.push_back( ( std::move( entry ) ) );
 }
 
 /*

@@ -12,8 +12,8 @@ void Test_DietSystem::addTests()
         DietSystem d;
         d.BindFunctions();
 
-        d.ExecuteLine( "Eat testfood 2g" );
-        return true;
+        //d.ExecuteLine( "Eat testfood 2g" );
+        return false;
     });
     suiteDietSystem.AddTest( "Test invalid command", []()->bool {
         DietSystem d;

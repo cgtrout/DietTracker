@@ -33,7 +33,7 @@ void Test_DietStorage::addTests()
         DailyLog log;
         auto food = make_unique<Food>( "food" );
         
-        log.AddEntry( DietEntry( food.get(), Quantity("1.0s"), Time( "07:32" ), Date( "2014-Apr-01" ) ) );
+        log.AddEntry( make_unique<DietEntry>( food.get(), Quantity("1.0s"), Time( "07:32" )));
         return log.entries[0]->item->GetName() == "food";
     });
 
