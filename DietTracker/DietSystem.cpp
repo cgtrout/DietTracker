@@ -75,10 +75,17 @@ void DietSystem::Command_Eat()
         time = make_unique<Time>( GetCurrentTime() );
     }
 
-    //TODO
     //find out if given food / recipe exists
+    RecipeItem* item = foodDatabase.FindRecipeItem( foodName.GetValue() );
+    if( item == nullptr ) {
+        throw invalid_argument( "Recipe item does not exist" );
+    }
 
     //create entry and add it to dailyLog
+    //auto dietEntry = make_unique<DietEntry>( item, quantity, time->GetValue() );
+    //dailyLog.AddEntry( std::move( dietEntry ) );
+
+
 }
 
 //Define Chocolate	  serving_size(g)	calories_per_serving	//define new food.  Maybe make this a multi prompt command
