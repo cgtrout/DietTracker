@@ -95,8 +95,14 @@ void DietSystem::Command_Define()
     bool isRecipe = param_tokens[ 2 ].at( 0 ) == '{';
 
     if( isRecipe ) {
+        if( param_count != 2 ) {
+            throw invalid_argument( "Wrong number of params" );
+        }
         foodDatabase.AddRecipe( param_tokens[1], param_tokens[ 2 ] );
     } else {
+        if( param_count != 3 ) {
+            throw invalid_argument( "Wrong number of params" );
+        }
         //handle as food
         string &name = param_tokens[ 1 ];
         float servingSize = stof( param_tokens[ 2 ] );
