@@ -29,8 +29,8 @@ int main( int argc, char* argv[] )
         } else {
             try {
                 dietSystem.ExecuteLine( templine );
-            } catch( invalid_argument& ) {
-                cout << "Invalid command" << endl;
+            } catch( invalid_argument& e) {
+                cout << "Invalid:" << e.what() << endl;
             }
         }
     }
