@@ -76,12 +76,13 @@ void Test_DietSystem::addTests()
         d.BindFunctions();
 
         //define foodname servingsize calories/serving
-        d.ExecuteLine( "define food1 1 100" );
-        d.ExecuteLine( "define food2 1.5 200" );
+        d.ExecuteLine( "define food1 1g 100" );
+        d.ExecuteLine( "define food2 1.5g 200" );
         d.ExecuteLine( "define r1 { food1=1s, food2=2s }" );
         d.ExecuteLine( "eat r1 1s" );
         
         //TODO calculate calories
+        //should calculate to 500
         return false;
     });
     tester.AddSuite( suiteDietSystem );
