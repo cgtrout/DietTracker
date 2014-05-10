@@ -86,6 +86,8 @@ class DailyLog {
 public:
     void AddEntry( unique_ptr<DietEntry> entry );
     
+    void PrintLogs();
+
     //list of DietEntries
     std::vector<unique_ptr<DietEntry>> entries;
 };

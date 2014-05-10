@@ -58,6 +58,15 @@ void DailyLog::AddEntry( unique_ptr<DietEntry> entry )
     entries.push_back( ( std::move( entry ) ) );
 }
 
+void DailyLog::PrintLogs()
+{
+    for( auto& i : entries ) {
+        cout << i->item->GetName();
+        cout << ", Quantity: " << i->quantity.GetValue();
+        cout << endl;
+    }
+}
+
 /*
  *  DailyLogs Class
  *   Implemenation

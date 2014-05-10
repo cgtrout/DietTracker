@@ -38,6 +38,7 @@ void DietSystem::BindFunctions()
     BindFunction( "eat", std::bind( &DietSystem::Command_Eat, this ) );
     BindFunction( "define", std::bind( &DietSystem::Command_Define, this ) );
     BindFunction( "printfood", std::bind( &DietSystem::Command_PrintFood, this ) );
+    BindFunction( "printlogs", std::bind( &DietSystem::Command_PrintLogs, this ) );
 }
 
 void DietSystem::BindFunction( const std::string &s, std::function<void()> f )
@@ -120,5 +121,12 @@ void DietSystem::Command_Define()
 
 void DietSystem::Command_PrintFood()
 {
+    cout << "\n" << "Printing List of Food Items in Database" << "\n\n";
     foodDatabase.PrintFood();
+}
+
+void DietSystem::Command_PrintLogs()
+{
+    cout << "\n" << "Printing Logs" << "\n\n";
+    dailyLog.PrintLogs();
 }
