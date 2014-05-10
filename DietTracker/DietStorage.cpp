@@ -20,7 +20,12 @@ Food::Food( const string &name)
 
 float Food::CalculateCalories( const Quantity& quantity ) const
 {
-    return 0.0f;
+    if( quantity.GetType() == 's' ) {
+        return quantity.GetFloatValue() * servingSize;
+    } else if ( quantity.GetType() == 'g' ) {
+        float gram_per_serving = caloriesPerServing / servingSize;
+        return quantity.GetFloatValue() * gram_per_serving;
+    }
 }
 
 /*
