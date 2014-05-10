@@ -93,7 +93,7 @@ void FoodDatabase::AddRecipe( const string &name, const string &recipe_str )
         parser.SkipWhiteSpace();
         
         //read name token
-        auto token_name = parser.ReadToken( "= " );
+        auto token_name = parser.ReadToken( ",= {}" );
         
         //validate that food item exists in database
         RecipeItem *item = FindRecipeItem( token_name );
@@ -107,7 +107,7 @@ void FoodDatabase::AddRecipe( const string &name, const string &recipe_str )
         parser.SkipWhiteSpace();
 
         //read quantity
-        string token_quant = parser.ReadToken( ", }" );
+        string token_quant = parser.ReadToken( ",= {}" );
         
         //validate quantity
         Quantity quantity{ token_quant };
