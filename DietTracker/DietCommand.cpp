@@ -28,6 +28,7 @@ void CommandParamQuantity::SetValue(const std::string &value) {
             throw invalid_argument( "Invalid quantity type" );
         }
         this->value = stof(value.substr( 0, value.length() - 1 ));
+        this->type = lastChar;
     } else {
         //default is s (serving) if not specified
         type = 's';
