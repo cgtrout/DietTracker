@@ -50,6 +50,8 @@ public:
     RecipeComponent( RecipeItem *i, Quantity q ) : item( i ), quantity( q ) {}
     RecipeComponent() = delete;
 
+    float CalculateCalories() { return item->CalculateCalories( quantity ); }
+
     RecipeItem *item;
     Quantity quantity;
 };
