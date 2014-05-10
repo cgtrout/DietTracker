@@ -82,9 +82,9 @@ void Test_DietSystem::addTests()
         d.ExecuteLine( "eat r1 1s" );
         
         //calculate calories
-        //should calculate to 600
+        //should calculate to 700
         float calories = d.dailyLog.CalculateCalories();
-        return calories == 600;
+        return calories == 700;
     });
     tester.AddSuite( suiteDietSystem );
 }
