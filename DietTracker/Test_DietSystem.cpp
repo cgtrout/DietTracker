@@ -78,12 +78,13 @@ void Test_DietSystem::addTests()
         //define foodname servingsize calories/serving
         d.ExecuteLine( "define food1 1g 100" );
         d.ExecuteLine( "define food2 1.5g 200" );
-        d.ExecuteLine( "define r1 { food1=1s, food2=2s }" );
+        d.ExecuteLine( "define r1 { food1=3s, food2=2s }" );
         d.ExecuteLine( "eat r1 1s" );
         
-        //TODO calculate calories
-        //should calculate to 500
-        return false;
+        //calculate calories
+        //should calculate to 600
+        float calories = d.dailyLog.CalculateCalories();
+        return calories == 600;
     });
     tester.AddSuite( suiteDietSystem );
 }
