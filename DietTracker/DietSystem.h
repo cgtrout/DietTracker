@@ -15,7 +15,7 @@ public:
     //--COMMAND FUNCTIONS--
     void Command_Eat();
     void Command_Define();
-    void Command_PrintAll();
+    void Command_PrintFood();
 
     DietCommands dietCommands;
     DailyLog dailyLog;

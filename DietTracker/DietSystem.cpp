@@ -37,7 +37,7 @@ void DietSystem::BindFunctions()
 {
     BindFunction( "eat", std::bind( &DietSystem::Command_Eat, this ) );
     BindFunction( "define", std::bind( &DietSystem::Command_Define, this ) );
-    BindFunction( "printall", std::bind( &DietSystem::Command_PrintAll, this ) );
+    BindFunction( "printfood", std::bind( &DietSystem::Command_PrintFood, this ) );
 }
 
 void DietSystem::BindFunction( const std::string &s, std::function<void()> f )
@@ -82,10 +82,8 @@ void DietSystem::Command_Eat()
     }
 
     //create entry and add it to dailyLog
-    //auto dietEntry = make_unique<DietEntry>( item, quantity, time->GetValue() );
-    //dailyLog.AddEntry( std::move( dietEntry ) );
-
-
+    auto dietEntry = make_unique<DietEntry>( item, quantity, time->GetValue() );
+    dailyLog.AddEntry( std::move( dietEntry ) );
 }
 
 //Define Chocolate	  serving_size(g)	calories_per_serving	//define new food.  Maybe make this a multi prompt command
@@ -120,7 +118,7 @@ void DietSystem::Command_Define()
     }
 }
 
-void DietSystem::Command_PrintAll()
+void DietSystem::Command_PrintFood()
 {
-    foodDatabase.PrintAll();
+    foodDatabase.PrintFood();
 }

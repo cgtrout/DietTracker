@@ -101,7 +101,7 @@ public:
     //returns raw RecipeItem pointer (from unique_ptr instance)
     RecipeItem* FindRecipeItem( const string& name );
 
-    void PrintAll();
+    void PrintFood();
     
     std::vector<unique_ptr<RecipeItem>> database;
 
