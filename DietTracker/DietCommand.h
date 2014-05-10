@@ -38,7 +38,7 @@ public:
     char GetType() const;
     const std::string& GetTypeName();
 
-	float GetFloatValue() { return value; }
+	float GetFloatValue() const { return value; }
 private:
 	float value; 
     char type;
