@@ -1,5 +1,5 @@
 #include "DietStorage.h"
-
+#include "CTException.h"
 /*
  *  Food Class
  *   Implemenation
@@ -46,6 +46,21 @@ void Recipe::AddRecipeComponent( RecipeItem *item, Quantity quant )
 
 float Recipe::CalculateCalories( const Quantity& quantity ) const
 {
+    float total_calories{};
+    
+    //TODO Handle grams
+    //float total_grams{};
+    for( auto& component : components ) {
+        total_calories += component->CalculateCalories();
+    }
+
+    switch( quantity.GetType() ) {
+    case 's':
+        return total_calories * quantity.GetFloatValue();
+    case 'g':
+        throw NotYetImplementedException();
+    }
+    
     return 0.0f;
 }
 
