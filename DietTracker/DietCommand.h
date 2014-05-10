@@ -35,7 +35,7 @@ public:
     void SetValue( const std::string &value );
 	std::string GetValue();
     void SetType( char type );
-    char GetType();
+    char GetType() const;
     const std::string& GetTypeName();
 
 	float GetFloatValue() { return value; }

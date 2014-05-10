@@ -52,7 +52,7 @@ void CommandParamQuantity::SetType( char type ) {
     this->type = type;
 }
 
-char CommandParamQuantity::GetType() {
+char CommandParamQuantity::GetType() const {
     return type;
 }
 
