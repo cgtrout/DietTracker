@@ -26,6 +26,8 @@ float Food::CalculateCalories( const Quantity& quantity ) const
         float gram_per_serving = caloriesPerServing / servingSize;
         return quantity.GetFloatValue() * gram_per_serving;
     }
+    throw runtime_error( "Food::CalculateCalories runtime error" );
+    return 0.0f;
 }
 
 /*
