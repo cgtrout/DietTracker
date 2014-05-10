@@ -194,7 +194,9 @@ void FoodDatabase::RecipeParser::ExpectSymbol( char s )
     }
     bool isSymbol = workString.at( pos++ ) == s;
     if( !isSymbol ) {
-        throw invalid_argument( "Expected " + s );
+        string errormsg = "Expected: ";
+        errormsg += s;
+        throw invalid_argument( errormsg );
     }
 }
 
