@@ -18,6 +18,11 @@ Food::Food( const string &name)
     , caloriesPerServing ( 0.0f )
 {}
 
+float Food::CalculateCalories( const Quantity& quantity ) const
+{
+    return 0.0f;
+}
+
 /*
  *  Recipe Class
  *   Implemenation
@@ -32,6 +37,11 @@ Recipe::Recipe( const string &iname )
 void Recipe::AddRecipeComponent( RecipeItem *item, Quantity quant )
 {
     components.push_back( make_unique<RecipeComponent>( item, quant ) );
+}
+
+float Recipe::CalculateCalories( const Quantity& quantity ) const
+{
+    return 0.0f;
 }
 
 /*
