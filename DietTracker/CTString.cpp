@@ -65,7 +65,7 @@ vector<string> parseCommandLine(const string &instring) {
 				lastPos = pos++;
 			} else {
 				//bracket not found - return error
-				throw exception("Bracket missing");
+				throw invalid_argument("Bracket missing");
 			}
 		}
 		pos++;
