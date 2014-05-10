@@ -166,6 +166,13 @@ std::string FoodDatabase::RecipeParser::ReadToken( const string &delim )
         throw out_of_range( "Parser at end");
     }   
     auto p = workString.find_first_of( delim, pos );
+    
+    //if delim not found return rest of string
+    if( p == string::npos ) {
+        return workString.substr( pos );  
+    } 
+    
+    //else use delim to parse
     string out = workString.substr( pos, p - pos );  
     pos = p;
     return out;
