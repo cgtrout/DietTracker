@@ -79,6 +79,8 @@ public:
     DietEntry( const DietEntry& ) = delete;
     DietEntry( DietEntry&& );
 
+    float CalculateCalories() { return item->CalculateCalories( quantity ); }
+
     RecipeItem *item;
     Quantity quantity;
     
@@ -90,6 +92,7 @@ public:
 class DailyLog {
 public:
     void AddEntry( unique_ptr<DietEntry> entry );
+    float CalculateCalories() const;
     
     void PrintLogs();
 

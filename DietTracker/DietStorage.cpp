@@ -1,3 +1,5 @@
+#include <numeric>
+
 #include "DietStorage.h"
 #include "CTException.h"
 /*
@@ -88,6 +90,15 @@ DietEntry::DietEntry( DietEntry &&entry )
 void DailyLog::AddEntry( unique_ptr<DietEntry> entry )
 {
     entries.push_back( ( std::move( entry ) ) );
+}
+
+float DailyLog::CalculateCalories() const
+{
+    float total = std::accumulate( entries.begin(), entries.end(), 0.0f, []( float res, const unique_ptr<DietEntry>& entry ) {
+        return res += entry->CalculateCalories();
+    });
+
+    return total;
 }
 
 void DailyLog::PrintLogs()
