@@ -79,6 +79,24 @@ float Recipe::CalculateCalories( const Quantity& quantity ) const
     return 0.0f;
 }
 
+float Recipe::GetGramsPerServing() const
+{
+    float grams{};
+    for( auto& component : components ) {
+        switch( component->quantity.GetType() ) {
+        case 's':
+            grams += component->item->GetGramsPerServing();
+            break;
+        case 'g':
+            grams += component->quantity.GetFloatValue();
+            break;
+        default:
+            throw runtime_error( "Invalid quantity type" );
+        }
+    }
+    return grams;
+}
+
 /*
  *  DietEntry Class
  *   Implemenation
