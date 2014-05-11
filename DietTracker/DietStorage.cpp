@@ -58,6 +58,7 @@ float Recipe::CalculateCalories( const Quantity& quantity ) const
 
         switch( component->quantity.GetType() ) {
         case 's':
+            total_grams += component->quantity.GetFloatValue() * component->item->GetGramsPerServing();
             break;
         case 'g':
             total_grams += component->quantity.GetFloatValue();
