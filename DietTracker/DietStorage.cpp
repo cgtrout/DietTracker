@@ -63,6 +63,8 @@ float Recipe::CalculateCalories( const Quantity& quantity ) const
         return total_calories * quantity.GetFloatValue();
     case 'g':
         throw NotYetImplementedException();
+    default:
+        throw runtime_error( "Invalid quantity type" );
     }
     
     return 0.0f;
