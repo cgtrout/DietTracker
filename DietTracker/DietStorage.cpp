@@ -51,11 +51,20 @@ void Recipe::AddRecipeComponent( RecipeItem *item, Quantity quant )
 float Recipe::CalculateCalories( const Quantity& quantity ) const
 {
     float total_calories{};
-    
-    //TODO Handle grams
-    //float total_grams{};
+    float total_grams{};
+
     for( auto& component : components ) {
         total_calories += component->CalculateCalories();
+
+        switch( component->quantity.GetType() ) {
+        case 's':
+            break;
+        case 'g':
+            total_grams += component->quantity.GetFloatValue();
+            break;
+        default:
+            throw runtime_error( "Invalid quantity type in component" );
+        }
     }
 
     switch( quantity.GetType() ) {
