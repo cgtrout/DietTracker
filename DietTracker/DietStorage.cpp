@@ -207,6 +207,7 @@ void FoodDatabase::AddRecipe( const string &name, const string &recipe_str )
     database.push_back( std::move( new_recipe ) );
 }
 
+//TODO this needs to scan to see if item is in use by other items
 void FoodDatabase::DeleteRecipeItem( const string& name )
 {
     auto &db = database;
