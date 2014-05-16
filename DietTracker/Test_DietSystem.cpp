@@ -86,5 +86,19 @@ void Test_DietSystem::addTests()
         float calories = d.dailyLog.CalculateCalories();
         return calories == 700;
     });
+    suiteDietSystem.AddTest( "Calculate calories of recipe using grams", []()->bool {
+        DietSystem d;
+        d.BindFunctions();
+
+        //define foodname servingsize calories/serving
+        d.ExecuteLine( "define food1 1g 100" ); //3g
+        d.ExecuteLine( "define food2 1.5g 150" );//3g
+        d.ExecuteLine( "define r1 { food1=3g, food2=2s }" );
+        d.ExecuteLine( "eat r1 1g" );
+        
+        //calculate calories
+        float calories = d.dailyLog.CalculateCalories();
+        return calories == 100;
+    });
     tester.AddSuite( suiteDietSystem );
 }
