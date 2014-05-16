@@ -11,12 +11,6 @@ class DietSystem {
 public:
     void ExecuteLine( const std::string &line );
     void BindFunctions();
-    
-    //--COMMAND FUNCTIONS--
-    void Command_Eat();
-    void Command_Define();
-    void Command_PrintFood();
-    void Command_PrintLogs();
 
     DietCommands dietCommands;
     DailyLog dailyLog;
@@ -34,6 +28,12 @@ private:
     size_t param_count;
 
     DietCommand *thiscommand;
+
+    //--COMMAND FUNCTIONS--
+    void Command_Eat();
+    void Command_Define();
+    void Command_PrintFood();
+    void Command_PrintLogs();
 };
 
 #endif
