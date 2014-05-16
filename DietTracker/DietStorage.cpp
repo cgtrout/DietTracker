@@ -209,7 +209,18 @@ void FoodDatabase::AddRecipe( const string &name, const string &recipe_str )
 
 void FoodDatabase::DeleteRecipeItem( const string& name )
 {
-    throw NotYetImplementedException();
+    auto &db = database;
+    
+    //find pos
+    auto iter = find_if( db.begin(), db.end(), [&name]( unique_ptr<RecipeItem>& i ) {
+        return i->GetName() == name;
+    });
+    if( iter == db.end() ) {
+        throw invalid_argument( "Recipe item given does not exist" );
+    }
+    
+    //erase from vector
+    database.erase( iter );
 }
 
 RecipeItem* FoodDatabase::FindRecipeItem( const string& name )
