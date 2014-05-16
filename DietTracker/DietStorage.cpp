@@ -207,6 +207,11 @@ void FoodDatabase::AddRecipe( const string &name, const string &recipe_str )
     database.push_back( std::move( new_recipe ) );
 }
 
+void FoodDatabase::DeleteRecipeItem( const string& name )
+{
+    throw NotYetImplementedException();
+}
+
 RecipeItem* FoodDatabase::FindRecipeItem( const string& name )
 {
     auto& db = database;
