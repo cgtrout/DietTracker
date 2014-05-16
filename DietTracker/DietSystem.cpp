@@ -57,6 +57,13 @@ void DietSystem::InitializeCommand( const string &name )
     tokens_iter++;
 }
 
+void DietSystem::ValidateParamCount( size_t correct_count ) const
+{
+    if( param_count != correct_count ) {
+        throw invalid_argument( "Wrong number of params" );
+    }
+}
+
 /* 
  *   command functions
  *
@@ -105,14 +112,10 @@ void DietSystem::Command_Define()
     bool isRecipe = param_tokens[ 2 ].at( 0 ) == '{';
 
     if( isRecipe ) {
-        if( param_count != 2 ) {
-            throw invalid_argument( "Wrong number of params" );
-        }
+        ValidateParamCount( 2 );
         foodDatabase.AddRecipe( param_tokens[1], param_tokens[ 2 ] );
     } else {
-        if( param_count != 3 ) {
-            throw invalid_argument( "Wrong number of params" );
-        }
+        ValidateParamCount( 3 );
         //handle as food
         string &name = param_tokens[ 1 ];
         float servingSize = stof( param_tokens[ 2 ] );
@@ -137,8 +140,6 @@ void DietSystem::Command_PrintLogs()
 
 void DietSystem::Command_Delete()
 {
-    if( param_count != 1 ) {
-        throw invalid_argument( "Wrong number of params" );
-    }
+    ValidateParamCount( 1 );
     foodDatabase.DeleteRecipeItem( param_tokens[ 1 ] );
 }

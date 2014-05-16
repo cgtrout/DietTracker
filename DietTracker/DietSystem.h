@@ -29,6 +29,11 @@ private:
 
     DietCommand *thiscommand;
 
+    //ensure user has given correct # of params
+    //throws invalid_arg if param_count isn't correct
+    //TODO set this up to allow multiple ints
+    void ValidateParamCount( size_t correct_count ) const;
+
     //--COMMAND FUNCTIONS--
     void Command_Eat();
     void Command_Define();
