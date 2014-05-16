@@ -34,6 +34,8 @@ private:
     void Command_Define();
     void Command_PrintFood();
     void Command_PrintLogs();
+    
+    void Command_Delete();      //deletes food item
 };
 
 #endif

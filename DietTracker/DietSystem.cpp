@@ -2,6 +2,7 @@
 
 #include "DietSystem.h"
 #include "CTString.h"
+#include "CTException.h"
 /* 
  * DietSystem class
  *
@@ -39,6 +40,8 @@ void DietSystem::BindFunctions()
     BindFunction( "define", std::bind( &DietSystem::Command_Define, this ) );
     BindFunction( "printfood", std::bind( &DietSystem::Command_PrintFood, this ) );
     BindFunction( "printlogs", std::bind( &DietSystem::Command_PrintLogs, this ) );
+
+    BindFunction( "delete", std::bind( &DietSystem::Command_Delete, this ) );
 }
 
 void DietSystem::BindFunction( const std::string &s, std::function<void()> f )
@@ -130,4 +133,9 @@ void DietSystem::Command_PrintLogs()
 {
     cout << "\n" << "Printing Logs" << "\n\n";
     dailyLog.PrintLogs();
+}
+
+void DietSystem::Command_Delete()
+{
+    throw NotYetImplementedException();
 }
