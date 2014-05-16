@@ -137,5 +137,8 @@ void DietSystem::Command_PrintLogs()
 
 void DietSystem::Command_Delete()
 {
-    throw NotYetImplementedException();
+    if( param_count != 1 ) {
+        throw invalid_argument( "Wrong number of params" );
+    }
+    foodDatabase.DeleteRecipeItem( param_tokens[ 1 ] );
 }
