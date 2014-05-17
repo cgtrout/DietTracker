@@ -156,12 +156,15 @@ void DailyLog::PrintLogs()
  */
 void FoodDatabase::AddFood( unique_ptr<RecipeItem> item )
 {
+    CheckAlreadyExists( item->GetName() );
     database.push_back( std::move( item ) );
 }
 
 //"define recipe { food1=1s, food2=1s }"
 void FoodDatabase::AddRecipe( const string &name, const string &recipe_str )
 {
+    CheckAlreadyExists( name );
+    
     auto new_recipe = make_unique<Recipe>( name );
 
     //parse string
@@ -215,6 +218,17 @@ void FoodDatabase::AddRecipe( const string &name, const string &recipe_str )
     }
     //add recipe to database
     database.push_back( std::move( new_recipe ) );
+}
+
+void FoodDatabase::CheckAlreadyExists( const string& name ) const
+{
+    auto &db = database;
+    auto iter = find_if( db.begin(), db.end(), [&name]( const unique_ptr<RecipeItem>& i ) {
+        return i->GetName() == name;
+    });
+    if( iter != db.end() ) {
+        throw invalid_argument( "Recipe item already exists" );
+    }
 }
 
 //TODO this needs to scan to see if item is in use by other items

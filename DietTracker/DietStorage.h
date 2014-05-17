@@ -114,6 +114,10 @@ public:
     //parse recipe from string
     void AddRecipe( const string &name, const string &recipe );
     
+    //checks if fooditem with given name already exists
+    //throws invalid_arg if it does
+    void CheckAlreadyExists( const string& name ) const;
+
     void DeleteRecipeItem( const string &name );
 
     //look for recipe item with string = name
