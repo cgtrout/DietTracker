@@ -221,7 +221,6 @@ void FoodDatabase::AddRecipe( const string &name, const string &recipe_str )
 }
 
 
-//TODO this needs to scan to see if item is in use by other items
 void FoodDatabase::DeleteRecipeItem( const string& name )
 {
     auto &db = database;
