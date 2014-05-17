@@ -25,6 +25,7 @@ public:
     virtual string ToString() { return name; }
     virtual float CalculateCalories( const Quantity& quantity ) const =0;
     virtual float GetGramsPerServing() const = 0;
+    virtual bool IsLinkedTo( const RecipeItem* item ) = 0;
 protected:
     RecipeItem( const string &name ) : name( name ) {}
     
@@ -42,6 +43,7 @@ public:
     virtual string ToString() { return "Food: " + name; }
     virtual float CalculateCalories( const Quantity& quantity ) const;
     virtual float GetGramsPerServing() const { return servingSize; }
+    virtual bool IsLinkedTo( const RecipeItem* item ) { return false; }
 private:
     float servingSize;
     float caloriesPerServing;
@@ -66,6 +68,8 @@ public:
     virtual string ToString() { return "Recipe: " + name; }
     virtual float CalculateCalories( const Quantity& quantity ) const;
     virtual float GetGramsPerServing() const;
+
+    virtual bool IsLinkedTo( const RecipeItem* item );
 
     void AddRecipeComponent( RecipeItem *item, Quantity quant );
     

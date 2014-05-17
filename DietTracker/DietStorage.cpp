@@ -98,6 +98,16 @@ float Recipe::GetGramsPerServing() const
     return grams;
 }
 
+bool Recipe::IsLinkedTo( const RecipeItem *item )
+{
+    for( auto& comp : components ) {
+        if( comp->item == item ) {
+            return true;
+        }
+    }
+    return false;
+}
+
 /*
  *  DietEntry Class
  *   Implemenation
@@ -220,6 +230,8 @@ void FoodDatabase::DeleteRecipeItem( const string& name )
         throw invalid_argument( "Recipe item given does not exist" );
     }
     
+    //check if it is in use by recipe
+
     //erase from vector
     database.erase( iter );
 }
