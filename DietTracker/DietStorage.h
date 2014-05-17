@@ -114,8 +114,6 @@ public:
     //parse recipe from string
     void AddRecipe( const string &name, const string &recipe );
     
-    
-
     void DeleteRecipeItem( const string &name );
 
     //look for recipe item with string = name
