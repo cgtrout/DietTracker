@@ -112,9 +112,7 @@ void DietSystem::Command_Eat()
 //define Recipe { recipe spec }
 void DietSystem::Command_Define()
 {
-    if( param_count != 2 && param_count != 3 ) {
-        throw invalid_argument( "Wrong number of params" );
-    }
+    ValidateParamCount( 2, 3 );
 
     bool isRecipe = param_tokens[ 2 ].at( 0 ) == '{';
 
