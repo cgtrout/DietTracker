@@ -1,0 +1,6 @@
+define slice.salami 17g 40
+define margarine 10g 60
+define 3sandw { slice.salami=5, bread=3, margarine=2s }
+
+define chili 247g 330
+define chili_meal { 3sandw=1, chili=425g }
