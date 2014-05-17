@@ -57,6 +57,14 @@ void DietSystem::InitializeCommand( const string &name )
     tokens_iter++;
 }
 
+template <typename... Args>
+void DietSystem::ValidateParamCount( size_t correct_count, const Args& ... rest ) const
+{
+    if( param_count != correct_count ) {
+        ValidateParamCount( rest... );
+    }
+}
+
 void DietSystem::ValidateParamCount( size_t correct_count ) const
 {
     if( param_count != correct_count ) {
@@ -72,9 +80,8 @@ void DietSystem::ValidateParamCount( size_t correct_count ) const
 //Eat name quantity (auto-time)
 void DietSystem::Command_Eat()
 {
-    if( param_count != 2 && param_count != 3 ) {
-        throw invalid_argument( "Wrong number of params" );
-    }
+    //must be 2 or 3
+    ValidateParamCount( 2, 3 );
     
     Name foodName{ *tokens_iter++ };
     Quantity quantity{ *tokens_iter++ };

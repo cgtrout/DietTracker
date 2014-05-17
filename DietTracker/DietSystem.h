@@ -33,6 +33,9 @@ private:
     //throws invalid_arg if param_count isn't correct
     //TODO set this up to allow multiple ints
     void ValidateParamCount( size_t correct_count ) const;
+    
+    template <typename... Args>
+    void ValidateParamCount( size_t correct_count, const Args& ... rest ) const;
 
     //--COMMAND FUNCTIONS--
     void Command_Eat();
