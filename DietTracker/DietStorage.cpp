@@ -231,7 +231,20 @@ void FoodDatabase::DeleteRecipeItem( const string& name )
     }
     
     //check if it is in use by recipe
-
+    bool in_use = false;
+    string used_item_name{};
+    for( auto& r : db ) {
+        if( r->IsLinkedTo( &(*iter->get()) ) ){
+            used_item_name = r->GetName();
+            in_use = true;
+            break;
+        }
+    }
+    if( in_use ) {
+        string errormsg{ "Recipe item is in use by: " };
+        errormsg += used_item_name;
+        throw invalid_argument( errormsg );
+    }
     //erase from vector
     database.erase( iter );
 }
