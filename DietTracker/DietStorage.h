@@ -114,9 +114,7 @@ public:
     //parse recipe from string
     void AddRecipe( const string &name, const string &recipe );
     
-    //checks if fooditem with given name already exists
-    //throws invalid_arg if it does
-    void CheckAlreadyExists( const string& name ) const;
+    
 
     void DeleteRecipeItem( const string &name );
 
@@ -129,6 +127,10 @@ public:
     std::vector<unique_ptr<RecipeItem>> database;
 
 private:
+    //checks if fooditem with given name already exists
+    //throws invalid_arg if it does
+    void CheckAlreadyExists( const string& name ) const;
+
     //this class handles parsing of recipe strings
     class RecipeParser {
      public:

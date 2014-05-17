@@ -220,16 +220,6 @@ void FoodDatabase::AddRecipe( const string &name, const string &recipe_str )
     database.push_back( std::move( new_recipe ) );
 }
 
-void FoodDatabase::CheckAlreadyExists( const string& name ) const
-{
-    auto &db = database;
-    auto iter = find_if( db.begin(), db.end(), [&name]( const unique_ptr<RecipeItem>& i ) {
-        return i->GetName() == name;
-    });
-    if( iter != db.end() ) {
-        throw invalid_argument( "Recipe item already exists" );
-    }
-}
 
 //TODO this needs to scan to see if item is in use by other items
 void FoodDatabase::DeleteRecipeItem( const string& name )
@@ -280,6 +270,17 @@ void FoodDatabase::PrintFood()
 {
     for( auto &i : database ) {
         cout << i->ToString() << "\n";
+    }
+}
+
+void FoodDatabase::CheckAlreadyExists( const string& name ) const
+{
+    auto &db = database;
+    auto iter = find_if( db.begin(), db.end(), [&name]( const unique_ptr<RecipeItem>& i ) {
+        return i->GetName() == name;
+    });
+    if( iter != db.end() ) {
+        throw invalid_argument( "Recipe item already exists" );
     }
 }
 
