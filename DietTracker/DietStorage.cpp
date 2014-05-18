@@ -1,7 +1,9 @@
 #include <numeric>
+#include <fstream>
 
 #include "DietStorage.h"
 #include "CTException.h"
+
 /*
  *  Food Class
  *   Implemenation
@@ -175,6 +177,16 @@ void DailyLog::PrintLogs()
     }
 }
 
+void DailyLog::WriteFile( const string& filename ) const 
+{
+    ofstream stream{ filename };
+    if( stream.bad() ) {
+        throw runtime_error( "Error writing file" );
+    }
+    for( auto& e : entries ) {
+        stream << e->GenerateCommandString() << "\n";
+    }
+}
 /*
  *  DailyLogs Class
  *   Implemenation

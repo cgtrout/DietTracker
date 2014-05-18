@@ -108,6 +108,8 @@ public:
     
     void PrintLogs();
 
+    void WriteFile( const string& filename ) const;
+
     //list of DietEntries
     std::vector<unique_ptr<DietEntry>> entries;
 };
