@@ -37,7 +37,6 @@ void DietSystem::ExecuteLine( const std::string &line )
     cout << "Command executed successfully!" << "\n\n";
 }
 
-//can throw std::ios_base::failure
 void DietSystem::ExecuteFile( const string& filename )
 {
     cout << "Executing file: " << filename << "\n";
