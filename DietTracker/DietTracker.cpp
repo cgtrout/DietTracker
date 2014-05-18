@@ -1,6 +1,7 @@
 // DietTracker.cpp : Defines the entry point for the console application.
 //
 #include <iostream>
+#include <fstream>
 #include <string>
 #include "Test.h"
 #include "AllTests.h"
@@ -20,7 +21,20 @@ int main( int argc, char* argv[] )
     string templine;
     DietSystem dietSystem;
     dietSystem.BindFunctions();
+
+    //get storage location and load food definition file
+    string file_path{};
+    ifstream path_loader{ "./settings/Storage_Location.txt" };
+    getline( path_loader, file_path );
+    path_loader.close();
     
+    try {
+        dietSystem.ExecuteFile( file_path );
+    } catch( exception& e ) {
+        cout << "Problem loading food definition file \n";
+        cout << " Error was: " << e.what();
+    }
+
     while( true ) {
         cout << "DietTracker > ";
         getline( cin, templine );
