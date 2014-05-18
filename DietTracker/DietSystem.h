@@ -32,7 +32,6 @@ private:
 
     //ensure user has given correct # of params
     //throws invalid_arg if param_count isn't correct
-    //TODO set this up to allow multiple ints
     void ValidateParamCount( size_t correct_count ) const;
     
     template <typename... Args>
