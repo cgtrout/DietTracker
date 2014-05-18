@@ -45,6 +45,7 @@ private:
     
     void Command_Delete();      //deletes food item
     void Command_PrintCalories();
+    void Command_ClearLogs();    //clear dailylog
 };
 
 #endif
