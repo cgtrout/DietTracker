@@ -37,7 +37,7 @@ void CommandParamQuantity::SetValue(const std::string &value) {
 }
 
 std::string CommandParamQuantity::GetValue() {
-    if( type > 0 ) {
+    if( type == 0 ) {
         return to_string( value );
     } else {
         return to_string( value ) + type;

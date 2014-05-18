@@ -23,6 +23,7 @@ public:
 
     virtual const string& GetName() { return name; }
     virtual string ToString() { return name; }
+    virtual string GenerateCommandString() const = 0;
     virtual float CalculateCalories( const Quantity& quantity ) const =0;
     virtual float GetGramsPerServing() const = 0;
     virtual bool IsLinkedTo( const RecipeItem* item ) = 0;
@@ -41,6 +42,7 @@ public:
     float GetServingSize() { return servingSize; }
     float GetCaloriesPerServing() { return caloriesPerServing; }
     virtual string ToString() { return "Food: " + name; }
+    virtual string GenerateCommandString() const;
     virtual float CalculateCalories( const Quantity& quantity ) const;
     virtual float GetGramsPerServing() const { return servingSize; }
     virtual bool IsLinkedTo( const RecipeItem* item ) { return false; }
@@ -66,6 +68,7 @@ public:
     //Recipe( const string &name, Quantity quantity );
     Recipe( const Recipe& ) = delete;
     virtual string ToString() { return "Recipe: " + name; }
+    virtual string GenerateCommandString() const;
     virtual float CalculateCalories( const Quantity& quantity ) const;
     virtual float GetGramsPerServing() const;
 

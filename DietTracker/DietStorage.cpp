@@ -20,6 +20,13 @@ Food::Food( const string &name)
     , caloriesPerServing ( 0.0f )
 {}
 
+string Food::GenerateCommandString() const
+{
+    string out{ "Define " };
+    out += name + " " + std::to_string( servingSize ) + " " + std::to_string( caloriesPerServing );
+    return out;
+}
+
 float Food::CalculateCalories( const Quantity& quantity ) const
 {
     if( quantity.GetType() == 's' ) {
@@ -41,6 +48,24 @@ float Food::CalculateCalories( const Quantity& quantity ) const
 Recipe::Recipe( const string &iname )
     : RecipeItem( iname )
 {}
+
+string Recipe::GenerateCommandString() const
+{
+    string out{ "define " };
+    out += "{ ";
+    size_t i = 0;
+    int size = components.size();
+    for( auto& comp : components ) {
+        out += comp->item->GetName() + "=";
+        out += comp->quantity.GetValue();
+        if( i != size-1 ) {
+            out += ", ";
+        }
+        i++;
+    }
+    out += " }";
+    return out;
+}
 
 //AddRecipeComponent
 void Recipe::AddRecipeComponent( RecipeItem *item, Quantity quant )

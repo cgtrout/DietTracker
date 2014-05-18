@@ -36,6 +36,17 @@ void Test_DietStorage::addTests()
         log.AddEntry( make_unique<DietEntry>( food.get(), Quantity("1.0s"), Time( "07:32" )));
         return log.entries[0]->item->GetName() == "food";
     });
+    suiteDietStorage.AddTest( "Test Recipe GenerateCommandString", []()->bool {
+        FoodDatabase db;
+        auto recipe = make_unique<Recipe>( "Test" );
+        auto f1 = make_unique<Food>( "f1", 1.0f, 100.0f );
+        auto f2 = make_unique<Food>( "f2", 2.0f, 200.0f );
+
+        recipe->AddRecipeComponent( f1.get(), Quantity( "1s" ) );
+        recipe->AddRecipeComponent( f2.get(), Quantity( "2s" ) );
+        auto test_string = recipe->GenerateCommandString();
+        return test_string == "define { f1=1.000000s, f2=2.000000s }";
+    });
 
     tester.AddSuite( suiteDietStorage );
 }
