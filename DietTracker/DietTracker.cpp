@@ -28,7 +28,7 @@ int main( int argc, char* argv[] )
     if( path_loader.good() ) {
         getline( path_loader, file_path );
         path_loader.close();
-
+        file_path += "FoodDefines.txt";
         try {
             dietSystem.ExecuteFile( file_path );
         } catch( exception& e ) {
