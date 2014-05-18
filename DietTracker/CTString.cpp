@@ -50,6 +50,13 @@ vector<string> parseCommandLine(const string &instring) {
 			lastPos = pos;
             continue;
 		}
+        else if( instring[ pos ] == '/' ) {
+            if( pos + 1 < instring.length() ) {
+                if( instring[ pos + 1 ] == '/' ) {
+                    break;
+                }
+            }
+        }
 		//else if at a start bracket
 		else if(instring[pos] == '{') {
 			//skip until we find next bracket
