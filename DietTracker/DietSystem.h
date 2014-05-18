@@ -40,11 +40,12 @@ private:
 
     //--COMMAND FUNCTIONS--
     void Command_Eat();
-    void Command_Define();
-    void Command_PrintFood();
+    void Command_Define();      //define food
+    void Command_PrintFood();   //print list of food items
     void Command_PrintLogs();
     
     void Command_Delete();      //deletes food item
+    void Command_PrintCalories();
 };
 
 #endif

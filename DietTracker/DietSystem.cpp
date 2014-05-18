@@ -68,6 +68,7 @@ void DietSystem::BindFunctions()
     BindFunction( "printlogs", std::bind( &DietSystem::Command_PrintLogs, this ) );
 
     BindFunction( "delete", std::bind( &DietSystem::Command_Delete, this ) );
+    BindFunction( "cals", std::bind( &DietSystem::Command_PrintCalories, this ) );
 }
 
 void DietSystem::BindFunction( const std::string &s, std::function<void()> f )
@@ -173,4 +174,9 @@ void DietSystem::Command_Delete()
 {
     ValidateParamCount( 1 );
     foodDatabase.DeleteRecipeItem( param_tokens[ 1 ] );
+}
+
+void DietSystem::Command_PrintCalories()
+{
+    cout << "Daily Calories=" << dailyLog.CalculateCalories() << "\n";
 }
