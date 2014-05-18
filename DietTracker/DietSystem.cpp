@@ -16,6 +16,9 @@ void DietSystem::ExecuteLine( const std::string &line )
         throw invalid_argument( "Invalid command." );
     }
     param_tokens = parseCommandLine( line );
+    if( param_tokens.empty() ) {
+        return;
+    }
     string commandName = param_tokens[0];
     param_count = param_tokens.size() - 1;
     
