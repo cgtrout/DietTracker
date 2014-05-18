@@ -31,10 +31,7 @@ void DietSystem::ExecuteLine( const std::string &line )
     InitializeCommand( commandName );
 
     //run function
-    cout << "\n" << "Executing function: " << commandName << endl;
-    cout << "======================================================" << "\n";
     thiscommand->commandFunction();
-    cout << "Command executed successfully!" << "\n\n";
 }
 
 void DietSystem::ExecuteFile( const string& filename )
