@@ -37,12 +37,17 @@ void DietSystem::ExecuteLine( const std::string &line )
     cout << "Command executed successfully!" << "\n\n";
 }
 
+//can throw std::ios_base::failure
 void DietSystem::ExecuteFile( const string& filename )
 {
     cout << "Executing file: " << filename << "\n";
     cout << "======================================================" << "\n";
     
-    ifstream s{ filename };
+    ifstream s;
+    s.open( filename );
+    if( s.fail() ) {
+        throw runtime_error( "Error loading file" );
+    }
     string line{};
     while( getline( s, line ) ) {
         if( line.length() > 0 ) {
