@@ -70,6 +70,7 @@ void DietSystem::BindFunctions()
     BindFunction( "delete", std::bind( &DietSystem::Command_Delete, this ) );
     BindFunction( "cals", std::bind( &DietSystem::Command_PrintCalories, this ) );
     BindFunction( "clearlogs", std::bind( &DietSystem::Command_ClearLogs, this ) );
+    BindFunction( "savelogs", std::bind( &DietSystem::Command_SaveLogs, this ) );
 }
 
 void DietSystem::BindFunction( const std::string &s, std::function<void()> f )
@@ -185,5 +186,12 @@ void DietSystem::Command_PrintCalories()
 void DietSystem::Command_ClearLogs()
 {
     dailyLog.entries.clear();
+    dailyLog.WriteFile( filePath + "DailyLogs.txt" );
     cout << "Logs cleared" << "\n";
+}
+
+void DietSystem::Command_SaveLogs()
+{
+    dailyLog.WriteFile( filePath + "DailyLogs.txt" );
+    cout << "Daily log saved" << "\n";
 }

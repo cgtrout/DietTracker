@@ -17,6 +17,8 @@ public:
     DailyLog dailyLog;
     FoodDatabase foodDatabase;
 
+    string filePath;
+
 private:
 
     //bind A function to dietCommands
@@ -46,6 +48,7 @@ private:
     void Command_Delete();      //deletes food item
     void Command_PrintCalories();
     void Command_ClearLogs();    //clear dailylog
+    void Command_SaveLogs();      //save dailyLog
 };
 
 #endif

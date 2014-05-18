@@ -23,22 +23,21 @@ int main( int argc, char* argv[] )
     dietSystem.BindFunctions();
 
     //get storage location
-    string file_path{};
     ifstream path_loader{ "./settings/Storage_Location.txt" };
     if( path_loader.good() ) {
-        getline( path_loader, file_path );
+        getline( path_loader, dietSystem.filePath );
         path_loader.close();
         
         try {
             //load FoodDefines
-            dietSystem.ExecuteFile( file_path + "FoodDefines.txt" );
+            dietSystem.ExecuteFile( dietSystem.filePath + "FoodDefines.txt" );
         } catch( exception& e ) {
             cout << "Problem loading food definition file \n";
             cout << e.what() << "\n";
         }
         try {
             //load DailyLog
-            dietSystem.ExecuteFile( file_path + "DailyLog.txt" );
+            dietSystem.ExecuteFile( dietSystem.filePath + "DailyLogs.txt" );
         } catch( exception& e ) {
             cout << "Problem loading DailyLog file \n";
             cout << e.what() << "\n";
