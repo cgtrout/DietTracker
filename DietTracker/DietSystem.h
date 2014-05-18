@@ -10,6 +10,7 @@
 class DietSystem {
 public:
     void ExecuteLine( const std::string &line );
+    void ExecuteFile( const std::string& filename );
     void BindFunctions();
 
     DietCommands dietCommands;

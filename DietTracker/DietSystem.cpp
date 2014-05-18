@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <fstream>
 
 #include "DietSystem.h"
 #include "CTString.h"
@@ -34,6 +35,20 @@ void DietSystem::ExecuteLine( const std::string &line )
     cout << "======================================================" << "\n";
     thiscommand->commandFunction();
     cout << "Command executed successfully!" << "\n\n";
+}
+
+void DietSystem::ExecuteFile( const string& filename )
+{
+    cout << "Executing file: " << filename << "\n";
+    cout << "======================================================" << "\n";
+    
+    ifstream s{ filename };
+    string line{};
+    while( getline( s, line ) ) {
+        if( line.length() > 0 ) {
+            ExecuteLine( line );
+        }
+    }
 }
 
 void DietSystem::BindFunctions()
