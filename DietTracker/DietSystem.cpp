@@ -168,7 +168,8 @@ void DietSystem::Command_PrintFood()
 
 void DietSystem::Command_PrintLogs()
 {
-    cout << "\n" << "Printing Logs" << "\n\n";
+    cout << "\n" << "Printing Logs" << "\n";
+    cout << "================================" << "\n";
     dailyLog.PrintLogs();
 }
 
