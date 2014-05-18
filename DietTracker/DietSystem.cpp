@@ -47,11 +47,19 @@ void DietSystem::ExecuteFile( const string& filename )
     if( s.fail() ) {
         throw runtime_error( "Error loading file" );
     }
+    int line_num = 1;
     string line{};
     while( getline( s, line ) ) {
         if( line.length() > 0 ) {
-            ExecuteLine( line );
+            try {
+                ExecuteLine( line );
+            } catch( exception& e ) {
+                string errormsg{ "Error - line " };
+                errormsg += to_string( line_num ) + ": " + e.what();
+                throw runtime_error( errormsg );
+            }
         }
+        line_num++;
     }
 }
 

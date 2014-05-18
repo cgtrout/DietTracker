@@ -25,14 +25,18 @@ int main( int argc, char* argv[] )
     //get storage location and load food definition file
     string file_path{};
     ifstream path_loader{ "./settings/Storage_Location.txt" };
-    getline( path_loader, file_path );
-    path_loader.close();
-    
-    try {
-        dietSystem.ExecuteFile( file_path );
-    } catch( exception& e ) {
-        cout << "Problem loading food definition file \n";
-        cout << " Error was: " << e.what();
+    if( path_loader.good() ) {
+        getline( path_loader, file_path );
+        path_loader.close();
+
+        try {
+            dietSystem.ExecuteFile( file_path );
+        } catch( exception& e ) {
+            cout << "Problem loading food definition file \n";
+            cout << e.what() << "\n";
+        }
+    } else if ( path_loader.bad() ) {
+        cout << "Could not load food definition file" << "\n";
     }
 
     while( true ) {
