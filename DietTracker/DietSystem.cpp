@@ -12,6 +12,7 @@ static std::map <string, string> commandHelp {
     { "pfood", "[printfood] - Print list of food" },
     { "plog", "[printlogs] - Print list of items in daily log" },
     { "delete", "[delete food_name] - deletes food from system]" },
+    { "dlast", "[deletelast] - delete last entry entered in daily log" },
     { "cals", "[cals] - prints total calories in log" },
     { "clog", "[clearlogs] - erases contents of the daily log" }
 };
@@ -83,6 +84,7 @@ void DietSystem::BindFunctions()
     BindFunction( "plog", std::bind( &DietSystem::Command_PrintLogs, this ) );
 
     BindFunction( "delete", std::bind( &DietSystem::Command_Delete, this ) );
+    BindFunction( "dlast", std::bind( &DietSystem::Command_DeleteLast, this ) );
     BindFunction( "cals", std::bind( &DietSystem::Command_PrintCalories, this ) );
     BindFunction( "clog", std::bind( &DietSystem::Command_ClearLogs, this ) );
     BindFunction( "savelogs", std::bind( &DietSystem::Command_SaveLogs, this ) );
@@ -149,7 +151,7 @@ void DietSystem::Command_Eat()
     auto dietEntry = make_unique<DietEntry>( item, quantity, time->GetValue() );
     dailyLog.AddEntry( std::move( dietEntry ) );
 
-    dailyLog.WriteFile( filePath + "DailyLogs.txt" );
+    WriteLogFile();
 }
 
 //Define Chocolate	  serving_size(g)	calories_per_serving	//define new food.  Maybe make this a multi prompt command
@@ -197,6 +199,17 @@ void DietSystem::Command_Delete()
     foodDatabase.DeleteRecipeItem( param_tokens[ 1 ] );
 }
 
+void DietSystem::Command_DeleteLast()
+{
+    if( !dailyLog.entries.empty() ) {
+        dailyLog.entries.pop_back();
+        cout << "\n" << "No entries to delete. \n";
+        return;
+    }
+    WriteLogFile();
+    cout << "\n" << "Last log entry deleted\n";
+}
+
 void DietSystem::Command_PrintCalories()
 {
     cout << "Daily Calories=" << dailyLog.CalculateCalories() << "\n";
@@ -205,13 +218,13 @@ void DietSystem::Command_PrintCalories()
 void DietSystem::Command_ClearLogs()
 {
     dailyLog.entries.clear();
-    dailyLog.WriteFile( filePath + "DailyLogs.txt" );
+    WriteLogFile();
     cout << "Logs cleared" << "\n";
 }
 
 void DietSystem::Command_SaveLogs()
 {
-    dailyLog.WriteFile( filePath + "DailyLogs.txt" );
+    WriteLogFile();
     cout << "Daily log saved" << "\n";
 }
 

@@ -39,6 +39,8 @@ private:
     template <typename... Args>
     void ValidateParamCount( size_t correct_count, const Args& ... rest ) const;
 
+    void WriteLogFile() { dailyLog.WriteFile( filePath + "DailyLogs.txt" ); }
+
     //--COMMAND FUNCTIONS--
     void Command_Eat();
     void Command_Define();      //define food
@@ -46,6 +48,8 @@ private:
     void Command_PrintLogs();
     
     void Command_Delete();      //deletes food item
+    void Command_DeleteLast();
+
     void Command_PrintCalories();
     void Command_ClearLogs();    //clear dailylog
     void Command_SaveLogs();      //save dailyLog
