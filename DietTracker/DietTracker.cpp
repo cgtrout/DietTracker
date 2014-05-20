@@ -9,14 +9,23 @@
 #include "CTString.h"
 #include "DietSystem.h"
 
-extern Tester tester;
+#ifdef _DEBUG
+ extern Tester tester;
 
-void TestAll();
+ 
+void TestAll()
+{
+    AllTests::addSuites();
+    tester.RunAllSuites();
+}
+#endif
 
 using namespace std;
 int main( int argc, char* argv[] )
 {
+ #ifdef _DEBUG
     TestAll();
+ #endif
 
     string templine;
     DietSystem dietSystem;
@@ -60,10 +69,6 @@ int main( int argc, char* argv[] )
     return 0;
 }
 
-void TestAll()
-{
-    AllTests::addSuites();
-    tester.RunAllSuites();
-}
+
 
 
