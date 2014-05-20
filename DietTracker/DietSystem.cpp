@@ -133,7 +133,6 @@ void DietSystem::Command_Eat()
     
     Name foodName{ *tokens_iter++ };
     Quantity quantity{ *tokens_iter++ };
-    //TODO validate quantity to ensure it is only in grams
     unique_ptr<Time> time;
     
     if( param_count == 3 ) {
