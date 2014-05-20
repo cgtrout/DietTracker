@@ -72,7 +72,7 @@ public:
     virtual float CalculateCalories( const Quantity& quantity ) const;
     virtual float GetGramsPerServing() const;
 
-    virtual bool IsLinkedTo( const RecipeItem* item );
+    virtual bool IsLinkedTo( const RecipeItem* item ) const;
 
     void AddRecipeComponent( RecipeItem *item, Quantity quant );
     

@@ -125,7 +125,7 @@ float Recipe::GetGramsPerServing() const
     return grams;
 }
 
-bool Recipe::IsLinkedTo( const RecipeItem *item )
+bool Recipe::IsLinkedTo( const RecipeItem *item ) const 
 {
     for( auto& comp : components ) {
         if( comp->item == item ) {
