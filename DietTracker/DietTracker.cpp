@@ -53,6 +53,8 @@ int main( int argc, char* argv[] )
         cout << "Could not load Storage_Location file" << "\n";
     }
 
+    cout << "Compiled: " << __DATE__ << " " << __TIME__ << "\n\n";
+
     while( true ) {
         cout << "DietTracker > ";
         getline( cin, templine );
