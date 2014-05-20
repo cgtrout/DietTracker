@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include "CTString.h"
 
 //split string using delimiter.  Split strings returned in vector
@@ -79,4 +81,11 @@ vector<string> parseCommandLine(const string &instring) {
 	}
 
 	return vec;
+}
+
+string tolower_string( const string& s )
+{
+    string out{ s };
+    std::transform( out.begin(), out.end(), out.begin(), ::tolower );
+    return out;
 }

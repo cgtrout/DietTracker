@@ -37,8 +37,7 @@ void DietSystem::ExecuteLine( const std::string &line )
     param_count = param_tokens.size() - 1;
     
     //convert commandName to lowercase
-    //TODO pull this to seperate function?
-    std::transform( commandName.begin(), commandName.end(), commandName.begin(), ::tolower );
+    commandName = tolower_string( commandName );
     
     //make sure command exists
     if( !dietCommands.DoesCommandExist( commandName ) ) {

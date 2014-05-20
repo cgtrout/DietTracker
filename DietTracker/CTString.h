@@ -12,4 +12,6 @@ vector<string> split(const string &instring, string delim = " ");
 //Parse command line for recipe program
 vector<string> parseCommandLine(const string &instring);
 
+string tolower_string( const string& s );
+
 #endif //CTSTRING
