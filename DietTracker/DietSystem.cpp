@@ -203,6 +203,7 @@ void DietSystem::Command_DeleteLast()
 {
     if( !dailyLog.entries.empty() ) {
         dailyLog.entries.pop_back();
+    } else {
         cout << "\n" << "No entries to delete. \n";
         return;
     }
