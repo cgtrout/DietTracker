@@ -216,10 +216,10 @@ void FoodDatabase::AddRecipe( const string &name, const string &recipe_str )
 
     while( true ) {
         parser.SkipWhiteSpace();
-        
+
         //read name token
         auto token_name = parser.ReadToken( ",= {}" );
-        
+
         //validate that food item exists in database
         RecipeItem *item = FindRecipeItem( token_name );
         if( item == nullptr ) {
@@ -227,19 +227,23 @@ void FoodDatabase::AddRecipe( const string &name, const string &recipe_str )
             errormsg += to_string( param_num );
             throw invalid_argument( errormsg );
         }
+        if( parser.Peek() == '=' ) {
+            parser.ExpectSymbol( '=' );
+            parser.SkipWhiteSpace();
 
-        parser.ExpectSymbol( '=' );
-        parser.SkipWhiteSpace();
+            //read quantity
+            string token_quant = parser.ReadToken( ",= {}" );
 
-        //read quantity
-        string token_quant = parser.ReadToken( ",= {}" );
+            //validate quantity
+            Quantity quantity{ token_quant };
+
+            //add to recipe
+            new_recipe->AddRecipeComponent( item, quantity );
+        } else {
+            //assume quantity of 1
+            new_recipe->AddRecipeComponent( item, Quantity( "1.0s" ) );
+        }
         
-        //validate quantity
-        Quantity quantity{ token_quant };
-        
-        //add to recipe
-        new_recipe->AddRecipeComponent( item, quantity );
-
         parser.SkipWhiteSpace();
         
         //if a ',' expect more food items, else if a '}' we are done
