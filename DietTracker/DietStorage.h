@@ -129,7 +129,7 @@ public:
 
     //TODO WriteFile()
 
-    void PrintFood();
+    void PrintFood() const;
     
     std::vector<unique_ptr<RecipeItem>> database;
 

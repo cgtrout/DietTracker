@@ -308,7 +308,7 @@ RecipeItem* FoodDatabase::FindRecipeItem( const string& name )
     }
 }
 
-void FoodDatabase::PrintFood()
+void FoodDatabase::PrintFood() const
 {
     for( auto &i : database ) {
         cout << i->ToString() << "\n";
