@@ -135,6 +135,8 @@ void DietSystem::Command_Eat()
     //create entry and add it to dailyLog
     auto dietEntry = make_unique<DietEntry>( item, quantity, time->GetValue() );
     dailyLog.AddEntry( std::move( dietEntry ) );
+
+    dailyLog.WriteFile( filePath + "DailyLogs.txt" );
 }
 
 //Define Chocolate	  serving_size(g)	calories_per_serving	//define new food.  Maybe make this a multi prompt command
