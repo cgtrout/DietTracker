@@ -13,6 +13,7 @@ static std::map <string, string> commandHelp {
     { "plog", "[printlogs] - Print list of items in daily log" },
     { "delete", "[delete food_name] - deletes food from system]" },
     { "dlast", "[deletelast] - delete last entry entered in daily log" },
+    { "reload", "[reload] - reload FoodDefines file" },
     { "cals", "[cals] - prints total calories in log" },
     { "clog", "[clearlogs] - erases contents of the daily log" }
 };
@@ -88,6 +89,7 @@ void DietSystem::BindFunctions()
     BindFunction( "cals", std::bind( &DietSystem::Command_PrintCalories, this ) );
     BindFunction( "clog", std::bind( &DietSystem::Command_ClearLogs, this ) );
     BindFunction( "savelogs", std::bind( &DietSystem::Command_SaveLogs, this ) );
+    BindFunction( "reload", std::bind( &DietSystem::Command_Reload, this ) );
     BindFunction( "help", std::bind( &DietSystem::Command_Help, this ) );
 }
 
@@ -226,6 +228,12 @@ void DietSystem::Command_SaveLogs()
 {
     WriteLogFile();
     cout << "Daily log saved" << "\n";
+}
+
+void DietSystem::Command_Reload()
+{
+    foodDatabase.database.clear();
+    ReadFoodDefine();
 }
 
 void DietSystem::Command_Help()

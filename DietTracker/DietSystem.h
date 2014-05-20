@@ -13,6 +13,10 @@ public:
     void ExecuteFile( const std::string& filename );
     void BindFunctions();
 
+    //read food define file
+    void ReadFoodDefine() { ExecuteFile( filePath + "FoodDefines.txt" ); }
+    void ReadDailyLogs() { ExecuteFile( filePath + "DailyLogs.txt" ); }
+
     DietCommands dietCommands;
     DailyLog dailyLog;
     FoodDatabase foodDatabase;
@@ -39,6 +43,7 @@ private:
     template <typename... Args>
     void ValidateParamCount( size_t correct_count, const Args& ... rest ) const;
 
+    
     void WriteLogFile() { dailyLog.WriteFile( filePath + "DailyLogs.txt" ); }
 
     //--COMMAND FUNCTIONS--
@@ -53,6 +58,7 @@ private:
     void Command_PrintCalories();
     void Command_ClearLogs();    //clear dailylog
     void Command_SaveLogs();      //save dailyLog
+    void Command_Reload();
     void Command_Help();
 };
 

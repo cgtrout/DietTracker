@@ -27,17 +27,15 @@ int main( int argc, char* argv[] )
     if( path_loader.good() ) {
         getline( path_loader, dietSystem.filePath );
         path_loader.close();
-        
+        //read food define and daily logs
         try {
-            //load FoodDefines
-            dietSystem.ExecuteFile( dietSystem.filePath + "FoodDefines.txt" );
+            dietSystem.ReadFoodDefine();
         } catch( exception& e ) {
             cout << "Problem loading food definition file \n";
             cout << e.what() << "\n";
         }
         try {
-            //load DailyLog
-            dietSystem.ExecuteFile( dietSystem.filePath + "DailyLogs.txt" );
+            dietSystem.ReadDailyLogs();
         } catch( exception& e ) {
             cout << "Problem loading DailyLog file \n";
             cout << e.what() << "\n";
