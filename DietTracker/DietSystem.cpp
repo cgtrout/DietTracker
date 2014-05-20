@@ -129,16 +129,25 @@ void DietSystem::ValidateParamCount( size_t correct_count ) const
 void DietSystem::Command_Eat()
 {
     //must be 2 or 3
-    ValidateParamCount( 2, 3 );
+    ValidateParamCount( 1, 2, 3 );
     
     Name foodName{ *tokens_iter++ };
-    Quantity quantity{ *tokens_iter++ };
+    Quantity quantity;
     unique_ptr<Time> time;
     
-    if( param_count == 3 ) {
-        time = make_unique<Time>( *tokens_iter );
-    } else { //auto-time
+    switch( param_count ) {
+    case 1:
+        quantity = Quantity( "1.0s" );
         time = make_unique<Time>( GetCurrentTime() );
+        break;
+    case 2:
+        quantity = *tokens_iter++;
+        time = make_unique<Time>( GetCurrentTime() );
+        break;
+    case 3:
+        quantity = *tokens_iter++;
+        time = make_unique<Time>( *tokens_iter );
+        break;
     }
 
     //find out if given food / recipe exists
