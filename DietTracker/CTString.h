@@ -10,7 +10,6 @@ using namespace std;
 vector<string> split(const string &instring, string delim = " ");
 
 //Parse command line for recipe program
-//TODO this should be moved when it is apparent where it belongs
 vector<string> parseCommandLine(const string &instring);
 
 #endif //CTSTRING
