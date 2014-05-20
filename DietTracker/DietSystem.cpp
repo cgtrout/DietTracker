@@ -232,8 +232,15 @@ void DietSystem::Command_SaveLogs()
 
 void DietSystem::Command_Reload()
 {
+    //must clear both to ensure validation takes place
     foodDatabase.database.clear();
-    ReadFoodDefine();
+    dailyLog.entries.clear();
+    try {
+        ReadFoodDefine();
+        ReadDailyLogs();
+    } catch( exception& e ) {
+        cout << "Error reloading files: " << e.what() << "\n";
+    }
 }
 
 void DietSystem::Command_Help()
