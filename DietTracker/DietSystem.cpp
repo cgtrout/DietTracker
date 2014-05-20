@@ -9,11 +9,11 @@
 static std::map <string, string> commandHelp { 
     { "eat", "[eat food_name quantity] - Add food to daily log" },
     { "define", "[define recipe recipe/str] or [define food quantity cals] - Define food - should not be used manually" },
-    { "printfood", "[printfood] - Print list of food" },
-    { "printlogs", "[printlogs] - Print list of items in daily log" },
+    { "pfood", "[printfood] - Print list of food" },
+    { "plog", "[printlogs] - Print list of items in daily log" },
     { "delete", "[delete food_name] - deletes food from system]" },
-    { "cals", "[cals] - prints total caloires in log" },
-    { "clearlogs", "[clearlogs] - erases contents of the daily log" }
+    { "cals", "[cals] - prints total calories in log" },
+    { "clog", "[clearlogs] - erases contents of the daily log" }
 };
 
 /* 
@@ -79,12 +79,12 @@ void DietSystem::BindFunctions()
 {
     BindFunction( "eat", std::bind( &DietSystem::Command_Eat, this ) );
     BindFunction( "define", std::bind( &DietSystem::Command_Define, this ) );
-    BindFunction( "printfood", std::bind( &DietSystem::Command_PrintFood, this ) );
-    BindFunction( "printlogs", std::bind( &DietSystem::Command_PrintLogs, this ) );
+    BindFunction( "pfood", std::bind( &DietSystem::Command_PrintFood, this ) );
+    BindFunction( "plog", std::bind( &DietSystem::Command_PrintLogs, this ) );
 
     BindFunction( "delete", std::bind( &DietSystem::Command_Delete, this ) );
     BindFunction( "cals", std::bind( &DietSystem::Command_PrintCalories, this ) );
-    BindFunction( "clearlogs", std::bind( &DietSystem::Command_ClearLogs, this ) );
+    BindFunction( "clog", std::bind( &DietSystem::Command_ClearLogs, this ) );
     BindFunction( "savelogs", std::bind( &DietSystem::Command_SaveLogs, this ) );
     BindFunction( "help", std::bind( &DietSystem::Command_Help, this ) );
 }
