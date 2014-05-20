@@ -208,7 +208,7 @@ void DietSystem::Command_DeleteLast()
         return;
     }
     WriteLogFile();
-    cout << "\n" << "Last log entry deleted\n";
+    cout << "Last log entry deleted\n";
 }
 
 void DietSystem::Command_PrintCalories()
