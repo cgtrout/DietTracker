@@ -36,7 +36,7 @@ void CommandParamQuantity::SetValue(const std::string &value) {
     }
 }
 
-std::string CommandParamQuantity::GetValue() {
+std::string CommandParamQuantity::GetValue() const {
     if( type == 0 ) {
         return to_string( value );
     } else {
@@ -57,7 +57,7 @@ char CommandParamQuantity::GetType() const {
     return type;
 }
 
-const std::string& CommandParamQuantity::GetTypeName() {
+const std::string& CommandParamQuantity::GetTypeName() const {
     return unitTypes[ type ];
 }
 
@@ -67,7 +67,7 @@ void CommandParamDate::SetValue( const std::string &value )
     this->value = date( from_string(value) );   
 }
 
-std::string CommandParamDate::GetValue()
+std::string CommandParamDate::GetValue() const
 {
     return to_iso_extended_string( value );
 }
@@ -78,7 +78,7 @@ void CommandParamTime::SetValue( const std::string &value ) {
     this->value = time_from_string( "2000-01-01 "+ value );
 }
 
-std::string CommandParamTime::GetValue() {
+std::string CommandParamTime::GetValue() const {
     string sval = to_simple_string( value );
     auto pos = sval.find_first_of( " " );
     pos++;
@@ -89,7 +89,7 @@ void CommandParamString::SetValue( const std::string &value ) {
     this->value = value;
 }
 
-std::string CommandParamString::GetValue() {
+std::string CommandParamString::GetValue() const {
     return value;
 }
 

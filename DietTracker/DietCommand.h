@@ -20,7 +20,7 @@ public:
     CommandParamBase() {}
     
     virtual void SetValue( const std::string &value ) = 0;
-	virtual std::string GetValue() = 0;
+	virtual std::string GetValue() const = 0;
 
     std::string name;
 };
@@ -33,10 +33,10 @@ public:
     CommandParamQuantity() : type( 0 ), value( 0.0f ) {}
     CommandParamQuantity( const string &value ): type( 0 ) { SetValue( value ); }
     void SetValue( const std::string &value );
-	std::string GetValue();
+	std::string GetValue() const;
     void SetType( char type );
     char GetType() const;
-    const std::string& GetTypeName();
+    const std::string& GetTypeName() const ;
 
 	float GetFloatValue() const { return value; }
 private:
@@ -51,7 +51,7 @@ class CommandParamDate : public CommandParamBase {
 public:
     CommandParamDate( const string &value ) { SetValue( value ); }
     void SetValue( const std::string &value );
-    std::string GetValue();
+    std::string GetValue() const;
 private:
     date value;
 };
@@ -62,7 +62,7 @@ class CommandParamTime : public CommandParamBase {
 public:
     CommandParamTime( const string &value ) { SetValue( value ); }
     void SetValue( const std::string &value );
-    std::string GetValue();
+    std::string GetValue() const;
 private:
     ptime value;
 };
@@ -72,7 +72,7 @@ class CommandParamString : public CommandParamBase {
 public:
     CommandParamString( const string &value ) { SetValue( value ); }
     void SetValue( const std::string &value );
-    std::string GetValue();
+    std::string GetValue() const;
 private:
     std::string value;
 };

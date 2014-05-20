@@ -21,12 +21,12 @@ class RecipeItem {
 public:
     RecipeItem( const RecipeItem& ) = delete;
 
-    virtual const string& GetName() { return name; }
-    virtual string ToString() { return name; }
+    virtual const string& GetName() const { return name; }
+    virtual string ToString() const { return name; }
     virtual string GenerateCommandString() const = 0;
     virtual float CalculateCalories( const Quantity& quantity ) const =0;
     virtual float GetGramsPerServing() const = 0;
-    virtual bool IsLinkedTo( const RecipeItem* item ) = 0;
+    virtual bool IsLinkedTo( const RecipeItem* item ) const = 0;
 protected:
     RecipeItem( const string &name ) : name( name ) {}
     
@@ -39,13 +39,13 @@ public:
     Food( const string &name );
     Food( const Food& ) = delete;
 
-    float GetServingSize() { return servingSize; }
-    float GetCaloriesPerServing() { return caloriesPerServing; }
-    virtual string ToString() { return "Food: " + name; }
+    float GetServingSize() const { return servingSize; }
+    float GetCaloriesPerServing() const { return caloriesPerServing; }
+    virtual string ToString() const { return "Food: " + name; }
     virtual string GenerateCommandString() const;
     virtual float CalculateCalories( const Quantity& quantity ) const;
     virtual float GetGramsPerServing() const { return servingSize; }
-    virtual bool IsLinkedTo( const RecipeItem* item ) { return false; }
+    virtual bool IsLinkedTo( const RecipeItem* item ) const { return false; }
 private:
     float servingSize;
     float caloriesPerServing;
@@ -67,7 +67,7 @@ public:
     Recipe( const string &name );
     //Recipe( const string &name, Quantity quantity );
     Recipe( const Recipe& ) = delete;
-    virtual string ToString() { return "Recipe: " + name; }
+    virtual string ToString() const { return "Recipe: " + name; }
     virtual string GenerateCommandString() const;
     virtual float CalculateCalories( const Quantity& quantity ) const;
     virtual float GetGramsPerServing() const;
