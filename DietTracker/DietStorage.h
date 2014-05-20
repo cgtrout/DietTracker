@@ -91,7 +91,7 @@ public:
 
     float CalculateCalories() { return item->CalculateCalories( quantity ); }
 
-    string GenerateCommandString() { return "eat " + item->GetName() + " " + quantity.GetValue(); }
+    string GenerateCommandString() { return "eat " + item->GetName() + " " + quantity.GetValue() + " " + mtime; }
 
     RecipeItem *item;
     Quantity quantity;

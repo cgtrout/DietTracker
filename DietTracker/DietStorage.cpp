@@ -174,6 +174,7 @@ void DailyLog::PrintLogs()
         cout << i->item->GetName();
         cout << " Quantity: " << i->quantity.GetValue();
         cout << " Calories: " << i->CalculateCalories();
+        cout << " Time: " << i->mtime;
         cout << "\n";
     }
 }
