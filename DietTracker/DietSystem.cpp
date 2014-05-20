@@ -256,6 +256,7 @@ void DietSystem::Command_Help()
     for( auto& command : dietCommands.commands ) {
         const string& name = command.second.GetName();
         const string& description = commandHelp[ name ];
-        cout << name << ": " << description << "\n\n";
+        cout << setiosflags( ios::left );
+        cout << setw( 10 ) << name << setw( 50 ) << description << "\n\n";
     }
 }
