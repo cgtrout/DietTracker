@@ -4,6 +4,18 @@
 #include "DietSystem.h"
 #include "CTString.h"
 #include "CTException.h"
+
+//help descriptions
+static std::map <string, string> commandHelp { 
+    { "eat", "[eat food_name quantity] - Add food to daily log" },
+    { "define", "[define recipe recipe/str] or [define food quantity cals] - Define food - should not be used manually" },
+    { "printfood", "[printfood] - Print list of food" },
+    { "printlogs", "[printlogs] - Print list of items in daily log" },
+    { "delete", "[delete food_name] - deletes food from system]" },
+    { "cals", "[cals] - prints total caloires in log" },
+    { "clearlogs", "[clearlogs] - erases contents of the daily log" }
+};
+
 /* 
  * DietSystem class
  *
@@ -74,6 +86,7 @@ void DietSystem::BindFunctions()
     BindFunction( "cals", std::bind( &DietSystem::Command_PrintCalories, this ) );
     BindFunction( "clearlogs", std::bind( &DietSystem::Command_ClearLogs, this ) );
     BindFunction( "savelogs", std::bind( &DietSystem::Command_SaveLogs, this ) );
+    BindFunction( "help", std::bind( &DietSystem::Command_Help, this ) );
 }
 
 void DietSystem::BindFunction( const std::string &s, std::function<void()> f )
@@ -200,4 +213,13 @@ void DietSystem::Command_SaveLogs()
 {
     dailyLog.WriteFile( filePath + "DailyLogs.txt" );
     cout << "Daily log saved" << "\n";
+}
+
+void DietSystem::Command_Help()
+{
+    for( auto& command : dietCommands.commands ) {
+        const string& name = command.second.GetName();
+        const string& description = commandHelp[ name ];
+        cout << name << ": " << description << "\n\n";
+    }
 }

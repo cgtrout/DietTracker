@@ -94,6 +94,8 @@ public:
     DietCommand( DietCommand &&other );
 	
     std::function<void()> commandFunction;
+
+    const string& GetName() const { return name; }
     
 private:
 	std::string name;

@@ -49,6 +49,7 @@ private:
     void Command_PrintCalories();
     void Command_ClearLogs();    //clear dailylog
     void Command_SaveLogs();      //save dailyLog
+    void Command_Help();
 };
 
 #endif
