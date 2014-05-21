@@ -304,7 +304,7 @@ RecipeItem* FoodDatabase::FindRecipeItem( const string& name )
     if( iter == db.end() ) {
         return nullptr;
     } else {
-        return ( *iter ).get();
+        return iter->get();
     }
 }
 
