@@ -11,6 +11,7 @@ static std::map <string, string> commandHelp {
     { "define", "[define recipe recipe/str] or [define food quantity cals] - Define food - should not be used manually" },
     { "pfood", "[printfood] - Print list of food" },
     { "plog", "[printlogs] - Print list of items in daily log" },
+    { "sub", "[sub quantity] - subtract from last entered item in log" },
     { "delete", "[delete food_name] - deletes food from system]" },
     { "dlast", "[deletelast] - delete last entry entered in daily log" },
     { "reload", "[reload] - reload FoodDefines file" },
@@ -83,6 +84,7 @@ void DietSystem::BindFunctions()
     BindFunction( "pfood", std::bind( &DietSystem::Command_PrintFood, this ) );
     BindFunction( "plog", std::bind( &DietSystem::Command_PrintLogs, this ) );
 
+    BindFunction( "sub", std::bind( &DietSystem::Command_SubLast, this ) );
     BindFunction( "delete", std::bind( &DietSystem::Command_Delete, this ) );
     BindFunction( "dlast", std::bind( &DietSystem::Command_DeleteLast, this ) );
     BindFunction( "cals", std::bind( &DietSystem::Command_PrintCalories, this ) );
@@ -200,6 +202,22 @@ void DietSystem::Command_PrintLogs()
     cout << "\n" << "Printing Logs" << "\n";
     cout << "================================" << "\n";
     dailyLog.PrintLogs();
+}
+
+void DietSystem::Command_SubLast()
+{
+    ValidateParamCount( 1 );
+    Quantity quantity{ param_tokens[ 1 ] };
+
+    //only allow grams
+    if( quantity.GetType() != 'g' ) {
+        throw invalid_argument( "Must be of type grams" );
+    }
+
+    Quantity& old_quantity = dailyLog.entries.back()->quantity;
+    float new_value = old_quantity.GetFloatValue() - quantity.GetFloatValue();
+    old_quantity.SetValue( to_string(new_value) + 'g' );
+    cout << "Quantity subtracted from last item" << "\n";
 }
 
 void DietSystem::Command_Delete()
