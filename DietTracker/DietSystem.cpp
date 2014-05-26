@@ -1,9 +1,12 @@
 #include <algorithm>
 #include <fstream>
 
+#include <boost\format.hpp>
+
 #include "DietSystem.h"
 #include "CTString.h"
 #include "CTException.h"
+
 
 //help descriptions
 static std::map <string, string> commandHelp { 
@@ -240,7 +243,11 @@ void DietSystem::Command_DeleteLast()
 
 void DietSystem::Command_PrintCalories()
 {
-    cout << "Daily Calories=" << dailyLog.CalculateCalories() << "\n";
+    float calories_today = dailyLog.CalculateCalories();
+    float total_calories = dailyLog.GetDailyCalories();
+    
+    cout << "Daily Calories=" << boost::format("%.0f") % calories_today << " of total " << boost::format("%.0f") % total_calories << "\n";
+    cout << "Calories left=" << boost::format("%.0f") % (total_calories - calories_today) << "\n";
 }
 
 void DietSystem::Command_ClearLogs()

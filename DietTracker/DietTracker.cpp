@@ -48,7 +48,13 @@ int main( int argc, char* argv[] )
         } catch( exception& e ) {
             cout << "Problem loading DailyLog file \n";
             cout << e.what() << "\n";
-        }       
+        }     
+        try {
+            dietSystem.ReadTotalCalories();
+        } catch( exception& e ) {
+            cout << "Problem loading DailyCalories file \n";
+            cout << e.what() << "\n";
+        }
     } else if ( path_loader.bad() ) {
         cout << "Could not load Storage_Location file" << "\n";
     }

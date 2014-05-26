@@ -1,5 +1,6 @@
 #include <numeric>
 #include <fstream>
+#include <cassert>
 
 #include "DietStorage.h"
 #include "CTException.h"
@@ -188,6 +189,25 @@ void DailyLog::WriteFile( const string& filename ) const
     for( auto& e : entries ) {
         stream << e->GenerateCommandString() << "\n";
     }
+}
+
+void DailyLog::SetDailyCalories( float value )
+{
+    assert( value > 0.0f );
+    daily_calories = value;
+}
+
+void DailyLog::ReadDailyCalories( const string& filename )
+{
+    ifstream stream{ filename };
+    if( stream.bad() ) {
+        throw runtime_error( "Error writing file" );
+    }
+    float value{};
+    stream >> value;
+    SetDailyCalories( value );
+
+    cout << "Read DailyCalories file" << "\n";
 }
 /*
  *  DailyLogs Class

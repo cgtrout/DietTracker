@@ -16,6 +16,7 @@ public:
     //read food define file
     void ReadFoodDefine() { ExecuteFile( filePath + "FoodDefines.txt" ); }
     void ReadDailyLogs() { ExecuteFile( filePath + "DailyLogs.txt" ); }
+    void ReadTotalCalories() { dailyLog.ReadDailyCalories( filePath + "Settings/" + "DailyCalories.txt" );  }
 
     DietCommands dietCommands;
     DailyLog dailyLog;

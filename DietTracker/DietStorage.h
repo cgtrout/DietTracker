@@ -110,8 +110,15 @@ public:
 
     void WriteFile( const string& filename ) const;
 
+    float GetDailyCalories() const { return daily_calories; }
+    void SetDailyCalories( float value );
+    void ReadDailyCalories( const string& filename );
+
     //list of DietEntries
     std::vector<unique_ptr<DietEntry>> entries;
+
+private:
+    float daily_calories = 0;
 };
 
 class FoodDatabase {
