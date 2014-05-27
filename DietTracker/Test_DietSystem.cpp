@@ -101,7 +101,7 @@ void Test_DietSystem::addTests()
         float calories = d.dailyLog.CalculateCalories();
         return calories == 1247.81372f;
     });
-    suiteDietSystem.AddTest( "Test load from file", []()->bool {
+    suiteDietSystem.AddTest( "Test sub command", []()->bool {
         DietSystem d;
         d.BindFunctions();
 
