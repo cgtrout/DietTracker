@@ -114,7 +114,7 @@ float Recipe::GetGramsPerServing() const
     for( auto& component : components ) {
         switch( component->quantity.GetType() ) {
         case 's':
-            grams += component->item->GetGramsPerServing();
+            grams += component->item->GetGramsPerServing() * component->quantity.GetFloatValue();
             break;
         case 'g':
             grams += component->quantity.GetFloatValue();
