@@ -11,7 +11,7 @@
 //help descriptions
 static std::map <string, string> commandHelp { 
     { "eat", "[eat food_name quantity] - Add food to daily log" },
-    { "define", "[define recipe recipe/str] or [define food quantity cals] - Define food - should not be used manually" },
+    { "define", "[recipe recipe/str] or [food quantity cals] - Define food or recipe" },
     { "pfood", "[printfood] - Print list of food" },
     { "plog", "[printlogs] - Print list of items in daily log" },
     { "calc", "[calc calories] - Calculate grams given calories" },
@@ -299,6 +299,6 @@ void DietSystem::Command_Help()
         const string& name = command.second.GetName();
         const string& description = commandHelp[ name ];
         cout << setiosflags( ios::left );
-        cout << setw( 10 ) << name << setw( 50 ) << description << "\n\n";
+        cout << setw( 10 ) << name << setw( 50 ) << description << "\n";
     }
 }
