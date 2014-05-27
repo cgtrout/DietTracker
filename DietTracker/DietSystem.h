@@ -53,6 +53,7 @@ private:
     void Command_PrintFood();   //print list of food items
     void Command_PrintLogs();
     
+    void Command_CalculateGrams();
     void Command_SubLast();     //subtract from last entered
     void Command_Delete();      //deletes food item
     void Command_DeleteLast();

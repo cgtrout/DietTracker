@@ -5,6 +5,20 @@
 #include "DietStorage.h"
 #include "CTException.h"
 
+/* Recipe Item
+ * 
+ *  Implementation
+ */
+float RecipeItem::CalculateGrams( float calories ) const
+{
+    float grams_per_serving = GetGramsPerServing();
+    float total_calories = CalculateCalories( Quantity( "1.0s" ) );
+    float grams_per_cal = grams_per_serving / total_calories;
+    
+    float calculated_grams = grams_per_cal * calories;
+    return calculated_grams;
+}
+
 /*
  *  Food Class
  *   Implemenation

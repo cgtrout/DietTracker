@@ -26,6 +26,7 @@ public:
     virtual string GenerateCommandString() const = 0;
     virtual float CalculateCalories( const Quantity& quantity ) const =0;
     virtual float GetGramsPerServing() const = 0;
+    virtual float CalculateGrams( float calories ) const;
     virtual bool IsLinkedTo( const RecipeItem* item ) const = 0;
 protected:
     RecipeItem( const string &name ) : name( name ) {}

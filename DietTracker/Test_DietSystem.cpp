@@ -113,5 +113,18 @@ void Test_DietSystem::addTests()
         return cals == 50;
 
     });
+    suiteDietSystem.AddTest( "Test calc", []()->bool {
+        Food f1{ "f1", 100, 450 };
+        Food f2{ "f2", 200, 100 };
+
+        Recipe r1{ "r1" };
+        r1.AddRecipeComponent( &f1, Quantity("2.0s") );
+        r1.AddRecipeComponent( &f2, Quantity( "1.0s" ) );
+
+        float grams = r1.CalculateGrams( 1000 );
+
+        return grams == 400;
+
+    });
     tester.AddSuite( suiteDietSystem );
 }

@@ -14,6 +14,7 @@ static std::map <string, string> commandHelp {
     { "define", "[define recipe recipe/str] or [define food quantity cals] - Define food - should not be used manually" },
     { "pfood", "[printfood] - Print list of food" },
     { "plog", "[printlogs] - Print list of items in daily log" },
+    { "calc", "[calc calories] - Calculate grams given calories" },
     { "sub", "[sub quantity] - subtract from last entered item in log" },
     { "delete", "[delete food_name] - deletes food from system]" },
     { "dlast", "[deletelast] - delete last entry entered in daily log" },
@@ -86,6 +87,7 @@ void DietSystem::BindFunctions()
     BindFunction( "define", std::bind( &DietSystem::Command_Define, this ) );
     BindFunction( "pfood", std::bind( &DietSystem::Command_PrintFood, this ) );
     BindFunction( "plog", std::bind( &DietSystem::Command_PrintLogs, this ) );
+    BindFunction( "calc", std::bind( &DietSystem::Command_CalculateGrams, this ) );
 
     BindFunction( "sub", std::bind( &DietSystem::Command_SubLast, this ) );
     BindFunction( "delete", std::bind( &DietSystem::Command_Delete, this ) );
@@ -198,6 +200,21 @@ void DietSystem::Command_PrintFood()
 {
     cout << "\n" << "Printing List of Food Items in Database" << "\n\n";
     foodDatabase.PrintFood();
+}
+
+void DietSystem::Command_CalculateGrams()
+{
+    ValidateParamCount( 2 );
+    const string& name = param_tokens[ 1 ];
+    float given_calories = stof( param_tokens[ 2 ] );
+    
+    const auto& recipe = foodDatabase.FindRecipeItem( name );
+    if( recipe == nullptr ) {
+        throw invalid_argument( "Error: food does not exist" );
+    }
+    
+    float calculated_grams = recipe->CalculateGrams( given_calories );
+    cout << "Calculated grams= " << boost::format( "%.0f" ) % calculated_grams << "\n";
 }
 
 void DietSystem::Command_PrintLogs()
