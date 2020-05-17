@@ -14,9 +14,9 @@ public:
     void BindFunctions();
 
     //read food define file
-    void ReadFoodDefine() { ExecuteFile( filePath + "FoodDefines.txt" ); }
-    void ReadDailyLogs() { ExecuteFile( filePath + "DailyLogs.txt" ); }
-    void ReadTotalCalories() { dailyLog.ReadDailyCalories( filePath + "Settings/" + "DailyCalories.txt" );  }
+    void ReadFoodDefine();
+    void ReadDailyLogs();
+    void ReadTotalCalories();
 
     DietCommands dietCommands;
     DailyLog dailyLog;

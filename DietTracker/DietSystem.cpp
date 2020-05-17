@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <fstream>
 
-#include <boost\format.hpp>
+#include <boost/format.hpp>
 
 #include "DietSystem.h"
 #include "CTString.h"
@@ -97,6 +97,18 @@ void DietSystem::BindFunctions()
     BindFunction( "savelogs", std::bind( &DietSystem::Command_SaveLogs, this ) );
     BindFunction( "reload", std::bind( &DietSystem::Command_Reload, this ) );
     BindFunction( "help", std::bind( &DietSystem::Command_Help, this ) );
+}
+
+void DietSystem::ReadFoodDefine() {
+    ExecuteFile( filePath + "FoodDefines.txt" );
+}
+
+void DietSystem::ReadDailyLogs() {
+    ExecuteFile( filePath + "DailyLogs.txt" );
+}
+
+void DietSystem::ReadTotalCalories() {
+    dailyLog.ReadDailyCalories( filePath + "Settings/" + "DailyCalories.txt" ); 
 }
 
 void DietSystem::BindFunction( const std::string &s, std::function<void()> f )

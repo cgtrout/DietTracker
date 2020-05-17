@@ -59,4 +59,4 @@ class Tester {
 };
 
 
-#endif CGT_TEST_H_
+#endif
